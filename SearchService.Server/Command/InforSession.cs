@@ -10,7 +10,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述：写索引的信息实体
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-10
     /// </summary>
     class InforSession<T>

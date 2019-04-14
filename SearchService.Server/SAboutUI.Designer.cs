@@ -50,7 +50,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 12);
             this.label3.TabIndex = 2;
-            this.label3.Text = "深圳市华伯通讯设备有限公司  版权所有";
+            this.label3.Text = "深圳市HW通讯设备有限公司  版权所有";
             // 
             // groupBox1
             // 

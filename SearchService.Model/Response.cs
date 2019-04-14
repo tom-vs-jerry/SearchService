@@ -8,7 +8,7 @@ namespace SearchService.Model
 {
     /// <summary>
     /// 描述：应答实体
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-2-1
     /// </summary>
     [Serializable]

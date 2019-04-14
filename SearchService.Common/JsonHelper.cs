@@ -11,7 +11,7 @@ namespace SearchService.Common
 {
     /// <summary>
     /// 描述：Json帮助类
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-01-09
     /// </summary>
     public class JsonHelper

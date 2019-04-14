@@ -13,7 +13,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述:重启所有的搜索
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-08
     /// </summary>
     public class RS : SubCommandBase<WebSocketSession>

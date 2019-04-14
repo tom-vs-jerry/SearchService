@@ -17,7 +17,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述：联想功能
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-01
     /// </summary>
     public class SA : JsonSubCommand<AssParam>

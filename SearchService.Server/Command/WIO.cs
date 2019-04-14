@@ -13,7 +13,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述：优化索引
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-08
     /// </summary>
     public class WIO : SubCommandBase<WebSocketSession>

@@ -17,7 +17,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述：获取tif文件编号
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-14
     /// </summary>
     public class TI : JsonSubCommand<TiffInfor>

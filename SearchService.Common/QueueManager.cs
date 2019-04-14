@@ -7,7 +7,7 @@ namespace SearchService.Common
 {
     /// <summary>
     /// 描述：缓存区管理
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-09
     /// </summary>
     public class QueueManager<T>

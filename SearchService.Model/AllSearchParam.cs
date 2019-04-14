@@ -9,7 +9,7 @@ namespace SearchService.Model
 
     /// <summary>
     /// 描述：全文检索的参数
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-05
     /// </summary>
     [Serializable]

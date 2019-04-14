@@ -11,7 +11,7 @@ namespace Segment.SegAnalyzer//Lucene.Net.Analysis.HBCommSeg
 {
     /// <summary>
     /// 描述：分词分析器
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-01-10
     /// </summary>
     public class SegTokenizer : Tokenizer

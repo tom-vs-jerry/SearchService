@@ -17,7 +17,7 @@ namespace SearchService.Server.Command
 {
     /// <summary>
     /// 描述：获取敏感词数据
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2016-09-10
     /// </summary>
     public class RSI : JsonSubCommand<AllSearchParam>

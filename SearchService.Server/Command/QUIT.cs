@@ -12,7 +12,7 @@ namespace SearchService.Server.Command
     /// <summary>
     /// 描述：关闭会话
     /// 日期：2016-09-08
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// </summary>
     public class QUIT : SubCommandBase<WebSocketSession>
     {

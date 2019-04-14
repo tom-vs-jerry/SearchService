@@ -12,7 +12,7 @@ namespace SearchService.Common.Log
 {
     /// <summary>
     /// log4net底层包装类
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// 日期：2009-7-28
     /// </summary>
     public static class Logger

@@ -11,7 +11,7 @@ namespace SearchService.Common.Analyzers
     /// <summary>
     /// 描述：全文检索分析器
     /// 日期：2016年8月26日
-    /// 作者：段进雄
+    /// 作者：Sofia
     /// </summary>
     public class AllDocAnalyzer: Analyzer
     {
