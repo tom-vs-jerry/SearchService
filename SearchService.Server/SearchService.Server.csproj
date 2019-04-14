@@ -47,6 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AboutUI.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutUI.Designer.cs">
+      <DependentUpon>AboutUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BatchInsert.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BatchInsert.Designer.cs">
+      <DependentUpon>BatchInsert.cs</DependentUpon>
+    </Compile>
     <Compile Include="Command\ADD.cs" />
     <Compile Include="Command\ADDX.cs" />
     <Compile Include="Command\ECHO.cs" />
@@ -62,29 +74,32 @@
     <Compile Include="Command\TI.cs" />
     <Compile Include="Command\WI.cs" />
     <Compile Include="Command\WIO.cs" />
-    <Compile Include="FrmMain.cs">
+    <Compile Include="LockedUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmMain.Designer.cs" />
+    <Compile Include="LockedUI.Designer.cs">
+      <DependentUpon>LockedUI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SAboutUI.cs">
+    <Compile Include="SSystemSet\SystemSetUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SAboutUI.Designer.cs" />
-    <Compile Include="SBatchInsert.cs">
-      <SubType>Form</SubType>
+    <Compile Include="SSystemSet\SystemSetUI.Designer.cs">
+      <DependentUpon>SystemSetUI.cs</DependentUpon>
     </Compile>
-    <Compile Include="SBatchInsert.Designer.cs" />
-    <Compile Include="SLockedUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SLockedUI.Designer.cs" />
-    <Compile Include="SSystemSet\SSystemSetUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SSystemSet\SSystemSetUI.Designer.cs" />
-    <EmbeddedResource Include="FrmMain.resx" />
+    <EmbeddedResource Include="BatchInsert.resx">
+      <DependentUpon>BatchInsert.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -95,8 +110,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="SBatchInsert.resx" />
-    <EmbeddedResource Include="SLockedUI.resx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -133,6 +146,7 @@
     <Content Include="Resources\toolbtnclose.image.png" />
     <Content Include="Resources\toolbtnconfig.image.png" />
     <Content Include="Resources\toolbtnlocked.image.png" />
+    <Content Include="Search.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

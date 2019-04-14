@@ -41,7 +41,7 @@ namespace Segment.SegmentDemo
 
         public frmMain()
         {
-            
+            pdf2itxt(@"D:\WorkBackUp\搜索引擎\doc\20190402.pdf");
             InitializeComponent();
         }
 
@@ -233,7 +233,7 @@ namespace Segment.SegmentDemo
                 DisplaySegment();
             }
 
-            //this.button2.Enabled = true;
+            this.button2.Enabled = true;
             this.button3.Enabled = true;
             this.button3.Focus();
         }
@@ -422,11 +422,26 @@ namespace Segment.SegmentDemo
         {
             PDDocument doc = PDDocument.load(SPath);
             PDFTextStripper pdfStripper = new PDFTextStripper();
-            string text = pdfStripper.getText(doc).Replace(" ", "");
+            string text = pdfStripper.getText(doc);
             StreamWriter swPdfChange = new StreamWriter(@"D:\WorkBackUp\搜索引擎\doc\201949-2.txt", false, Encoding.GetEncoding("gb2312"));
             swPdfChange.Write(text);
             swPdfChange.Close();
             doc.close();
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                char[] carr = text.ToCharArray();
+                for (int i = 0; i < carr.Length; i++)
+                {
+                    if ((int)carr[i] < 32 && (int)carr[i] >= 0)
+                    {
+                        carr[i] = (char)32;
+                    }
+                }
+                text = new string(carr);
+                text = text.Replace("\'", " ").Replace("\"", " ").Replace("\\", " ").Replace("FORMTEXT", "").Replace("formtext", "");
+            }
+
             return text;
         }
 
@@ -453,9 +468,23 @@ namespace Segment.SegmentDemo
                 pdfDoc.Close();                
                 pdfReader.Close();
             }
-            StreamWriter swPdfChange = new StreamWriter(@"D:\WorkBackUp\搜索引擎\doc\201949-1.txt", false, Encoding.GetEncoding("gb2312"));
-            swPdfChange.Write(text.ToString());
-            swPdfChange.Close();
+            //string str = text.ToString();
+            //if (!string.IsNullOrEmpty(str))
+            //{
+            //    char[] carr = str.ToCharArray();
+            //    for (int i = 0; i < carr.Length; i++)
+            //    {
+            //        if ((int)carr[i] < 32 && (int)carr[i] >= 0)
+            //        {
+            //            carr[i] = (char)32;
+            //        }
+            //    }
+            //    str = new string(carr);
+            //    str = str.Replace("\'", " ").Replace("\"", " ").Replace("\\", " ").Replace("FORMTEXT", "").Replace("formtext", "");
+            //}
+            //StreamWriter swPdfChange = new StreamWriter(@"D:\WorkBackUp\搜索引擎\doc\201949-1.txt", false, Encoding.GetEncoding("gb2312"));
+            //swPdfChange.Write(text.ToString());
+            //swPdfChange.Close();
             return text.ToString();
 
         }
@@ -528,14 +557,14 @@ namespace Segment.SegmentDemo
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (DocIndex >= Allwords.Count)
+            if (DocIndex >= AllwordsID.Count)
             {
                 DocIndex = 0;
             }
             DocID = DocIndex;
-            string content = pdf2itxt(Allwords[DocID][0]).Replace(" ", "");
+            string content = pdf2itxt(AllwordsID[DocID]).Replace(" ", "");
             this.textBoxSource.Text = content;
-            this.label12.Text = Allwords[DocID][1];
+            this.label12.Text = AllwordsID[DocID];
             label9.Text = DocID.ToString();
             label9.ForeColor = Color.Red;
             DocIndex = DocIndex + 1;
@@ -712,7 +741,7 @@ namespace Segment.SegmentDemo
             GetDocData();
             // DocIndex = DocIndex + 1;
             DocID = DocIndex;
-
+            DocIndex = DocIndex + 1;
             string context = pdf2itxt(AllwordsID[DocID]).Replace(" ", "");//GetWordBody
             this.textBoxSource.Text = context;
             this.label12.Text = "?";// Allwords[DocID][1];

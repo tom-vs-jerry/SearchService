@@ -115,44 +115,44 @@ namespace SearchService.Common.Indexs
             }
             #endregion
 
-            #region 加载词库
-            try
-            {
-                message = "……敏感词词库加载……";
-                OnMessages(message, null);
-                if (Senstokenizer == null)
-                {
-                    Senstokenizer = new Analyzers.SensTokenizer(SenssegmentConfigPath);
-                    SensDic = Analyzers.SensTokenizer.segment.WordDictionary;
-                    Sensanalyzer = new Analyzers.SensAnalyzer();
+            //#region 加载词库
+            //try
+            //{
+            //    message = "……敏感词词库加载……";
+            //    OnMessages(message, null);
+            //    if (Senstokenizer == null)
+            //    {
+            //        Senstokenizer = new Analyzers.SensTokenizer(SenssegmentConfigPath);
+            //        SensDic = Analyzers.SensTokenizer.segment.WordDictionary;
+            //        Sensanalyzer = new Analyzers.SensAnalyzer();
 
-                    SensDicList = new List<string>();
+            //        SensDicList = new List<string>();
 
-                    foreach (char key in SensDic._FirstCharDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._FirstCharDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                    foreach (uint key in SensDic._DoubleCharDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._DoubleCharDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                    foreach (string key in SensDic._WordDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._WordDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                }
-                message = string.Format("——敏感词词库加载完成，已加载{0}——", SensDic.Count.ToString());
-                OnMessages(message, null);
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词词库加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
-            #endregion
+            //        foreach (char key in SensDic._FirstCharDict.Keys)
+            //        {
+            //            WordAttribute wab = SensDic._FirstCharDict[key];
+            //            SensDicList.Add(wab.Word);
+            //        }
+            //        foreach (uint key in SensDic._DoubleCharDict.Keys)
+            //        {
+            //            WordAttribute wab = SensDic._DoubleCharDict[key];
+            //            SensDicList.Add(wab.Word);
+            //        }
+            //        foreach (string key in SensDic._WordDict.Keys)
+            //        {
+            //            WordAttribute wab = SensDic._WordDict[key];
+            //            SensDicList.Add(wab.Word);
+            //        }
+            //    }
+            //    message = string.Format("——敏感词词库加载完成，已加载{0}——", SensDic.Count.ToString());
+            //    OnMessages(message, null);
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词词库加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
+            //#endregion
 
             #region 将全文索引放入内存
             try
@@ -232,47 +232,47 @@ namespace SearchService.Common.Indexs
             }
             #endregion
 
-            #region 写敏感词索引
-            try
-            {
-                message = "……敏感词搜索写入服务启动中……。";
-                OnMessages(message, null);
-                if (SensWriter == null)
-                {
-                    SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, !isExitsSensFiles, IndexWriter.MaxFieldLength.UNLIMITED);
-                }
-                message = "——敏感词搜索写入服务加载已完成。——";
-                OnMessages(message, null);
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索写入服务加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
-            #endregion
+            //#region 写敏感词索引
+            //try
+            //{
+            //    message = "……敏感词搜索写入服务启动中……。";
+            //    OnMessages(message, null);
+            //    if (SensWriter == null)
+            //    {
+            //        SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, !isExitsSensFiles, IndexWriter.MaxFieldLength.UNLIMITED);
+            //    }
+            //    message = "——敏感词搜索写入服务加载已完成。——";
+            //    OnMessages(message, null);
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词搜索写入服务加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
+            //#endregion
 
-            #region  敏感词搜索索引
-            try
-            {
-                message = "……敏感词搜索查询服务启动中……。";
-                OnMessages(message, null);
-                if (SensSearcher == null)
-                {
-                    SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
-                    Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
+            //#region  敏感词搜索索引
+            //try
+            //{
+            //    message = "……敏感词搜索查询服务启动中……。";
+            //    OnMessages(message, null);
+            //    if (SensSearcher == null)
+            //    {
+            //        SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
+            //        Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
 
-                    SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
+            //        SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
 
-                    message = "——敏感词搜索查询服务加载已完成。——";
-                    OnMessages(message, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索查询服务加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
-            #endregion
+            //        message = "——敏感词搜索查询服务加载已完成。——";
+            //        OnMessages(message, null);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词搜索查询服务加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
+            //#endregion
         }
         #endregion
 
