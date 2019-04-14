@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B5F9F1D-C1AB-4491-8F34-10A7D31BC50E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WebSocket4Net</RootNamespace>
+    <AssemblyName>WebSocket4Net</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Scripting">
+      <HintPath>..\..\Ref\DLR\Microsoft.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Action.cs" />
+    <Compile Include="ClosedEventArgs.cs" />
+    <Compile Include="Command\BadRequest.cs" />
+    <Compile Include="Command\Binary.cs" />
+    <Compile Include="Command\Close.cs" />
+    <Compile Include="Command\Handshake.cs" />
+    <Compile Include="Command\Ping.cs" />
+    <Compile Include="Command\Pong.cs" />
+    <Compile Include="Command\Text.cs" />
+    <Compile Include="Command\WebSocketCommandBase.cs" />
+    <Compile Include="Common\ArraySegmentEx.cs" />
+    <Compile Include="Common\ArraySegmentList.cs" />
+    <Compile Include="Common\BinaryCommandInfo.cs" />
+    <Compile Include="Common\CommandInfo.cs" />
+    <Compile Include="Common\DelegateCommand.cs" />
+    <Compile Include="Common\IClientCommandReader.cs" />
+    <Compile Include="Common\ICommand.cs" />
+    <Compile Include="Common\ICommandInfo.cs" />
+    <Compile Include="Common\StringCommandInfo.cs" />
+    <Compile Include="DataReceivedEventArgs.cs" />
+    <Compile Include="ExtensionAttribute.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Func.cs" />
+    <Compile Include="IJsonExecutor.cs" />
+    <Compile Include="JsonExecutor.cs" />
+    <Compile Include="JsonWebSocket.cs" />
+    <Compile Include="JsonWebSocket.DataContractJson.cs" />
+    <Compile Include="JsonWebSocket.JsonNet.cs" />
+    <Compile Include="JsonWebSocket.JsonNotSet.cs" />
+    <Compile Include="JsonWebSocket.Net.cs" />
+    <Compile Include="LINQ.cs" />
+    <Compile Include="MessageReceivedEventArgs.cs" />
+    <Compile Include="OpCode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\CloseStatusCodeHybi10.cs" />
+    <Compile Include="Protocol\CloseStatusCodeRfc6455.cs" />
+    <Compile Include="Protocol\DraftHybi00DataReader.cs" />
+    <Compile Include="Protocol\DraftHybi00HandshakeReader.cs" />
+    <Compile Include="Protocol\DraftHybi00Processor.cs" />
+    <Compile Include="Protocol\DraftHybi10DataReader.cs" />
+    <Compile Include="Protocol\DraftHybi10HandshakeReader.cs" />
+    <Compile Include="Protocol\DraftHybi10Processor.cs" />
+    <Compile Include="Protocol\FramePartReader\DataFramePartReader.cs" />
+    <Compile Include="Protocol\FramePartReader\ExtendedLenghtReader.cs" />
+    <Compile Include="Protocol\FramePartReader\FixPartReader.cs" />
+    <Compile Include="Protocol\FramePartReader\IDataFramePartReader.cs" />
+    <Compile Include="Protocol\FramePartReader\MaskKeyReader.cs" />
+    <Compile Include="Protocol\FramePartReader\PayloadDataReader.cs" />
+    <Compile Include="Protocol\HandshakeReader.cs" />
+    <Compile Include="Protocol\ICloseStatusCode.cs" />
+    <Compile Include="Protocol\IProtocolProcessor.cs" />
+    <Compile Include="Protocol\ProtocolProcessorBase.cs" />
+    <Compile Include="Protocol\ProtocolProcessorFactory.cs" />
+    <Compile Include="Protocol\ReaderBase.cs" />
+    <Compile Include="Protocol\Rfc6455Processor.cs" />
+    <Compile Include="Protocol\WebSocketDataFrame.cs" />
+    <Compile Include="WebSocket.cs" />
+    <Compile Include="WebSocket.Net.cs" />
+    <Compile Include="WebSocket.Net35.cs" />
+    <Compile Include="WebSocket.NoSilverlight.cs" />
+    <Compile Include="WebSocketCommandInfo.cs" />
+    <Compile Include="WebSocketContext.cs" />
+    <Compile Include="WebSocketState.cs" />
+    <Compile Include="WebSocketVersion.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebSocket.ClientEngine\WebSocket.ClientEngine.csproj">
+      <Project>{9b491b1d-bea2-4f94-ac52-9f9f7297ca30}</Project>
+      <Name>WebSocket.ClientEngine</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
