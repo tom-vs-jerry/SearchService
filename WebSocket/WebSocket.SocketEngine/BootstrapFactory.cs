@@ -47,17 +47,17 @@ namespace WebSocket.SocketEngine
         /// <returns></returns>
         public static IBootstrap CreateBootstrap()
         {
-            var configSection = ConfigurationManager.GetSection("ReagtorSocket");
+            var configSection = ConfigurationManager.GetSection("WebSocket");
 
             if (configSection == null)//to keep compatible with old version
                 configSection = ConfigurationManager.GetSection("socketServer");
 
             if(configSection == null)
-                throw new ConfigurationErrorsException("Missing 'ReagtorSocket' or 'socketServer' configuration section.");
+                throw new ConfigurationErrorsException("Missing 'WebSocket' or 'socketServer' configuration section.");
 
             var configSource = configSection as IConfigurationSource;
             if(configSource == null)
-                throw new ConfigurationErrorsException("Invalid 'ReagtorSocket' or 'socketServer' configuration section.");
+                throw new ConfigurationErrorsException("Invalid 'WebSocket' or 'socketServer' configuration section.");
 
             return CreateBootstrap(configSource);
         }
@@ -89,7 +89,7 @@ namespace WebSocket.SocketEngine
 
             var config = ConfigurationManager.OpenMappedExeConfiguration(fileMap, ConfigurationUserLevel.None);
 
-            var configSection = config.GetSection("ReagtorSocket");
+            var configSection = config.GetSection("WebSocket");
 
             if (configSection == null)
                 configSection = config.GetSection("socketServer");

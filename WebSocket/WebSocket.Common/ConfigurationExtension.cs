@@ -89,7 +89,7 @@ namespace WebSocket.Common
             where TConfig : ConfigurationElement, new()
         {
             // removed extra namespace prefix
-            childConfig = childConfig.Replace("xmlns=\"http://schema.WebSocket.net/ReagtorSocket\"", string.Empty);
+            childConfig = childConfig.Replace("xmlns=\"http://schema.WebSocket.net/WebSocket\"", string.Empty);
 
             XmlReader reader = new XmlTextReader(new StringReader(childConfig));
 

@@ -11,7 +11,7 @@ using System.Collections.Specialized;
 namespace WebSocket.SocketEngine.Configuration
 {
     /// <summary>
-    /// ReagtorSocket's root configuration node
+    /// WebSocket's root configuration node
     /// </summary>
     public partial class SocketServiceConfig : ConfigurationSection, IConfigurationSource
     {

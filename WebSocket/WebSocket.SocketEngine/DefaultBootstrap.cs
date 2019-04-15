@@ -21,7 +21,7 @@ using WebSocket.SocketEngine.Configuration;
 namespace WebSocket.SocketEngine
 {
     /// <summary>
-    /// ReagtorSocket default bootstrap
+    /// WebSocket default bootstrap
     /// </summary>
     public partial class DefaultBootstrap : IBootstrap, ILoggerProvider, IDisposable
     {

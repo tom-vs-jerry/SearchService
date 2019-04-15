@@ -29,9 +29,9 @@ namespace SearchService.Common.Analyzers
         private bool _OriginalResult = false;
         string _InputText;
 
-        //private Reagtor.Segments.Dict.WordDictionary wordDictionary;
+        //private Segments.Dict.WordDictionary wordDictionary;
 
-        //public Reagtor.Segments.Dict.WordDictionary WordDictionary
+        //public Segments.Dict.WordDictionary WordDictionary
         //{
         //    get { return wordDictionary; }
         //    set { wordDictionary = value; }

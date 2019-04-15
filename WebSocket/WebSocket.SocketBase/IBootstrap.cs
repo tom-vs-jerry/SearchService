@@ -34,7 +34,7 @@ namespace WebSocket.SocketBase
     }
 
     /// <summary>
-    /// ReagtorSocket bootstrap
+    /// WebSocket bootstrap
     /// </summary>
     public interface IBootstrap
     {

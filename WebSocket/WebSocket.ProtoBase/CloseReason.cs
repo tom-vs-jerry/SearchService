@@ -50,7 +50,7 @@ namespace WebSocket.ProtoBase
         ProtocolError = 7,
 
         /// <summary>
-        /// ReagtorSocket internal error
+        /// WebSocket internal error
         /// </summary>
         InternalError = 8,
     }

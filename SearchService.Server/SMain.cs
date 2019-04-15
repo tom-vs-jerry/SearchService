@@ -7,7 +7,7 @@ using System.Windows.Forms;
 using SearchService.Common.Indexs;
 namespace SearchService.Server
 {
-    public partial class Main : Form
+    public partial class SMain : Form
     {
 
 
@@ -16,7 +16,7 @@ namespace SearchService.Server
         /// <summary>构造函数
         /// 构造函数
         /// </summary>
-        public Main()
+        public SMain()
         {
             InitializeComponent();
         }

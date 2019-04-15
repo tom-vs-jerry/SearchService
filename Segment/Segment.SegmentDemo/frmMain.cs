@@ -543,7 +543,7 @@ namespace Segment.SegmentDemo
                 catch (Exception ex)
                 {
 
-                    //log.LogHelper.LogError(ex.Message, "IIPS.SearchServer.Common.CommonClass.FindFoldersAndFiles", ex);
+                    //log.LogHelper.LogError(ex.Message, "SearchService.Common.CommonClass.FindFoldersAndFiles", ex);
                 }
 
             }

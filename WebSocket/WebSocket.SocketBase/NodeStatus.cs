@@ -9,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace WebSocket.SocketBase
 {
     /// <summary>
-    /// The status of one ReagtorSocket node (one installation or deployment)
+    /// The status of one WebSocket node (one installation or deployment)
     /// </summary>
     [Serializable]
     public class NodeStatus

@@ -15,7 +15,7 @@ namespace SearchService.Common.HighLight
         private int _FragmentSize = 50;
         private Formatter _Formatter;
         private Analyzers.AllDocTokenizer _Token;
-        //private Reagtor.Segments.Segment _PanGuSegment;
+        //private Segments.Segment _PanGuSegment;
         List<WordInfo> _Selection;
         string _Content;
 
