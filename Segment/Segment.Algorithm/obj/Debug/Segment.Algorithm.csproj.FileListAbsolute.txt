@@ -1,6 +1,0 @@
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\bin\Debug\Segment.Algorithm.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\bin\Debug\Segment.Algorithm.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\obj\Debug\Segment.Algorithm.csprojAssemblyReference.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\obj\Debug\Segment.Algorithm.csproj.CoreCompileInputs.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\obj\Debug\Segment.Algorithm.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.Algorithm\obj\Debug\Segment.Algorithm.pdb

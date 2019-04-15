@@ -489,6 +489,18 @@ namespace Segment.SegmentDemo
 
         }
 
+        public List<string> SplitConnect(string text)
+        {
+            string title = "";
+            List<string> urls = new List<string>();
+
+            int startIndex = text.IndexOf("http");
+
+
+
+            return urls;
+        }
+
         public string GetWordBody(string SPath)
         {
             string str = "";

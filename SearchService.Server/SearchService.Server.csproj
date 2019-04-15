@@ -138,6 +138,10 @@
       <Project>{85e363cc-428b-49dd-8a57-b8e986b2fd2a}</Project>
       <Name>WebSocket.SocketBase</Name>
     </ProjectReference>
+    <ProjectReference Include="..\WebSocket\WebSocket.SocketEngine\WebSocket.SocketEngine.csproj">
+      <Project>{79bbed1d-3441-4b9c-9a6e-4f36eb1259ee}</Project>
+      <Name>WebSocket.SocketEngine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebSocket\WebSocket\WebSocket.csproj">
       <Project>{08aea18a-ce82-4830-8a4a-e524588df2d0}</Project>
       <Name>WebSocket</Name>

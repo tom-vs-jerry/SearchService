@@ -1,9 +1,0 @@
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\bin\Debug\WebSocket.ClientEngine.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\bin\Debug\WebSocket.ClientEngine.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\bin\Debug\WebSocket.ProtoBase.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\bin\Debug\WebSocket.ProtoBase.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\obj\Debug\WebSocket.ClientEngine.csprojAssemblyReference.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\obj\Debug\WebSocket.ClientEngine.csproj.CoreCompileInputs.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\obj\Debug\WebSocket.ClientEngine.csproj.CopyComplete
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\obj\Debug\WebSocket.ClientEngine.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ClientEngine\obj\Debug\WebSocket.ClientEngine.pdb

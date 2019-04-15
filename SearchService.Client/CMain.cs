@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net.Sockets;
+using System.Text.RegularExpressions;
 
 using WebSocket4Net;
 using WebSocket.ClientEngine;
@@ -38,17 +39,17 @@ namespace SearchService.Client
 
         private void btnStartServer_Click(object sender, EventArgs e)
         {
-            //if (cbbIP.SelectedItem == null || cbbPort.SelectedItem == null)
-            //{
-            //    MessageBox.Show("IP或Port不能为空！");
-            //    cbbIP.Focus();
-            //    return;
-            //}
-            //string IP = cbbIP.SelectedItem.ToString();
-            //string Port = cbbPort.SelectedItem.ToString();
+            if (cbbIP.SelectedItem == null || cbbPort.SelectedItem == null)
+            {
+                MessageBox.Show("IP或Port不能为空！");
+                cbbIP.Focus();
+                return;
+            }
+            string IP = cbbIP.SelectedItem.ToString();
+            string Port = cbbPort.SelectedItem.ToString();
 
-            //string path = string.Format("ws://{0}:{1}/", IP, Port);
-            string path = "wss://ws.blockchain.info/inv";
+            string path = string.Format("ws://{0}:{1}/", IP, Port);
+            //string path = "wss://ws.blockchain.info/inv";
 
             webSocketClient = new WebSocket4Net.WebSocket(path, "basic", m_Version);
             webSocketClient.AllowUnstrustedCertificate = true;
@@ -374,11 +375,13 @@ namespace SearchService.Client
 
                     if (File.Exists(node.FullName))
                     {
-                        if (node.FullName.ToLower().EndsWith(".doc") || node.FullName.ToLower().EndsWith(".docx"))
+                        if (node.FullName.ToLower().EndsWith(".pdf"))// || node.FullName.ToLower().EndsWith(".docx"))
                         {
-                            infor.Content = pdf2itxt(node.FullName);
+                            int pageCount = 0;
+                            infor.Content = pdf2itxt(node.FullName,out pageCount);
+                            SplitConnect(infor.Content);
                             infor.PageNo = 1;
-                            infor.PageCount = 1;
+                            infor.PageCount = pageCount;
 
                             SplitContextSend(infor, "WI", node.FullName);
                         }
@@ -388,6 +391,86 @@ namespace SearchService.Client
 
                 // webSocketClient.Send("WIO Commit");
             }
+        }
+
+        public List<string> SplitConnect(string text)
+        {
+            string title = "";
+            List<string> urls = new List<string>();
+
+            int index = 0;
+            int indexCount = 0;
+
+            
+
+            while ((index = text.IndexOf("http", index)) != -1)
+            {
+                int flagIndex = index - 1;
+                title = text.Substring(0, flagIndex);
+
+                string strFlag = text.Substring(flagIndex, 1);
+                char[] tt = strFlag.ToCharArray();
+                if (tt[0] == 10)
+                {
+                    text = text.Remove(flagIndex, 1);
+                    text = text.Insert(flagIndex, "~");
+                }
+                indexCount++;
+                index = index + 4;
+            }
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                bool isHttp = false;
+                List<char> listChar = new List<char>();
+                char[] carr = text.ToCharArray();
+                int len = carr.Length;
+                for (int i = 0; i < len; i++)
+                {
+                    if ((int)carr[i] == 10)
+                    {
+                        string strIs = new string(carr.Skip(i + 1).Take(4).ToArray());
+
+                        if (strIs == "http")
+                        {
+                            char[] temp = "~".ToCharArray();
+                            listChar.AddRange(temp);
+                            isHttp = true;
+                        }
+                        else
+                        {
+                            if (isHttp)
+                            {
+                                char[] temp = "~".ToCharArray();
+                                listChar.AddRange(temp);
+                                isHttp = true;
+                                isHttp = false;
+                            }
+                            
+                            
+                        }
+                    }
+                    else
+                    {
+                        listChar.Add(carr[i]);
+                    }
+
+                }
+                text = new string(listChar.ToArray());
+                text = text.Replace("\'", " ").Replace("\"", " ").Replace("\\", " ").Replace("FORMTEXT", "").Replace("formtext", "");
+            }
+
+
+            text = text.Replace("~", Environment.NewLine);
+            //int startIndex = text.IndexOf("http");
+            //int flagIndex = startIndex - 1;
+            //string strFlag = text.Substring(flagIndex, 1);
+            //char[] tt= strFlag.ToCharArray();
+
+
+
+
+            return urls;
         }
 
         private void SplitContextSend(Infors sendContext, string command, string fullName)
@@ -496,16 +579,18 @@ namespace SearchService.Client
             return listDoc;
         }
 
-        public string pdf2itxt(string SPath)
+        public string pdf2itxt(string SPath ,out int pageCount)
         {
 
             StringBuilder text = new StringBuilder();
+            pageCount = 0;
             if (File.Exists(SPath))
             {
                 PdfReader pdfReader = new PdfReader(SPath);
                 PdfDocument pdfDoc = new PdfDocument(new PdfReader(SPath));
 
-                for (int i = 1; i <= pdfDoc.GetNumberOfPages(); i++)
+                pageCount = pdfDoc.GetNumberOfPages();
+                for (int i = 1; i <= pageCount; i++)
                 {
                     ITextExtractionStrategy strategy = new SimpleTextExtractionStrategy();
                     string currentText = PdfTextExtractor.GetTextFromPage(pdfDoc.GetPage(i), strategy);
@@ -600,9 +685,10 @@ namespace SearchService.Client
                     {
                         if (node.FullName.ToLower().EndsWith(".doc") || node.FullName.ToLower().EndsWith(".docx"))
                         {
-                            infor.Content = pdf2itxt(infor.InformationID);
+                            int pageCount = 0;
+                            infor.Content = pdf2itxt(infor.InformationID,out pageCount);
                             infor.PageNo = 1;
-                            infor.PageCount = 1;
+                            infor.PageCount = pageCount;
 
                             SplitContextJsonSend(infor, "WI");
                         }
@@ -694,17 +780,17 @@ namespace SearchService.Client
         private void button6_Click(object sender, EventArgs e)
         {
             string[] al = new string[] { "武汉", "福田", "龙岗", "龙城", "深圳", "医院", "武警", "部队", "东门", "都市", "长安", "成都", "北京", "上海", "广州", "大桥", };
-            for (int i = 0; i < 100; i++)
+            //for (int i = 0; i < 100; i++)
+            //{
+            foreach (string stem in al)
             {
-                foreach (string stem in al)
-                {
-                    AssParam asp = new AssParam();
-                    asp.Input = stem;
-                    asp.Count = 25;
-                    string sendStr = SearchService.Common.JsonHelper.SerializeObject(asp);
-                    webSocketClient.Send("SA " + sendStr);
-                }
+                AssParam asp = new AssParam();
+                asp.Input = stem;
+                asp.Count = 25;
+                string sendStr = SearchService.Common.JsonHelper.SerializeObject(asp);
+                webSocketClient.Send("SA " + sendStr);
             }
+            //}
             //AssParam asp = new AssParam();
             //asp.Input = "武汉";
             //asp.Count = 25;

@@ -1,6 +1,0 @@
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\bin\Debug\WebSocket.Common.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\bin\Debug\WebSocket.Common.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\obj\Debug\WebSocket.Common.csprojAssemblyReference.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\obj\Debug\WebSocket.Common.csproj.CoreCompileInputs.cache
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\obj\Debug\WebSocket.Common.dll
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Common\obj\Debug\WebSocket.Common.pdb

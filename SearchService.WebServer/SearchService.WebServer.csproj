@@ -68,6 +68,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="index.html" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\socket.io.js" />
+    <Content Include="Scripts\socket.io.min.js" />
+    <Content Include="Style\jquery-ui.css" />
+    <Content Include="Style\jquery.ui.autocomplete.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

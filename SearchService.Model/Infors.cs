@@ -39,65 +39,35 @@ namespace SearchService.Model
         /// <summary>
         /// 信息文件ID
         /// </summary>
-        public string InformationID
-        {
-            get;
-            set;
-        }
+        public string InformationID        {            get;            set;        }
         /// <summary>
         /// 文件类型ID
         /// </summary>
-        public string TypeID
-        {
-            get;
-            set;
-        }
+        public string TypeID        {            get;            set;        }
         /// <summary>
         /// 文件的上传者ID
         /// </summary>
-        public string UserID
-        {
-            get;
-            set;
-        }
+        public string UserID        {            get;            set;        }
 
        
         /// <summary>
         /// 信息标题
         /// </summary>
-        public string Title
-        {
-            get;
-
-            set;
-        }
+        public string Title        {            get;            set;        }
 
         /// <summary>
         /// 信息正文
         /// </summary>
-        public string Content
-        {
-            get;
-            set;
-        }
+        public string Content        {            get;            set;        }
 
         /// <summary>
         /// 信息摘要
         /// </summary>
-        public string Summary
-        {
-            get;
-            set;
-        }
+        public string Summary        {            get;            set;        }
 
         /// <summary>
         /// 发布时间
         /// </summary>
-        public DateTime Time
-        {
-            get;
-
-            set;
-        }
+        public DateTime Time        {            get;            set;        }
     }
 }
