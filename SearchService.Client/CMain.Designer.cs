@@ -39,6 +39,7 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -60,14 +61,15 @@
             this.cbbPort1 = new System.Windows.Forms.ComboBox();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.button9 = new System.Windows.Forms.Button();
-            this.button12 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.ofdFiles = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStartConnetServer
             // 
-            this.btnStartConnetServer.Location = new System.Drawing.Point(167, 18);
+            this.btnStartConnetServer.Location = new System.Drawing.Point(166, 18);
             this.btnStartConnetServer.Name = "btnStartConnetServer";
             this.btnStartConnetServer.Size = new System.Drawing.Size(75, 23);
             this.btnStartConnetServer.TabIndex = 0;
@@ -103,15 +105,15 @@
             // 
             // rtbMessage
             // 
-            this.rtbMessage.Location = new System.Drawing.Point(3, 194);
+            this.rtbMessage.Location = new System.Drawing.Point(6, 198);
             this.rtbMessage.Name = "rtbMessage";
-            this.rtbMessage.Size = new System.Drawing.Size(624, 114);
+            this.rtbMessage.Size = new System.Drawing.Size(915, 180);
             this.rtbMessage.TabIndex = 8;
             this.rtbMessage.Text = "";
             // 
             // btnECHO
             // 
-            this.btnECHO.Location = new System.Drawing.Point(248, 18);
+            this.btnECHO.Location = new System.Drawing.Point(247, 19);
             this.btnECHO.Name = "btnECHO";
             this.btnECHO.Size = new System.Drawing.Size(49, 23);
             this.btnECHO.TabIndex = 9;
@@ -121,7 +123,7 @@
             // 
             // btnADD
             // 
-            this.btnADD.Location = new System.Drawing.Point(380, 18);
+            this.btnADD.Location = new System.Drawing.Point(379, 18);
             this.btnADD.Name = "btnADD";
             this.btnADD.Size = new System.Drawing.Size(49, 23);
             this.btnADD.TabIndex = 10;
@@ -131,7 +133,7 @@
             // 
             // btnMULT
             // 
-            this.btnMULT.Location = new System.Drawing.Point(490, 18);
+            this.btnMULT.Location = new System.Drawing.Point(489, 18);
             this.btnMULT.Name = "btnMULT";
             this.btnMULT.Size = new System.Drawing.Size(49, 23);
             this.btnMULT.TabIndex = 11;
@@ -141,7 +143,7 @@
             // 
             // btnMES
             // 
-            this.btnMES.Location = new System.Drawing.Point(303, 18);
+            this.btnMES.Location = new System.Drawing.Point(302, 18);
             this.btnMES.Name = "btnMES";
             this.btnMES.Size = new System.Drawing.Size(71, 23);
             this.btnMES.TabIndex = 12;
@@ -151,7 +153,7 @@
             // 
             // btnPING
             // 
-            this.btnPING.Location = new System.Drawing.Point(497, 50);
+            this.btnPING.Location = new System.Drawing.Point(709, 18);
             this.btnPING.Name = "btnPING";
             this.btnPING.Size = new System.Drawing.Size(49, 23);
             this.btnPING.TabIndex = 13;
@@ -161,7 +163,7 @@
             // 
             // btnQUIT
             // 
-            this.btnQUIT.Location = new System.Drawing.Point(552, 50);
+            this.btnQUIT.Location = new System.Drawing.Point(654, 17);
             this.btnQUIT.Name = "btnQUIT";
             this.btnQUIT.Size = new System.Drawing.Size(49, 23);
             this.btnQUIT.TabIndex = 14;
@@ -171,6 +173,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button13);
+            this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.button12);
             this.groupBox1.Controls.Add(this.button11);
             this.groupBox1.Controls.Add(this.button10);
@@ -194,14 +198,24 @@
             this.groupBox1.Controls.Add(this.btnMULT);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(607, 102);
+            this.groupBox1.Size = new System.Drawing.Size(908, 113);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
             // 
+            // button12
+            // 
+            this.button12.Location = new System.Drawing.Point(764, 18);
+            this.button12.Name = "button12";
+            this.button12.Size = new System.Drawing.Size(75, 23);
+            this.button12.TabIndex = 26;
+            this.button12.Text = "WIO";
+            this.button12.UseVisualStyleBackColor = true;
+            this.button12.Click += new System.EventHandler(this.button12_Click);
+            // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(90, 73);
+            this.button11.Location = new System.Drawing.Point(446, 51);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 25;
@@ -211,7 +225,7 @@
             // 
             // button10
             // 
-            this.button10.Location = new System.Drawing.Point(522, 73);
+            this.button10.Location = new System.Drawing.Point(845, 19);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(49, 23);
             this.button10.TabIndex = 24;
@@ -221,7 +235,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(380, 61);
+            this.button8.Location = new System.Drawing.Point(741, 49);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 23;
@@ -231,7 +245,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(329, 51);
+            this.button7.Location = new System.Drawing.Point(660, 49);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 22;
@@ -241,14 +255,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(171, 51);
+            this.textBox1.Location = new System.Drawing.Point(282, 53);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(77, 21);
             this.textBox1.TabIndex = 21;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(248, 50);
+            this.btnSearch.Location = new System.Drawing.Point(579, 49);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 20;
@@ -258,7 +272,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(89, 49);
+            this.button6.Location = new System.Drawing.Point(365, 51);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 19;
@@ -270,15 +284,15 @@
             // 
             this.btnSendDoc.Location = new System.Drawing.Point(7, 49);
             this.btnSendDoc.Name = "btnSendDoc";
-            this.btnSendDoc.Size = new System.Drawing.Size(75, 23);
+            this.btnSendDoc.Size = new System.Drawing.Size(128, 23);
             this.btnSendDoc.TabIndex = 18;
-            this.btnSendDoc.Text = "发送所选";
+            this.btnSendDoc.Text = "发送所选文件夹PDF";
             this.btnSendDoc.UseVisualStyleBackColor = true;
             this.btnSendDoc.Click += new System.EventHandler(this.btnSendDoc_Click);
             // 
             // btnMULTX
             // 
-            this.btnMULTX.Location = new System.Drawing.Point(545, 16);
+            this.btnMULTX.Location = new System.Drawing.Point(544, 18);
             this.btnMULTX.Name = "btnMULTX";
             this.btnMULTX.Size = new System.Drawing.Size(49, 23);
             this.btnMULTX.TabIndex = 17;
@@ -288,7 +302,7 @@
             // 
             // btnLOGIN
             // 
-            this.btnLOGIN.Location = new System.Drawing.Point(442, 50);
+            this.btnLOGIN.Location = new System.Drawing.Point(599, 17);
             this.btnLOGIN.Name = "btnLOGIN";
             this.btnLOGIN.Size = new System.Drawing.Size(49, 23);
             this.btnLOGIN.TabIndex = 16;
@@ -298,7 +312,7 @@
             // 
             // btnADDX
             // 
-            this.btnADDX.Location = new System.Drawing.Point(435, 17);
+            this.btnADDX.Location = new System.Drawing.Point(434, 17);
             this.btnADDX.Name = "btnADDX";
             this.btnADDX.Size = new System.Drawing.Size(49, 23);
             this.btnADDX.TabIndex = 15;
@@ -345,9 +359,9 @@
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Location = new System.Drawing.Point(12, 120);
+            this.groupBox2.Location = new System.Drawing.Point(14, 131);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(607, 58);
+            this.groupBox2.Size = new System.Drawing.Size(907, 58);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JsonWebSocket";
@@ -400,7 +414,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(299, 73);
+            this.button9.Location = new System.Drawing.Point(822, 49);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 24;
@@ -408,26 +422,30 @@
             this.button9.UseVisualStyleBackColor = true;
             this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
-            // button12
+            // button13
             // 
-            this.button12.Location = new System.Drawing.Point(441, 79);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 26;
-            this.button12.Text = "WIO";
-            this.button12.UseVisualStyleBackColor = true;
-            this.button12.Click += new System.EventHandler(this.button12_Click);
+            this.button13.Location = new System.Drawing.Point(148, 51);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 23);
+            this.button13.TabIndex = 27;
+            this.button13.Text = "发送单个文件信息";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
             // 
-            // CMainUI
+            // ofdFiles
+            // 
+            this.ofdFiles.Filter = "(.json,.pdf)|*.json;*.pdf";
+            this.ofdFiles.Title = "请选择单个文件（json，pdf）";
+            // 
+            // CMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 313);
-            this.Controls.Add(this.button9);
+            this.ClientSize = new System.Drawing.Size(939, 407);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rtbMessage);
-            this.Name = "CMainUI";
+            this.Name = "CMain";
             this.Text = "ClientCommand";
             this.Load += new System.EventHandler(this.CMainUI_Load);
             this.groupBox1.ResumeLayout(false);
@@ -472,5 +490,7 @@
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button button11;
         private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.OpenFileDialog ofdFiles;
     }
 }

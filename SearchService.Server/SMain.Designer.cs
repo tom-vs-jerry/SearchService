@@ -410,7 +410,7 @@
             this.MaximizeBox = false;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "智能信息处理平台 V1.0 - 搜索服务";
+            this.Text = "信息处理平台 V1.0 - 搜索服务";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SMainUI_FormClosing);
             this.Load += new System.EventHandler(this.SMainUI_Load);
             this.menuMain.ResumeLayout(false);

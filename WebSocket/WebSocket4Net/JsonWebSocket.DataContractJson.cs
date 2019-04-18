@@ -16,13 +16,18 @@ namespace WebSocket4Net
         {
             var serializer = new DataContractJsonSerializer(target.GetType());
 
-            string result;
-            using (var ms = new MemoryStream())
+            string result="";
+            try
             {
-                serializer.WriteObject(ms, target);
-                result = Encoding.UTF8.GetString(ms.ToArray());
-            };
+                using (var ms = new MemoryStream())
+                {
+                    serializer.WriteObject(ms, target);
+                    result = Encoding.UTF8.GetString(ms.ToArray());
+                }
+            }catch(Exception ex)
+            {
 
+            }
             return result;
         }
 

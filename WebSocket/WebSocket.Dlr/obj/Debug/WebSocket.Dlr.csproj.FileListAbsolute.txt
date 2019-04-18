@@ -1,0 +1,14 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.Dlr.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.Dlr.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\Microsoft.Scripting.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.SocketBase.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.Common.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\log4net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.SocketBase.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\Microsoft.Scripting.xml
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\bin\Debug\WebSocket.Common.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\obj\Debug\WebSocket.Dlr.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\obj\Debug\WebSocket.Dlr.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\obj\Debug\WebSocket.Dlr.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\obj\Debug\WebSocket.Dlr.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Dlr\obj\Debug\WebSocket.Dlr.pdb

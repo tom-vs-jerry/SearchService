@@ -1,0 +1,5 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Model\bin\Debug\SearchService.Model.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Model\bin\Debug\SearchService.Model.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Model\obj\Debug\SearchService.Model.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Model\obj\Debug\SearchService.Model.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Model\obj\Debug\SearchService.Model.pdb

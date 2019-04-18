@@ -18,7 +18,7 @@ namespace WebSocket.SocketBase.Config
         /// <summary>
         /// Default ReceiveBufferSize
         /// </summary>
-        public const int DefaultReceiveBufferSize = 4096;
+        public const int DefaultReceiveBufferSize = 5120;
 
         /// <summary>
         /// Default MaxConnectionNumber
@@ -34,7 +34,7 @@ namespace WebSocket.SocketBase.Config
         /// <summary>
         /// Default MaxRequestLength
         /// </summary>
-        public const int DefaultMaxRequestLength = 3072;
+        public const int DefaultMaxRequestLength = 5120;
 
 
         /// <summary>

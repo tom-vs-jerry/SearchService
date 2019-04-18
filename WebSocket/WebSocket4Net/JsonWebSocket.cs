@@ -287,16 +287,21 @@ namespace WebSocket4Net
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException("name");
-
-            if (content != null)
+            try
             {
-                if (!content.GetType().IsSimpleType())
-                    m_WebSocket.Send(string.Format(m_QueryTemplateC, name, SerializeObject(content)));
+                if (content != null)
+                {
+                    if (!content.GetType().IsSimpleType())
+                        m_WebSocket.Send(string.Format(m_QueryTemplateC, name, SerializeObject(content)));
+                    else
+                        m_WebSocket.Send(string.Format(m_QueryTemplateC, name, content));
+                }
                 else
-                    m_WebSocket.Send(string.Format(m_QueryTemplateC, name, content));
+                    m_WebSocket.Send(name);
+            }catch(Exception ex)
+            {
+
             }
-            else
-                m_WebSocket.Send(name);
         }
 
         private static Random m_Random = new Random();

@@ -16,6 +16,10 @@ using WebSocket4Net;
 using WebSocket.ClientEngine;
 using SearchService.Model;
 using SearchService.Common.Log;
+using SearchService.Common;
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using iText.Kernel.Pdf;
 using iText.Kernel.Pdf.Canvas.Parser;
@@ -34,7 +38,31 @@ namespace SearchService.Client
         private int ServerMaxReceiveByteCount = int.Parse(ConfigurationManager.AppSettings["ServerMaxReceiveByteCount"]);
         public CMain()
         {
+            //readJson();
+            //MerginData();
+            //JsonTest();
             InitializeComponent();
+        }
+
+        private void JsonTest()
+        {
+            string jsonfile = @"D:\WorkBackUp\搜索引擎\数据\12.json";//JSON文件路径
+
+            using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JObject o = (JObject)JToken.ReadFrom(reader);
+                    
+
+                    //string jsonString = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeNonAscii });
+
+                    var value = o.ToString();
+
+                    Infors list = JsonHelper.DeserializeJsonToObject<Infors>(value);
+                    MessageBox.Show( list.ToString());
+                }
+            }
         }
 
         private void btnStartServer_Click(object sender, EventArgs e)
@@ -350,40 +378,160 @@ namespace SearchService.Client
             });
         }
 
+        private List<Video> readJson(string path)
+        {
+            string jsonfile = path;// @"D:\WorkBackUp\搜索引擎\数据\video.json";//JSON文件路径
+
+            using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JArray o = (JArray)JToken.ReadFrom(reader);
+                    var value = o.ToString();
+                    List<Video> list = JsonHelper.DeserializeJsonToList<Video>(value);
+                    return list;
+                }
+            }
+        }
+
+        private void WriteJson(List<Video> list, string path)
+        {
+
+            //if (!File.Exists(path))
+            //{
+            //    File.Create(path).Dispose();
+            //}
+            //using (StreamWriter sw = new StreamWriter(path))
+            //{
+            //    JsonSerializer serializer = new JsonSerializer();                
+            //    serializer.NullValueHandling = NullValueHandling.Ignore;
+
+            //    //构建Json.net的写入流 
+            //    JsonWriter writer = new JsonTextWriter(sw);
+            //    //把模型数据序列化并写入Json.net的JsonWriter流中 
+            //    serializer.Serialize(writer, list);
+            //    //ser.Serialize(writer, ht); 
+            //    writer.Close();
+            //    sw.Close();
+            //}
+
+
+
+            string output = JsonHelper.SerializeObject(list);
+            File.WriteAllText(path, output, Encoding.UTF8);
+
+        }
+
+        private List<Video> FormatText(List<Video> list)
+        {
+            foreach (Video v in list)
+            {
+
+                System.Reflection.PropertyInfo[] properties = v.GetType().GetProperties(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public);
+
+                //if (properties.Length <= 0)
+                //{
+                //    //
+                //}
+
+                foreach (System.Reflection.PropertyInfo item in properties)
+                {
+                    string name = item.Name;
+                    object value = item.GetValue(v, null);
+                    if (name == "title" || name == "content")
+                    {
+                        //tStr += string.Format("{0}:{1},", name, value);
+                        char[] arr = value.ToString().ToCharArray();
+                        List<char> arrR = new List<char>();
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if ((int)arr[i] == 10 || (int)arr[i] == 13)
+                            {
+
+                            }
+                            else
+                            {
+                                arrR.Add(arr[i]);
+                            }
+                        }
+
+
+                        string strTemp = new string(arrR.ToArray());
+                        item.SetValue(v, strTemp);
+
+
+                    }
+                    //else
+                    //{
+                    //    getProperties(value);
+                    //}
+                }
+            }
+            return list;
+        }
+
+        private void MerginData()
+        {
+            List<Video> listVideo = readJson(@"D:\WorkBackUp\搜索引擎\数据\video.json");
+            listVideo = FormatText(listVideo);
+
+
+            string[] arrPath = Directory.GetFiles(@"D:\WorkBackUp\搜索引擎\doc\PDF");
+            foreach (string fileName in arrPath)
+            {
+                try
+                {
+
+                    FileInfo fi = new FileInfo(fileName);
+                    string date = fi.Name.Substring(0, 8);
+                    int pageCount = 0;
+                    string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
+                        .Replace(" ", "").Replace("\'", "").Replace("\"", "")
+                        .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); ;
+                    bool isnext = false;
+                    List<Video> pdf = SplitConnect(strPDF, out isnext);
+                    foreach (Video v in pdf)
+                    {
+                        v.date = date;
+                        int temp = listVideo.FindIndex(p => p.date == date && p.title == v.title);
+                        if (temp <= 0)
+                        {
+                            listVideo.Add(v);
+                        }
+                        else
+                        {
+                        }
+
+                    }
+
+
+
+
+                }
+                catch (Exception ex)
+                {
+                    string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+                    Logger.WriteError(funName, ex);
+                }
+            }
+
+            WriteJson(listVideo, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\1.json");
+        }
+
         private void btnSendDoc_Click(object sender, EventArgs e)
         {
             if (fbdFolder.ShowDialog() == DialogResult.OK)
             {
 
                 FindFoldersAndFiles(fbdFolder.SelectedPath);
-                int i = 0;
+
                 foreach (FileInfo node in listDoc)
                 {
-                    i++;
-                    Infors infor = new Infors();
-                    infor.InformationID = i.ToString();
-                    infor.Title = node.Name;
-                    infor.TypeID = "0";
-                    infor.Time = node.CreationTime;
-
-                    infor.UserID = "2001";
-                    //infor.SUnitID = new List<string>() { "70" };
-                    infor.DocNum = "SW" + i.ToString();
-
-                    //infor.RUnitID = new List<string>() { (75 + i).ToString(), (175 + i).ToString(), (275 + i).ToString(), (186 + i).ToString(), (85 + i).ToString() };
-                    //infor.Advise = new List<string>() { "呈", "牵头", "协助" };
-
                     if (File.Exists(node.FullName))
                     {
                         if (node.FullName.ToLower().EndsWith(".pdf"))// || node.FullName.ToLower().EndsWith(".docx"))
                         {
-                            int pageCount = 0;
-                            infor.Content = pdf2itxt(node.FullName,out pageCount);
-                            SplitConnect(infor.Content);
-                            infor.PageNo = 1;
-                            infor.PageCount = pageCount;
-
-                            SplitContextSend(infor, "WI", node.FullName);
+                            ReadPdfSend(node.FullName);
                         }
                     }
 
@@ -393,62 +541,105 @@ namespace SearchService.Client
             }
         }
 
-        public List<string> SplitConnect(string text)
+        public List<Video> SplitConnect(string text, out bool isNext)
         {
-            string title = "";
-            List<string> urls = new List<string>();
+            List<Video> Result = new List<Video>();
 
-            int index = 0;
-            int indexCount = 0;
+            int intHttpNum = 0; //url http 个数
+            bool bolHttpIsNext = false;//多个url http是否靠近
+            bool isMutiPdf = false; //是否多个文件            
 
-            
-
-            while ((index = text.IndexOf("http", index)) != -1)
-            {
-                int flagIndex = index - 1;
-                title = text.Substring(0, flagIndex);
-
-                string strFlag = text.Substring(flagIndex, 1);
-                char[] tt = strFlag.ToCharArray();
-                if (tt[0] == 10)
-                {
-                    text = text.Remove(flagIndex, 1);
-                    text = text.Insert(flagIndex, "~");
-                }
-                indexCount++;
-                index = index + 4;
-            }
-
+            //处理所有换行符
             if (!string.IsNullOrEmpty(text))
             {
-                bool isHttp = false;
+                //是否已经有http标记
+                bool isExistHttp = false;
+                //前一个http的位置
+                int intBeforeHttp = 0;
+
                 List<char> listChar = new List<char>();
+                //将文件内容转换成char
                 char[] carr = text.ToCharArray();
                 int len = carr.Length;
+                #region 处理所有换行符
+                //////////////
+                ///将所有文字转char处理。找到所有换行符，
+                ///1、判断前面是否是句结束符（！？。））
+                ///2、判断后面10个字符中是否航油http
+                //////////////
+                //处理文件内容中的所有char
                 for (int i = 0; i < len; i++)
                 {
+                    //判断char是否是换行符
                     if ((int)carr[i] == 10)
                     {
-                        string strIs = new string(carr.Skip(i + 1).Take(4).ToArray());
+                        #region 判断换行符后面是不是http
+                        //取换行符后的4个char，并判断是否是http
+                        string strIs = new string(carr.Skip(i + 1).Take(10).ToArray());
 
-                        if (strIs == "http")
+                        if (strIs.ToLower().Contains("http"))
                         {
+                            int inthttpIndex = strIs.IndexOf("http");
+                            i = i + inthttpIndex;
+                            //http个数加一
+                            intHttpNum++;
+                            isExistHttp = true;
+                            //中间转换符
                             char[] temp = "~".ToCharArray();
                             listChar.AddRange(temp);
-                            isHttp = true;
+                            if (isExistHttp)
+                            {
+                                if (intBeforeHttp > 0 && i - intBeforeHttp > 350)
+                                {
+                                    //如果已经是第二个http,并且两个http的距离大于350，则此文件是多个文件的合并 
+                                    bolHttpIsNext = false;
+                                    //多个pdf合并
+                                    isMutiPdf = true;
+                                }
+                                else
+                                {
+                                    //如果已经是第二个http,并且两个http的距离大于350，则此文件是多个文件的合并   
+                                    bolHttpIsNext = false;
+                                    //多个pdf合并
+                                    isMutiPdf = false;
+                                }
+                            }
+                            else
+                            {
+                                isExistHttp = true;
+                            }
+                            //前http位置标记为当前位置
+                            intBeforeHttp = i;
+
                         }
                         else
                         {
-                            if (isHttp)
+                            if (isExistHttp)
                             {
                                 char[] temp = "~".ToCharArray();
                                 listChar.AddRange(temp);
-                                isHttp = true;
-                                isHttp = false;
+                                isExistHttp = false;
                             }
-                            
-                            
+                            //else
+                            //{
+                            //    listChar.Add(carr[i]);
+                            //}
                         }
+                        #endregion
+                        #region 判断换行符前面
+
+                        //string strBeforIs = new string(carr.Skip(i).Take(-2).ToArray());
+                        //if (strBeforIs == "." || strBeforIs == "。" 
+                        //    || strBeforIs == "？" || strBeforIs == "?" 
+                        //    || strBeforIs == "!" || strBeforIs == "！" 
+                        //    || strBeforIs == "；" || strBeforIs == ";" 
+                        //    || strBeforIs == "）" || strBeforIs == ")")
+                        //{
+                        //    char[] temp = "|".ToCharArray();
+                        //    listChar.AddRange(temp);                            
+                        //}
+
+                        #endregion
                     }
                     else
                     {
@@ -457,20 +648,157 @@ namespace SearchService.Client
 
                 }
                 text = new string(listChar.ToArray());
-                text = text.Replace("\'", " ").Replace("\"", " ").Replace("\\", " ").Replace("FORMTEXT", "").Replace("formtext", "");
+                #endregion
             }
 
+            //
+            //List<string> result = new List<string>();
+            string[] arr = text.Split('~');
+            if (isMutiPdf)
+            {
+                #region 处理多个文档合并的pdf
+                StringBuilder sbCon = new StringBuilder();
+                int intFirst = 0;
+                int intLast = 0;
 
-            text = text.Replace("~", Environment.NewLine);
-            //int startIndex = text.IndexOf("http");
-            //int flagIndex = startIndex - 1;
-            //string strFlag = text.Substring(flagIndex, 1);
-            //char[] tt= strFlag.ToCharArray();
+                int[] arrUrlIndex = new int[intHttpNum];
+                int intNum = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i].StartsWith("http"))
+                    {
+                        arrUrlIndex[intNum] = i;
+                        intNum++;
+                    }
+
+                }
+
+                int intIndex = 0;
+                for (int i = 0; i < intHttpNum; i++)
+                {
+                    Video v = new Video();
+
+                    string[] arryTitle = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i] - 1, arryTitle, 0, 1);
+                    v.title = string.Join("", arryTitle);
+
+                    string[] arryUrl = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i], arryUrl, 0, 1);
+                    v.link = string.Join(" ", arryUrl);
+
+                    string[] arryCon = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i] + 1, arryCon, 0, 1);
+                    v.content = string.Join("~", arryCon);
+                    Result.Add(v);
+                }
+                ///1
+                //string[] arryTitle = new string[1];
+                //Array.Copy(arr, intFirst - 1, arryTitle, 0, 1);
+                //result.Add(string.Join("", arryTitle));
+
+                //string[] arryUrl = new string[1];
+                //Array.Copy(arr, intFirst, arryUrl, 0, 1);
+                //result.Add(string.Join(" ", arryUrl));
+
+                //string[] arryCon = new string[1];
+                //Array.Copy(arr, intFirst + 1, arryCon, 0, intLast - intFirst - 1);
+                //result.Add(string.Join("~", arryCon));
+
+                ///2
+                //string[] arryTitle1 = new string[1];
+                //Array.Copy(arr, intLast - 1, arryTitle1, 0, 1);
+                //result.Add(string.Join("", arryTitle));
+
+                //string[] arryUrl1 = new string[1];
+                //Array.Copy(arr, intLast, arryUrl1, 0, 1);
+                //result.Add(string.Join(" ", arryUrl));
+
+                //string[] arryCon1 = new string[1];
+                //Array.Copy(arr, intLast + 1, arryCon1, 0, arr.Length - intLast - 1);
+                //result.Add(string.Join("~", arryCon));
+                #endregion
 
 
+            }
+            else
+            {
+                Video v = new Video();
+                if (intHttpNum == 1)
+                {
+                    if (arr.Length >= 3)
+                    {
+                        #region 处理只有一个http ，url分割之后大于3的
+                        if (arr[1].StartsWith("http"))
+                        {
+                            v.title = arr[0];
+                            v.link = arr[1];
+                        }
+                        else
+                        {
+                        }
+
+                        string[] arryCon = new string[arr.Length - 2];
+                        Array.Copy(arr, 2, arryCon, 0, arr.Length - 2);
+
+                        v.content = string.Join("~", arryCon);
+                        Result.Add(v);
+                        #endregion
+                    }
+                    else
+                    {
+                        //result.AddRange(arr);
+                    }
+
+                }
+                else
+                {
+                    if (arr.Length >= 3)
+                    {
+
+                        StringBuilder sbCon = new StringBuilder();
+                        int intFirst = 0;
+                        int intLast = 0;
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (arr[i].StartsWith("http"))
+                            {
+                                if (intFirst == 0)
+                                {
+                                    intFirst = i;
+                                }
+                                else
+                                {
+                                    intLast = i;
+                                }
+                            }
+
+                        }
 
 
-            return urls;
+                        string[] arryTitle = new string[intFirst];
+                        Array.Copy(arr, 0, arryTitle, 0, intFirst);
+                        v.title = string.Join("", arryTitle);
+
+                        string[] arryUrl = new string[intLast + 1 - intFirst];
+                        Array.Copy(arr, intFirst, arryUrl, 0, intLast + 1 - intFirst);
+                        v.link = string.Join(" ", arryUrl);
+
+                        string[] arryCon = new string[arr.Length - intLast];
+                        Array.Copy(arr, intLast + 1, arryCon, 0, arr.Length - intLast - 1);
+                        v.content = string.Join("~", arryCon);
+
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            isNext = isMutiPdf;
+            return Result;
         }
 
         private void SplitContextSend(Infors sendContext, string command, string fullName)
@@ -526,24 +854,25 @@ namespace SearchService.Client
 
                     int contextlength = Encoding.UTF8.GetMaxByteCount(sendString.Length);
                     sendContext.PageNo = j;
-                    string jsonSend = SearchService.Common.JsonHelper.SerializeObject(sendContext);
-                    string sendStr = command + splitFlag + jsonSend;
-                    int length = Encoding.UTF8.GetMaxByteCount(sendStr.Length);
-                    webSocketClient.Send(sendStr);
+                    //string jsonSend = SearchService.Common.JsonHelper.SerializeObject(sendContext);
+                    //string sendStr = command + splitFlag + jsonSend;
+                    //int length = Encoding.UTF8.GetMaxByteCount(sendStr.Length);
+                    //webSocketClient.Send(sendStr);
                     //webSocketClient.Send(command,)
-                    Logger.WriteInfo(fullName + ":" + sendContext.InformationID);
+                    webSocket.Send(command, sendContext);
+                    //Logger.WriteInfo(fullName + ":" + sendContext.InformationID);
                 }
             }
             else
             {
                 sendContext.Content = context;
                 //int contextlength = Encoding.UTF8.GetMaxByteCount(context.Length);
-                string jsonSend = SearchService.Common.JsonHelper.SerializeObject(sendContext);
-                string sendStr = command + splitFlag + jsonSend;
-                int length = Encoding.UTF8.GetMaxByteCount(sendStr.Length);
-
-                webSocketClient.Send(sendStr);
-                Logger.WriteInfo(fullName + ":" + sendContext.InformationID);
+                //string jsonSend = SearchService.Common.JsonHelper.SerializeObject(sendContext);
+                //string sendStr = command + splitFlag + jsonSend;
+                //int length = Encoding.UTF8.GetMaxByteCount(sendStr.Length);
+                webSocket.Send(command, sendContext);
+                //webSocketClient.Send(sendStr);
+                //Logger.WriteInfo(fullName + ":" + sendContext.InformationID);
             }
 
         }
@@ -579,7 +908,7 @@ namespace SearchService.Client
             return listDoc;
         }
 
-        public string pdf2itxt(string SPath ,out int pageCount)
+        public string pdf2itxt(string SPath, out int pageCount)
         {
 
             StringBuilder text = new StringBuilder();
@@ -686,7 +1015,7 @@ namespace SearchService.Client
                         if (node.FullName.ToLower().EndsWith(".doc") || node.FullName.ToLower().EndsWith(".docx"))
                         {
                             int pageCount = 0;
-                            infor.Content = pdf2itxt(infor.InformationID,out pageCount);
+                            infor.Content = pdf2itxt(infor.InformationID, out pageCount);
                             infor.PageNo = 1;
                             infor.PageCount = pageCount;
 
@@ -948,7 +1277,7 @@ namespace SearchService.Client
 
             //{"InPutWord":"举报,维权,涉毒,盗窃","Range":0,"NoneWord":"","StartTime":"","EndTime":"","PageNo":1,"PageSize":3,"SUnitID":["8","2266","26552","26523"]}
 
-            string Json = SearchService.Common.JsonHelper.SerializeObject(SP);
+            string Json = JsonHelper.SerializeObject(SP);
 
             webSocketClient.Send("RI " + Json);
         }
@@ -964,7 +1293,7 @@ namespace SearchService.Client
             SP.PageNo = 1;
             SP.PageSize = 2;
 
-            string Json = SearchService.Common.JsonHelper.SerializeObject(SP);
+            string Json = JsonHelper.SerializeObject(SP);
 
             webSocketClient.Send("RI " + Json);
         }
@@ -991,7 +1320,116 @@ namespace SearchService.Client
         {
             webSocketClient.Send("WIO Commit");
         }
+
+        private void button13_Click(object sender, EventArgs e)
+        {
+            if (ofdFiles.ShowDialog() == DialogResult.OK)
+            {
+                string filesName = ofdFiles.FileName;
+                string extName = filesName.Substring(filesName.LastIndexOf(".") + 1);
+                switch (extName.ToLower())
+                {
+                    case "json":
+                        ReadJsonSend(filesName);
+                        break;
+                    case "pdf":
+                        ReadPdfSend(filesName);
+                        break;
+                }
+            }
+        }
+
+        private void ReadPdfSend(string path)
+        {
+            try
+            {
+                FileInfo fi = new FileInfo(path);
+                string date = fi.Name.Substring(0, 8);
+                DateTime dtDoc = new DateTime();
+                if (!DateTime.TryParseExact(date,
+                    "yyyyMMdd",
+                    System.Globalization.CultureInfo.InvariantCulture,
+                    System.Globalization.DateTimeStyles.None,
+                    out dtDoc))
+                {
+                    if (MessageBox.Show("文件名错误！请将文件名设置为yyyyMMdd+格式。") == DialogResult.OK)
+                    {
+                        return;
+                    }
+                }
+                int pageCount = 0;
+                string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
+                    .Replace(" ", "").Replace("\'", "").Replace("\"", "")
+                    .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); 
+                bool isnext = false;
+                List<Video> pdf = SplitConnect(strPDF, out isnext);
+                foreach (Video v in pdf)
+                {
+                    Infors inf = new Infors();
+                    inf.InformationID = Guid.NewGuid().ToString();
+                    inf.DocNum = date;
+                    inf.Participle = "";
+                    inf.Summary = "";
+                    inf.UserID = "2020";
+                    inf.Content = v.content;
+                    inf.Time = dtDoc;
+                    inf.Title = v.title;
+                    inf.Urls = v.link;
+                    inf.TypeID = "pdf";
+                    inf.PageCount = 1;
+                    inf.PageNo = 0;
+                    SplitContextSend(inf, "WI", path);
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+                Logger.WriteError(funName, ex);
+            }
+        }
+        private void ReadJsonSend(string path)
+        {
+            try
+            {
+                DateTime dtDoc = new DateTime();                
+                List<Video> list = readJson(path);
+                int intBug = 0;
+                foreach (Video v in list)
+                {
+                    try
+                    {
+                        Infors inf = new Infors();
+                        inf.InformationID = Guid.NewGuid().ToString();
+                        inf.Content = v.content;
+                        inf.Time = DateTime.ParseExact(v.date, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        inf.Title = v.title;
+                        inf.Urls = v.link;
+                        inf.TypeID = "json";
+                        inf.PageCount = 1;
+                        inf.PageNo = 0;
+                        
+                        SplitContextSend(inf, "WI", path);
+                        intBug++;
+                    }catch(Exception ex)
+                    {
+                        Logger.WriteInfo(intBug.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("json文件格式不正确！");
+                string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+                Logger.WriteError(funName, ex);
+            }
+
+        }
+
     }
+
+
     class ConsoleWriter : StreamWriter
     {
         public ConsoleWriter(Stream stream, Encoding encoding, int bufferSize)
@@ -1006,6 +1444,14 @@ namespace SearchService.Client
         {
             Write(m_NewLine);
         }
+    }
+
+    public class Video
+    {
+        public string title { set; get; }
+        public string date { set; get; }
+        public string link { set; get; }
+        public string content { set; get; }
     }
 }
 

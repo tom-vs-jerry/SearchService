@@ -132,10 +132,10 @@ namespace SearchService.Server.Command
                                 //全文索引处理        
                                 commandInfo.Participle = AllDocIndex.GetKeyWordsSplitBySlash(commandInfo.Content);//获取全文分词
                                 int Count = AllDocIndex.AllIndexString(commandInfo);//添加索引
-                                AllDocIndex.CommitAllWriter();//提交数据
+                                //AllDocIndex.CommitAllWriter();//提交数据
 
                                 //敏感词处理
-                                commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
+                                //commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
                                 //if (commandInfo.Advise != null)
                                 //{
                                 //    if (commandInfo.Advise.Count > 0)
@@ -146,27 +146,27 @@ namespace SearchService.Server.Command
                                 //}
 
                                 
-                                if (session.Connected)
-                                {
-                                    //返回敏感词
-                                    string returnString = commandInfo.Participle;//.Replace('/', ',');// AllDocIndex.GetSensSegementByInput(commandInfo.Content);
-                                    Response res = new Response();
-                                    res.Q = "WI";
-                                    List<string> R = new List<string>();
-                                    R.Add(commandInfo.InformationID);
-                                    R.Add(returnString);
-                                    res.R = R;
-                                    string sendStr = JsonHelper.SerializeObject(res);
-                                    session.Send(sendStr);
-                                }
-                                else
-                                {
-                                    Logger.WriteInfo(session.SessionID + "已断开连接！");
-                                }
+                                //if (session.Connected)
+                                //{
+                                //    //返回敏感词
+                                //    string returnString = commandInfo.Participle;//.Replace('/', ',');// AllDocIndex.GetSensSegementByInput(commandInfo.Content);
+                                //    Response res = new Response();
+                                //    res.Q = "WI";
+                                //    List<string> R = new List<string>();
+                                //    R.Add(commandInfo.InformationID);
+                                //    R.Add(returnString);
+                                //    res.R = R;
+                                //    string sendStr = JsonHelper.SerializeObject(res);
+                                //    session.Send(sendStr);
+                                //}
+                                //else
+                                //{
+                                //    Logger.WriteInfo(session.SessionID + "已断开连接！");
+                                //}
                                 
 
-                                string log = string.Format("文件：{0}；", commandInfo.InformationID);
-                                Logger.WriteInfo(log);
+                                //string log = string.Format("文件：{0}；", commandInfo.InformationID);
+                                //Logger.WriteInfo(log);
                             }
                             else
                             {
@@ -181,10 +181,10 @@ namespace SearchService.Server.Command
                         //全文索引处理           
                         commandInfo.Participle = AllDocIndex.GetKeyWordsSplitBySlash(commandInfo.Content);//获取全文分词
                         int Count = AllDocIndex.AllIndexString(commandInfo);//添加索引
-                        AllDocIndex.CommitAllWriter();//提交数据
+                        //AllDocIndex.CommitAllWriter();//提交数据
 
                         //敏感词处理
-                        commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
+                        //commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
                         //if (commandInfo.Advise != null)
                         //{
                         //    if (commandInfo.Advise.Count > 0)
@@ -195,27 +195,27 @@ namespace SearchService.Server.Command
                         //}
 
                         
-                        if (session.Connected)
-                        {
-                            //返回敏感词
-                            string returnString = commandInfo.Participle;//.Replace('/', ',');//AllDocIndex.GetSensSegementByInput(commandInfo.Content);
-                            Response res = new Response();
-                            res.Q = "WI";
-                            List<string> R = new List<string>();
+                        //if (session.Connected)
+                        //{
+                        //    //返回敏感词
+                        //    string returnString = commandInfo.Participle;//.Replace('/', ',');//AllDocIndex.GetSensSegementByInput(commandInfo.Content);
+                        //    Response res = new Response();
+                        //    res.Q = "WI";
+                        //    List<string> R = new List<string>();
 
-                            R.Add(commandInfo.InformationID);
-                            R.Add(returnString);
-                            res.R = R;
-                            string sendStr = JsonHelper.SerializeObject(res);
-                            session.Send(sendStr);
-                        }
-                        else
-                        {
-                            Logger.WriteInfo(session.SessionID + "已断开连接！");
-                        }
+                        //    R.Add(commandInfo.InformationID);
+                        //    R.Add(returnString);
+                        //    res.R = R;
+                        //    string sendStr = JsonHelper.SerializeObject(res);
+                        //    session.Send(sendStr);
+                        //}
+                        //else
+                        //{
+                        //    Logger.WriteInfo(session.SessionID + "已断开连接！");
+                        //}
 
-                        string log = string.Format("文件：{0}；", commandInfo.InformationID);
-                        Logger.WriteInfo(log);
+                        //string log = string.Format("文件：{0}；", commandInfo.InformationID);
+                        //Logger.WriteInfo(log);
                     }
 
                     //string SR=  AllDocIndex.GetKeyWordsSplitBySpace(commandInfo.Content);

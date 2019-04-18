@@ -1023,7 +1023,7 @@ namespace SearchService.Common.Indexs
                 doc.Add(field);
 
                 //必填 时间
-                NumericField fieldNum = new NumericField("time", Field.Store.YES, true).SetLongValue(long.Parse(infor.Time.ToString("yyyyMMddHHmmss")));
+                NumericField fieldNum = new NumericField("time", Field.Store.YES, true).SetIntValue(int.Parse(infor.Time.ToString("yyyyMMdd")));
                 doc.Add(fieldNum);
 
                 if (!string.IsNullOrWhiteSpace(infor.UserID))
@@ -1033,7 +1033,9 @@ namespace SearchService.Common.Indexs
                 }
 
 
-
+                //必填 URL地址
+                field = new Field("urls", infor.Urls, Field.Store.YES, Field.Index.NOT_ANALYZED);
+                doc.Add(field);
 
                 //发文单位ID 写入到收文单位属性中，方便查询；分隔符为
                 StringBuilder RUnitID = new StringBuilder();
@@ -1595,6 +1597,7 @@ namespace SearchService.Common.Indexs
                         //news.DocPath = doc.Get("docpath");
                         //news.TifPath = doc.Get("tifpath");
                         //news.Length = Convert.ToInt32(doc.Get("length"));
+                        news.Urls = doc.Get("urls");
                         news.InformationID = doc.Get("informationid");
                         news.TypeID = doc.Get("typeid");
                         news.UserID = doc.Get("userid");
@@ -1905,7 +1908,7 @@ namespace SearchService.Common.Indexs
                         news.TypeID = doc.Get("typeid");
                         news.Title = doc.Get("title");
                         news.Content = doc.Get("contents");
-
+                        news.Urls = doc.Get("urls");
                         string strTime = doc.Get("time");
                         news.Time = DateTime.ParseExact(strTime, "yyyyMMddHHmmss", null);
 
@@ -2213,6 +2216,7 @@ namespace SearchService.Common.Indexs
                         news.TypeID = doc.Get("typeid");
                         news.Title = doc.Get("title");
                         news.Content = doc.Get("contents");
+                        news.Urls = doc.Get("urls");
 
                         string strTime = doc.Get("time");
                         news.Time = DateTime.ParseExact(strTime, "yyyyMMddHHmmss", null);

@@ -1,0 +1,9 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\bin\Debug\Segment.SegmentDict.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\bin\Debug\Segment.SegmentDict.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\bin\Debug\Segment.Algorithm.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\bin\Debug\Segment.Algorithm.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\obj\Debug\Segment.SegmentDict.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\obj\Debug\Segment.SegmentDict.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\obj\Debug\Segment.SegmentDict.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\obj\Debug\Segment.SegmentDict.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegmentDict\obj\Debug\Segment.SegmentDict.pdb

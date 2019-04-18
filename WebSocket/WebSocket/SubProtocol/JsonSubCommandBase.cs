@@ -56,12 +56,16 @@ namespace WebSocket.SubProtocol
             try
             {
 
-               if (!m_IsSimpleType)
-                    jsonCommandInfo = (TJsonCommandInfo)session.AppServer.JsonDeserialize(requestInfo.Body, m_CommandInfoType);
+                if (!m_IsSimpleType)
+                    jsonCommandInfo =  (TJsonCommandInfo)session.AppServer.JsonDeserialize(requestInfo.Body, m_CommandInfoType);
                 else
                     jsonCommandInfo = (TJsonCommandInfo)Convert.ChangeType(requestInfo.Body, m_CommandInfoType);
 
                 ExecuteJsonCommand(session, jsonCommandInfo);
+            }
+            catch (Exception ex)
+            {
+                string ssy = ex.Message;
             }
             finally
             {

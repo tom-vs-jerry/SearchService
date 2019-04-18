@@ -40,7 +40,7 @@ namespace WebSocket.SocketBase
 
             try
             {
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(defaultCulture);
+                CultureInfo DefaultThreadCurrentCulture = new CultureInfo(defaultCulture);
             }
             catch (Exception e)
             {

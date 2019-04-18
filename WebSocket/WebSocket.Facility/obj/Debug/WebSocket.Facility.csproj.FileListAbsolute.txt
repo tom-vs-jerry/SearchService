@@ -1,0 +1,5 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Debug\WebSocket.Facility.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Debug\WebSocket.Facility.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Debug\WebSocket.Facility.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Debug\WebSocket.Facility.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Debug\WebSocket.Facility.pdb
