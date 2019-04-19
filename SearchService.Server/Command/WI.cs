@@ -132,7 +132,8 @@ namespace SearchService.Server.Command
                                 //全文索引处理        
                                 commandInfo.Participle = AllDocIndex.GetKeyWordsSplitBySlash(commandInfo.Content);//获取全文分词
                                 int Count = AllDocIndex.AllIndexString(commandInfo);//添加索引
-                                //AllDocIndex.CommitAllWriter();//提交数据
+                                //Logger.WriteInfo(commandInfo.DocNum);
+                                AllDocIndex.CommitAllWriter();//提交数据
 
                                 //敏感词处理
                                 //commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
@@ -181,7 +182,8 @@ namespace SearchService.Server.Command
                         //全文索引处理           
                         commandInfo.Participle = AllDocIndex.GetKeyWordsSplitBySlash(commandInfo.Content);//获取全文分词
                         int Count = AllDocIndex.AllIndexString(commandInfo);//添加索引
-                        //AllDocIndex.CommitAllWriter();//提交数据
+                        //Logger.WriteInfo(commandInfo.DocNum);
+                        AllDocIndex.CommitAllWriter();//提交数据
 
                         //敏感词处理
                         //commandInfo.Participle = AllDocIndex.GetSensSegementByInput(commandInfo.Content);//获取敏感词
@@ -194,7 +196,7 @@ namespace SearchService.Server.Command
                         //    }
                         //}
 
-                        
+
                         //if (session.Connected)
                         //{
                         //    //返回敏感词

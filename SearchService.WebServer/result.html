@@ -1,0 +1,453 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="Style/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" href="Style/PageApply.css" />
+    <link rel="stylesheet" type="text/css" href="Style/Paging.css" />
+    <link href="Style/tipped.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            font-size: 12px;
+        }
+
+        table.tableView {
+            font-size: 12px;
+            text-align: left;
+        }
+
+            table.tableView tr td {
+                font-size: 14px;
+                text-align: left;
+            }
+
+            table.tableView span {
+                font-size: 14px;
+            }
+
+        .ui-autocomplete-loading {
+            background: white url("imgs/ui-anim_basic.gif") right center no-repeat;
+        }
+
+        #iframeid {
+            display: none;
+            top: 2px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2e8;
+            border: 2px solid #cccccc;
+        }
+
+        #advsearch {
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            border: 2px solid #cccccc;
+            background: #f2f2e8;
+            text-decoration: none;
+            /*border-bottom-color:#f2f2e8;*/
+        }
+    </style>
+    <script type="text/javascript" src="Scripts/jquery-1.8.2.min.js"></script>
+    <script type='text/javascript' src='Scripts/jquery-ui.js'></script>
+    <script type='text/javascript' src='Scripts/socket.io.min.js'></script>
+    <script type="text/javascript" src="Scripts/jquery.paging.js"></script>
+    <!--/* 新加入一个链接功能通过点击搜索结果转到文件详情页面 */-->
+    <script type="text/javascript" src="Scripts/ext-base.js"></script>
+    <script type="text/javascript" src="Scripts/ext-all.js"></script>
+    <!--<script type="text/javascript" src="/Scripts/ext3.4/ext-all.css"></script>-->
+    <!--<script type="text/javascript" src="/Scripts/ext3.4/ext-lang-zh_CN.js"></script>-->
+    <!--<script type="text/javascript" src="/Scripts/Function/SearchTransDetail.js"></script>-->
+
+    <script src="Scripts/Common.js"></script>
+    <script src="Scripts/InformationFileRender.js"></script>
+    <script src="Scripts/EnumClass.js"></script>
+    <script src="Scripts/tipped.js"></script>
+</head>
+
+<body>
+
+    <div style="padding-left:250px;">
+
+        <table>
+            <tr>
+                <td style="width:90px;">
+                    <div style="position: relative; height: 26px;">
+                        <!--<img src="imgs/searchIndex.png" />&nbsp;&nbsp;&nbsp;--><input id="txtfileTypeID" type="hidden" />
+                    </div>
+                </td>
+                <td style="align-content:flex-start">
+                    <div style="position: relative; height: 26px;">
+                        <input style="border: 1px solid #454771; text-align: left; padding-left: 4px; position: absolute; left:40px; top: 0px; height: 26px; width:477px; background-color: transparent; right: 42px;" id="iptInputWord" />
+                        <input type="hidden" id="iptWord" />
+                        <div style="float: left; position: absolute; left: 523px; top: 0px; width: 50px; height: 30px; text-align: center; background-color: #454771;">
+                            <img src="Images/earth.png" id="submit" style="width: 31 height: 25px;" />
+                        </div>
+                        <div style="float:right;position:absolute;left:577px; top: 0px; width: 68px;height:33px;" id="divlbltime"><!--<input type="button" value="高级▽" id="advsearch" onclick="showorhide('iframeid', 'advsearch');" />--></div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+            </tr>
+        </table>
+        <div id="divsearch" style="left:136px;width:602px; border: none; position: relative; margin-top:0px;">
+            <iframe id="iframeid" src="SearchDetail.aspx"></iframe>
+        </div>
+    </div>
+
+
+    <div style="text-align:right;">
+        <span id="spnTotal" style="color:red;font-size:12px"></span>
+    </div>
+    <div style="text-align: center; background-color: #f9f9fa; border-top: 1px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; ">
+        <table height=442 cellspacing=0 cellpadding=0 width="100%" border=0 class="tableView">
+            <tbody>
+
+                <tr>
+                    <td valign=top>
+                        <!--height=357 cellspacing=0
+                        cellpadding=8 rules=cols width="99%"
+                        valign="top"-->
+                        <table id="result" style="height:375px;width:65%;margin:auto;" cellspacing=0
+                               cellpadding=8 rules=cols valign="top"></table>
+                    </td>
+                </tr>
+                <tr>
+                    <td height=15></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+    <div style="text-align:center;padding-top:5px;"><div id="Pagination" class="meneame"></div></div>
+    <div>
+        <table style="width: 100%; height: 43px; border-collapse: collapse; border:0px; ">
+            <tr>
+                <td style=" width: 10px; "></td>
+                <td style=" text-align:center; color:black;font-weight:700; ">
+                    <!--<img src="imgs/logo.png" style="height:23px; width:23px;" />-->
+                </td>
+                <td style=" width: 16px; "></td>
+            </tr>
+        </table>
+    </div>
+    <script type="text/javascript">
+
+        var flagOpen = false;
+        //获取index页面传值
+        var thisURL = decodeURI(document.URL);
+
+        var getval = thisURL.split('?')[1];//key=南山,noneword,starttime,endtime
+        var allWord = getval.split('=')[1];//传值key  南山,山南海北,2016-01-17 14:23:06,2016-05-17 14:23:11
+        var showval = allWord.split(';')[0];//keyWord
+        var NoneWord = allWord.split(';')[1];//不出现的字
+        var startTime = allWord.split(';')[2];//开始时间
+        var endTime = allWord.split(';')[3];//结束时间
+        var DocNum = allWord.split(';')[4];
+        var TypeID = allWord.split(';')[5];
+        var SUnitID = allWord.split(';')[6];
+        var RUnitID = allWord.split(';')[7];
+        var Range = 0;//0为title和context；1为context；2为title
+        debugger
+        var strUnit = SUnitID + "," + RUnitID;
+        if (strUnit.substr(strUnit.length - 1, strUnit.length) == ',') {
+
+            strUnit = strUnit.substr(0, strUnit.length - 1);
+        }
+        //strUnit = strUnit.split(",");
+
+        var selectType = strUnit;
+        //for (var i = 0; i < strUnit.length; i++) {
+        //    if (selectType.indexOf(strUnit[i]) < 0) {
+        //        //$('#iframeid').prop('contentWindow').taskstatuscombo.setValue(strUnit[i]);
+        //        selectType = selectType + strUnit[i] + ",";
+        //    }
+        //}
+        if (selectType.substr(selectType.length - 1, selectType.length) == ',') {
+
+            selectType = selectType.substr(0, selectType.length - 1);
+        }
+
+
+        $('#iptUnitID').val(selectType);
+
+        //TypeID = "1";
+        var SunitID = "";
+        if (SUnitID != "") {
+            SunitID = ',"SUnitID":[' + SUnitID + ']';
+        }
+        var RunitID = "";
+        if (RUnitID != "") {
+            RunitID = ',"SUnitID":[' + RUnitID + ']';
+        }
+
+        thisURL = thisURL.split('?')[0];
+        $('#iptInputWord').val(showval);
+        //var inputKey = "";
+        var oldinputKey = "";
+        var oldnonword = "";
+        var oldStartTime = "";
+        var oldEndTime = "";
+        var oldTypeID = "";
+        var oldDocNum = "";
+        var oldRecNum = "";
+
+
+        var oldPageNo = 1;
+        var pageSize = 8;
+        var Paging;
+
+
+
+        var socket = new WebSocket('ws://127.0.0.1:2012');
+
+        //收到server的连接确认
+        socket.onopen = function () {
+            //连接成功，即可以开始初始化翻页控件
+            Paging = $('#Pagination').paging(100, {
+                format: '[<nnncnnn!>]',  //格式
+                perpage: pageSize,//每页数量
+                lapping: 0, //起始页
+                page: 1,    //当前页  ["76","88"]
+                onSelect: function (page) {
+                    var inputKey = $('#iptInputWord').val();
+                    if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum) {
+
+                        oldinputKey = inputKey;
+                        var pageNo = page;
+                        var input = 'RI {"TypeID":"' + TypeID + '","DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + SunitID + RunitID + '}';
+                        //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
+                        debugger
+                        socket.send(input);
+
+                        oldinputKey = inputKey;
+                        oldnonword = NoneWord;
+                        oldStartTime = startTime;
+                        oldEndTime = endTime;
+                        oldTypeID = TypeID;
+                        oldDocNum = DocNum;
+                    } else if (oldPageNo != page) {
+                        debugger
+                        oldPageNo = page;
+                        var pageNo = page;
+                        var input = 'RI {"TypeID":"' + TypeID + '","DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + SunitID + RunitID + '}';
+                        //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
+                        debugger
+                        socket.send(input);
+                    }
+                    //return true;
+                },
+                onFormat: function (type) {
+                    switch (type) {
+                        case 'block':
+                            if (!this.active) {
+                                return '<span class="disabled">' + this.value + '</span>';
+                            } else if (this.value != this.page) {
+                                return '<em><a href="#' + this.value + '">' + this.value + '</a></em>';
+                            }
+                            return '<span class="current">' + this.value + '</span>';
+
+                        case 'next':
+
+                            if (this.active) {
+                                return '<a href="#' + this.value + '" class="next">下一页</a>';
+                            }
+                            return '<span class="disabled">下一页</span>';
+
+                        case 'prev':
+
+                            if (this.active) {
+                                return '<a href="#' + this.value + '" class="prev">上一页</a>';
+                            }
+                            return '<span class="disabled">上一页</span>';
+
+                        case 'first':
+
+                            if (this.active) {
+                                return '<a href="#' + this.value + '" class="first">第一页</a>';
+                            }
+                            return '<span class="disabled">第一页</span>';
+
+                        case 'last':
+
+                            if (this.active) {
+                                return '<a href="#' + this.value + '" class="last">最后一页</a>';
+                            }
+                            return '<span class="disabled">最后一页</span>';
+
+                        case "leap":
+
+                            if (this.active)
+                                return "...";
+                            return "";
+
+                        case 'fill':
+
+                            if (this.active)
+                                return "...";
+                            return "";
+                    }
+                }
+            });
+
+        };
+
+        socket.onmessage = function (json) {
+            debugger //服务端发送回来的数据处理
+            var a = JSON.parse(json.data);
+            $('#result').html(a.R[0]);
+            //if (oldRecNum != a.R[4]) {
+            Paging.setNumber(parseInt(a.R[4]));
+            Paging.setPage(); // reload pagination}
+            oldRecNum = a.R[4];
+            //}
+            $("#spnTotal").html("  总记录数：" + parseInt(a.R[4]));
+
+            Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
+        };
+
+        //联想功能
+        $('#iptInputWord').autocomplete({
+            source: function (request, response) {
+                //获取输入数据
+                var input = request.term.trim();
+                if (input != '') {
+                    if (oldinputKey != input) {
+                        //格式化请求{"Q":"K","P":["request","term"]}
+                        //var input = '{"Q":"K","P":["' + request.term + '"]}';
+                        var input = 'SA {"Input":"' + request.term + '","Count":20}';
+                        debugger
+                        socket.send(input);
+                    }
+                    oldinputKey = input;
+                }
+                socket.onmessage = function (json) {
+                    debugger
+                    var a = JSON.parse(json.data);
+                    if (a.Q == "SA") {
+                        response(a.R);
+                        //$("#spnTotal").html("  总记录数：" + parseInt(a.R[3]));
+                    }
+                }
+            },
+            select: function (event, ui) {
+                //
+                $('#iptWord').val(ui.item.value);
+            }
+
+        });
+
+        //高级搜索的展开与收起
+        function showorhide(id, name) {
+            //document.getElementById('divblank').style.display = 'block';
+            flagOpen = true;
+            var o = document.getElementById(id);
+            o.style.display = o.style.display == 'block' ? 'none' : 'block';
+            if (o.style.display == 'block') {
+                $("#divsearch").css("height", "130px");
+                $("#advsearch").css("border-bottom", " 2px solid #f2f2e8");
+                //debugger
+                //$('#iframeid').prop('contentWindow').document.getElementById('txtfileTypeID').value = SUnitID + "," + RUnitID;
+                var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
+                if (ifrmaDoc != null) {
+                    var tecc = ifrmaDoc.getElementById('txtNoneWord');
+                    ifrmaDoc.getElementById('txtNoneWord').value = NoneWord;
+                    ifrmaDoc.getElementById('txtWorkStartTime').value = startTime;
+                    ifrmaDoc.getElementById('txtWorkStartEnd').value = endTime;
+                    ifrmaDoc.getElementById('txtdocnum').value = DocNum;//文件编号
+                    ifrmaDoc.getElementById('txtfileTypeID').value = TypeID;
+
+                    if (ifrmaDoc.getElementById('txtfileTypeID').value != "") {
+                        var selectTypeID = ifrmaDoc.getElementById('txtfileTypeID').value;
+                        if (selectTypeID.substring(selectTypeID.length - 1, selectTypeID.length) == ',') {
+                            selectTypeID = selectTypeID.substring(0, selectTypeID.length - 1);
+                        }
+                        selectTypeID = selectTypeID.split(',');
+
+                        $('#iframeid').prop('contentWindow').taskstatuscombo.setValue(selectTypeID);//设置
+                    } else {
+                        $('#iframeid').prop('contentWindow').taskstatuscombo.selectAll();
+                    }
+                }
+
+            }
+            else if (o.style.display == 'none') {
+                $("#divsearch").css("height", "0px");
+            }
+            $("#" + name + "").val($("#" + name + "").val() == '收起△' ? '高级▽' : '收起△');
+
+        }
+
+
+        //提交按钮单击事件
+        $('#submit').click(function () {
+
+
+            var keyWord = $('#iptInputWord').val();
+
+            if (flagOpen) {
+                var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
+                if (ifrmaDoc != null) {
+                    NoneWord = ifrmaDoc.getElementById('txtNoneWord').value == null ? NoneWord : ifrmaDoc.getElementById('txtNoneWord').value;
+                    startTime = ifrmaDoc.getElementById('txtWorkStartTime').value == null ? startTime : ifrmaDoc.getElementById('txtWorkStartTime').value;
+                    endTime = ifrmaDoc.getElementById('txtWorkStartEnd').value == null ? endTime : ifrmaDoc.getElementById('txtWorkStartEnd').value;
+                    DocNum = ifrmaDoc.getElementById('txtdocnum').value == null ? DocNum : ifrmaDoc.getElementById('txtdocnum').value;//文件编号
+                    TypeID = ifrmaDoc.getElementById('txtfileTypeID').value == null ? TypeID : ifrmaDoc.getElementById('txtfileTypeID').value;
+                }
+            }
+
+            if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum) {
+                oldinputKey = inputKey;
+                oldnonword = NoneWord;
+                oldStartTime = startTime;
+                oldEndTime = endTime;
+                oldTypeID = TypeID;
+                oldDocNum = DocNum;
+
+                var pageNo = "1";
+                var inputKey = $('#iptInputWord').val();
+                //拼接发送字符串"{"Q":"C","P":["1","2","3"]}",参数依次为：输入字符，当前页码，每页数量
+                //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
+                var input = 'RI {"DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + SunitID + RunitID + '}';
+                debugger
+                socket.send(input);
+            }
+
+            //socket接收数据事件
+            socket.onmessage = function (json) {
+                debugger
+                //转化成对象
+                var a = JSON.parse(json.data);
+                if (a.Q == "RI") {
+                    $('#result').html(a.R[0]);
+                    var inforID = a.R[1];
+                    //设置总记录数、当前页码数
+                    Paging.setNumber(parseInt(a.R[4]));
+                    Paging.setPage(parseInt(a.R[3]));
+                    Paging.setPage(); // reload pagination}
+                    $("#spnTotal").html("  总记录数：" + parseInt(a.R[4]));
+                    oldPageNo = parseInt(a.R[3]);
+                }
+
+                Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
+            }
+        });
+        //str = typeid+","+informationID;
+        function FunTransDetails(typeid, inforid) {
+            var param = typeid + "," + inforid;
+            Ext.IIPS.SearchFile(param);
+        }
+
+
+                //$(function () {
+                //    var date = new Date();
+                //    $("#tdTime").append("  当前时间：" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+                //})
+    </script>
+</body>
+
+</html>

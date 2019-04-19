@@ -31,9 +31,9 @@ namespace SearchService.Common.Indexs
         private static string AllSegmentConfigPath = ConfigurationManager.AppSettings["AllWordsDicConfigPath"];
 
         //敏感词索引路径
-        private static string SensIndexDir = ConfigurationManager.AppSettings["SensWordsIndexPath"];
+        //private static string SensIndexDir = ConfigurationManager.AppSettings["SensWordsIndexPath"];
         //敏感词词典配置文件
-        private static string SenssegmentConfigPath = ConfigurationManager.AppSettings["SensWordsDicConfigPath"];
+        //private static string SenssegmentConfigPath = ConfigurationManager.AppSettings["SensWordsDicConfigPath"];
 
         //全文索引最大结果数
         private static int SearchAllResultLength = Convert.ToInt32(ConfigurationManager.AppSettings["SearchAllResultLength"]);
@@ -44,16 +44,16 @@ namespace SearchService.Common.Indexs
         private static IndexSearcher searcher = null;
 
         //读写敏感词索引
-        private static IndexWriter SensWriter = null;
-        private static IndexSearcher SensSearcher = null;
+        //private static IndexWriter SensWriter = null;
+        //private static IndexSearcher SensSearcher = null;
 
         //全文索引分析器
         private static Analyzers.AllDocTokenizer tokenizer = null;//new Analyzers.AllDocTokenizer(segmentConfigPath);
         private static Analyzers.AllDocAnalyzer analyzer = null;// new Analyzers.AllDocAnalyzer();
 
         //敏感词索引分析器
-        private static Analyzers.SensTokenizer Senstokenizer = null;//new Analyzers.AllDocTokenizer(segmentConfigPath);
-        private static Analyzers.SensAnalyzer Sensanalyzer = null;
+        //private static Analyzers.SensTokenizer Senstokenizer = null;//new Analyzers.AllDocTokenizer(segmentConfigPath);
+        //private static Analyzers.SensAnalyzer Sensanalyzer = null;
 
 
         //全文索引文件缓存
@@ -62,9 +62,9 @@ namespace SearchService.Common.Indexs
         private static Segment.Dict.WordDictionary Dic = null;
 
         //敏感词索引文件缓存
-        private static FSDirectory idxSensDoc = null;
+        //private static FSDirectory idxSensDoc = null;
         //敏感词分词词典
-        private static Segment.Dict.WordDictionary SensDic = null;
+        //private static Segment.Dict.WordDictionary SensDic = null;
 
         private static HighLight.SimpleHTMLFormatter simpleHTMLFormatter = null;// new SimpleHTMLFormatter("<span style='color:red'>", "</span>");
         private static HighLight.AllDocHighLighter highlighter = null;// new Highlighter(simpleHTMLFormatter, tokenizer);
@@ -72,7 +72,7 @@ namespace SearchService.Common.Indexs
         private static HighLight.SimpleHTMLFormatter SenssimpleHTMLFormatter = null;// new SimpleHTMLFormatter("<span style='color:red'>", "</span>");
         private static HighLight.SensHighLighter Senshighlighter = null;// new Highlighter(simpleHTMLFormatter, tokenizer);
 
-        private static List<string> SensDicList = null;
+        //private static List<string> SensDicList = null;
         #endregion
 
         #region 消息事件
@@ -170,24 +170,24 @@ namespace SearchService.Common.Indexs
             }
 
             //将全文索引放入内存
-            try
-            {
-                if (idxSensDoc == null)
-                {
-                    idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词索引文件加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+            //try
+            //{
+            //    if (idxSensDoc == null)
+            //    {
+            //        idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词索引文件加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion
 
             #region 判断索引文件是否存在
             string[] exts = new string[] { ".fdt", ".fdx", ".fnm", ".frq", ".nrm", ".prx", ".tii", ".tis" };           
             bool isExitsFiles = System.IO.Directory.GetFiles(AllIndexDir).Where(s => exts.Contains(System.IO.Path.GetExtension(s).ToLower())).Count() > 0 ? true : false;
-            bool isExitsSensFiles = System.IO.Directory.GetFiles(SensIndexDir).Where(s => exts.Contains(System.IO.Path.GetExtension(s).ToLower())).Count() > 0 ? true : false;
+            //bool isExitsSensFiles = System.IO.Directory.GetFiles(SensIndexDir).Where(s => exts.Contains(System.IO.Path.GetExtension(s).ToLower())).Count() > 0 ? true : false;
             #endregion
 
             #region 写索引
@@ -318,41 +318,41 @@ namespace SearchService.Common.Indexs
 
            
             //敏感词相关
-            if (SensSearcher != null)
-            {
-                SensSearcher.Dispose();
-                SensSearcher = null;
-            } 
-            if (SensWriter != null)
-            {
-                SensWriter.Dispose();
-                SensWriter = null;
-            }
-            if (idxSensDoc != null)
-            {
-                idxSensDoc.Dispose();
-                idxSensDoc = null;
-            }
+            //if (SensSearcher != null)
+            //{
+            //    SensSearcher.Dispose();
+            //    SensSearcher = null;
+            //} 
+            //if (SensWriter != null)
+            //{
+            //    SensWriter.Dispose();
+            //    SensWriter = null;
+            //}
+            //if (idxSensDoc != null)
+            //{
+            //    idxSensDoc.Dispose();
+            //    idxSensDoc = null;
+            //}
             //if (SensDic != null)
             //{
             //    SensDic.Clear();
             //    SensDic = null;
             //}
-            if (Sensanalyzer != null)
-            {
-                Sensanalyzer.Dispose();
-                Sensanalyzer=null;
-            }
-            if (Senstokenizer != null)
-            {
-                Senstokenizer.Dispose();
-                Senstokenizer = null;
-            }
-            if (SensDicList != null)
-            {
-                SensDicList.Clear();
-                SensDicList = null;
-            }
+            //if (Sensanalyzer != null)
+            //{
+            //    Sensanalyzer.Dispose();
+            //    Sensanalyzer=null;
+            //}
+            //if (Senstokenizer != null)
+            //{
+            //    Senstokenizer.Dispose();
+            //    Senstokenizer = null;
+            //}
+            //if (SensDicList != null)
+            //{
+            //    SensDicList.Clear();
+            //    SensDicList = null;
+            //}
 
             Start();
 
@@ -371,22 +371,22 @@ namespace SearchService.Common.Indexs
                 analyzer = null;
             }
 
-            if (Senstokenizer != null)
-            {
-                Senstokenizer.Dispose();
-                Senstokenizer = null;
-            }
+            //if (Senstokenizer != null)
+            //{
+            //    Senstokenizer.Dispose();
+            //    Senstokenizer = null;
+            //}
 
-            if (SensDicList != null) {
-                SensDicList.Clear();
-                SensDicList = null;
-            }
+            //if (SensDicList != null) {
+            //    SensDicList.Clear();
+            //    SensDicList = null;
+            //}
 
-            if(SensDic != null)
-            {
-                SensDic.Clear();
-                SensDic = null;
-            }
+            //if(SensDic != null)
+            //{
+            //    SensDic.Clear();
+            //    SensDic = null;
+            //}
             //全文索引相关
             if (tokenizer != null)
             {
@@ -394,11 +394,11 @@ namespace SearchService.Common.Indexs
                 tokenizer = null;
             }
             //敏感词相关
-            if (Senstokenizer != null)
-            {
-                Senstokenizer.Dispose();
-                Senstokenizer = null;
-            }
+            //if (Senstokenizer != null)
+            //{
+            //    Senstokenizer.Dispose();
+            //    Senstokenizer = null;
+            //}
 
             string message = "";
 
@@ -423,42 +423,42 @@ namespace SearchService.Common.Indexs
             }
             #endregion
             #region 加载词库
-            try
-            {
-                message = "……敏感词词库重新加载……";
-                OnMessages(message, null);
-                if (Senstokenizer == null)
-                {
-                    Senstokenizer = new Analyzers.SensTokenizer(SenssegmentConfigPath);
-                    SensDic = Analyzers.SensTokenizer.segment.WordDictionary;
-                    Sensanalyzer = new Analyzers.SensAnalyzer();
+            //try
+            //{
+                //message = "……敏感词词库重新加载……";
+                //OnMessages(message, null);
+                //if (Senstokenizer == null)
+                //{
+                //    Senstokenizer = new Analyzers.SensTokenizer(SenssegmentConfigPath);
+                //    SensDic = Analyzers.SensTokenizer.segment.WordDictionary;
+                //    Sensanalyzer = new Analyzers.SensAnalyzer();
 
-                    SensDicList = new List<string>();
+                //    SensDicList = new List<string>();
 
-                    foreach (char key in SensDic._FirstCharDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._FirstCharDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                    foreach (uint key in SensDic._DoubleCharDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._DoubleCharDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                    foreach (string key in SensDic._WordDict.Keys)
-                    {
-                        WordAttribute wab = SensDic._WordDict[key];
-                        SensDicList.Add(wab.Word);
-                    }
-                }
-                message = string.Format("——敏感词词库重新加载完成，已加载{0}——", SensDic.Count.ToString());
-                OnMessages(message, null);
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词词库重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+                //    foreach (char key in SensDic._FirstCharDict.Keys)
+                //    {
+                //        WordAttribute wab = SensDic._FirstCharDict[key];
+                //        SensDicList.Add(wab.Word);
+                //    }
+                //    foreach (uint key in SensDic._DoubleCharDict.Keys)
+                //    {
+                //        WordAttribute wab = SensDic._DoubleCharDict[key];
+                //        SensDicList.Add(wab.Word);
+                //    }
+                //    foreach (string key in SensDic._WordDict.Keys)
+                //    {
+                //        WordAttribute wab = SensDic._WordDict[key];
+                //        SensDicList.Add(wab.Word);
+                //    }
+                //}
+                //message = string.Format("——敏感词词库重新加载完成，已加载{0}——", SensDic.Count.ToString());
+                //OnMessages(message, null);
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词词库重新加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion
 
         }
@@ -466,83 +466,83 @@ namespace SearchService.Common.Indexs
         /// <summary>
         /// 重新加载敏感词索引
         /// </summary>
-        public static void RebuildSensSearch()
-        {          
+        //public static void RebuildSensSearch()
+        //{          
            
-            if (SensWriter != null)
-            {
-                SensWriter.Dispose();
-                SensWriter = null;
-            }
+        //    if (SensWriter != null)
+        //    {
+        //        SensWriter.Dispose();
+        //        SensWriter = null;
+        //    }
 
-            if (idxSensDoc != null)
-            {
-                idxSensDoc.Dispose();
-                idxSensDoc = null;
-            }
+        //    if (idxSensDoc != null)
+        //    {
+        //        idxSensDoc.Dispose();
+        //        idxSensDoc = null;
+        //    }
 
-            if (SensSearcher != null)
-            {
-                SensSearcher.Dispose();
-                SensSearcher = null;
-            }
+        //    if (SensSearcher != null)
+        //    {
+        //        SensSearcher.Dispose();
+        //        SensSearcher = null;
+        //    }
 
-            string message = "";
-            try
-            {
-                if (idxSensDoc == null)
-                {
-                    idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词索引文件重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+        //    string message = "";
+        //    try
+        //    {
+        //        if (idxSensDoc == null)
+        //        {
+        //            idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = string.Format("——敏感词索引文件重新加载失败。失败原因：{0}——", ex.Message);
+        //        OnMessages(message, null);
+        //    }
 
-            #region 写敏感词索引
-            try
-            {
-                message = "……敏感词搜索写入服务重新启动中……。";
-                OnMessages(message, null);
-                if (SensWriter == null)
-                {
-                    SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
-                }
-                message = "——敏感词搜索写入服务重新加载已完成。——";
-                OnMessages(message, null);
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索写入服务重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
-            #endregion
+        //    #region 写敏感词索引
+        //    try
+        //    {
+        //        message = "……敏感词搜索写入服务重新启动中……。";
+        //        OnMessages(message, null);
+        //        if (SensWriter == null)
+        //        {
+        //            SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
+        //        }
+        //        message = "——敏感词搜索写入服务重新加载已完成。——";
+        //        OnMessages(message, null);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = string.Format("——敏感词搜索写入服务重新加载失败。失败原因：{0}——", ex.Message);
+        //        OnMessages(message, null);
+        //    }
+        //    #endregion
 
-            #region  敏感词搜索索引
-            try
-            {
-                message = "……敏感词搜索查询服务重新启动中……。";
-                OnMessages(message, null);
-                if (SensSearcher == null)
-                {
-                    SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
-                    Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
+        //    #region  敏感词搜索索引
+        //    try
+        //    {
+        //        message = "……敏感词搜索查询服务重新启动中……。";
+        //        OnMessages(message, null);
+        //        if (SensSearcher == null)
+        //        {
+        //            SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
+        //            Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
 
-                    SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
+        //            SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
 
-                    message = "——敏感词搜索查询服务重新加载已完成。——";
-                    OnMessages(message, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
-            #endregion
-        }
+        //            message = "——敏感词搜索查询服务重新加载已完成。——";
+        //            OnMessages(message, null);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
+        //        OnMessages(message, null);
+        //    }
+        //    #endregion
+        //}
         /// <summary>
         /// 重新加载全文索引
         /// </summary>
@@ -634,11 +634,11 @@ namespace SearchService.Common.Indexs
         /// </summary>
         public static void RebuildSearch()
         {
-            if (SensSearcher != null)
-            {
-                SensSearcher.Dispose();
-                SensSearcher = null;
-            }
+            //if (SensSearcher != null)
+            //{
+            //    SensSearcher.Dispose();
+            //    SensSearcher = null;
+            //}
 
             if (searcher != null)
             {
@@ -652,11 +652,11 @@ namespace SearchService.Common.Indexs
                 writer = null;
             }
 
-            if (SensWriter != null)
-            {
-                SensWriter.Dispose();
-                SensWriter = null;
-            }
+            //if (SensWriter != null)
+            //{
+            //    SensWriter.Dispose();
+            //    SensWriter = null;
+            //}
 
             if (idxDoc != null)
             {
@@ -664,11 +664,11 @@ namespace SearchService.Common.Indexs
                 idxDoc = null;
             }
             
-            if (idxSensDoc != null)
-            {
-                idxSensDoc.Dispose();
-                idxSensDoc = null;
-            }
+            //if (idxSensDoc != null)
+            //{
+            //    idxSensDoc.Dispose();
+            //    idxSensDoc = null;
+            //}
 
             #region 加载全文索引
 
@@ -691,37 +691,37 @@ namespace SearchService.Common.Indexs
 
             #region 加载敏感词索引
             //string message = "";
-            try
-            {
-                if (idxSensDoc == null)
-                {
-                    idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词索引文件重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+            //try
+            //{
+            //    if (idxSensDoc == null)
+            //    {
+            //        idxSensDoc = FSDirectory.Open(SensIndexDir);// new RAMDirectory(FSDirectory.Open(IndexDir));
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词索引文件重新加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion
 
             #region 写敏感词索引
-            try
-            {
-                message = "……敏感词搜索写入服务重新启动中……。";
-                OnMessages(message, null);
-                if (SensWriter == null)
-                {
-                    SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
-                }
-                message = "——敏感词搜索写入服务重新加载已完成。——";
-                OnMessages(message, null);
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索写入服务重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+            //try
+            //{
+            //    message = "……敏感词搜索写入服务重新启动中……。";
+            //    OnMessages(message, null);
+            //    if (SensWriter == null)
+            //    {
+            //        SensWriter = new IndexWriter(idxSensDoc, Sensanalyzer, true, IndexWriter.MaxFieldLength.UNLIMITED);
+            //    }
+            //    message = "——敏感词搜索写入服务重新加载已完成。——";
+            //    OnMessages(message, null);
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词搜索写入服务重新加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion
 
             #region 写索引
@@ -744,26 +744,26 @@ namespace SearchService.Common.Indexs
             #endregion
 
             #region  敏感词搜索索引
-            try
-            {
-                message = "……敏感词搜索查询服务重新启动中……。";
-                OnMessages(message, null);
-                if (SensSearcher == null)
-                {
-                    SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
-                    Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
+            //try
+            //{
+            //    message = "……敏感词搜索查询服务重新启动中……。";
+            //    OnMessages(message, null);
+            //    if (SensSearcher == null)
+            //    {
+            //        SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
+            //        Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
 
-                    SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
+            //        SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
 
-                    message = "——敏感词搜索查询服务重新加载已完成。——";
-                    OnMessages(message, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+            //        message = "——敏感词搜索查询服务重新加载已完成。——";
+            //        OnMessages(message, null);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion          
             
             #region 搜索索引
@@ -796,11 +796,11 @@ namespace SearchService.Common.Indexs
         /// </summary>
         public static void ReOpenSearch()
         {
-            if (SensSearcher != null)
-            {
-                SensSearcher.Dispose();
-                SensSearcher = null;
-            }
+            //if (SensSearcher != null)
+            //{
+            //    SensSearcher.Dispose();
+            //    SensSearcher = null;
+            //}
 
             if (searcher != null)
             {
@@ -857,26 +857,26 @@ namespace SearchService.Common.Indexs
             //#endregion                      
             string message = "";
             #region  敏感词搜索索引
-            try
-            {
-                message = "……敏感词搜索查询服务重新启动中……。";
-                OnMessages(message, null);
-                if (SensSearcher == null)
-                {
-                    SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
-                    Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
+            //try
+            //{
+            //    message = "……敏感词搜索查询服务重新启动中……。";
+            //    OnMessages(message, null);
+            //    if (SensSearcher == null)
+            //    {
+            //        SenssimpleHTMLFormatter = new HighLight.SimpleHTMLFormatter("<span style='color:red'>", "</span>");
+            //        Senshighlighter = new HighLight.SensHighLighter(SenssimpleHTMLFormatter, Senstokenizer);
 
-                    SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
+            //        SensSearcher = new IndexSearcher(new RAMDirectory(idxSensDoc), false);
 
-                    message = "——敏感词搜索查询服务重新加载已完成。——";
-                    OnMessages(message, null);
-                }
-            }
-            catch (Exception ex)
-            {
-                message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
-                OnMessages(message, null);
-            }
+            //        message = "——敏感词搜索查询服务重新加载已完成。——";
+            //        OnMessages(message, null);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    message = string.Format("——敏感词搜索查询服务重新加载失败。失败原因：{0}——", ex.Message);
+            //    OnMessages(message, null);
+            //}
             #endregion
 
             #region 搜索索引
@@ -974,27 +974,27 @@ namespace SearchService.Common.Indexs
         /// </summary>
         /// <param name="news">索引信息</param>
         /// <returns>总数</returns>
-        public static int SensIndexString(Infors news)
-        {
-            try
-            {
-                Document doc = InforToDocument(news);
+        //public static int SensIndexString(Infors news)
+        //{
+        //    try
+        //    {
+        //        Document doc = InforToDocument(news);
 
-                Term t = new Term("inforid", news.InformationID);
+        //        Term t = new Term("inforid", news.InformationID);
 
-                SensWriter.UpdateDocument(t, doc);//每次都更新索引库
-                // writer.AddDocument(doc);
-            }
-            catch (Exception ex)
-            {
+        //        SensWriter.UpdateDocument(t, doc);//每次都更新索引库
+        //        // writer.AddDocument(doc);
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
-                Logger.WriteError(funName, ex);
-            }
-            int numtmep = 0;
-            int num = writer.GetDocCount(numtmep);
-            return num;
-        }
+        //        string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+        //        Logger.WriteError(funName, ex);
+        //    }
+        //    int numtmep = 0;
+        //    int num = writer.GetDocCount(numtmep);
+        //    return num;
+        //}
 
         /// <summary>
         /// 
@@ -1119,7 +1119,7 @@ namespace SearchService.Common.Indexs
         {
             //writer.Commit();
             writer.Dispose();
-            SensWriter.Dispose();
+            //SensWriter.Dispose();
         }
 
         /// <summary>
@@ -1140,16 +1140,16 @@ namespace SearchService.Common.Indexs
                 writer.Dispose();
             }
 
-            if (SensWriter != null)
-            {
-                //敏感词
-                SensWriter.Optimize();
-                SensWriter.Commit();
-                //敏感词
-                //SensWriter.Close();
-                Senstokenizer.Dispose();
-                SensWriter.Dispose();
-            }
+            //if (SensWriter != null)
+            //{
+            //    //敏感词
+            //    SensWriter.Optimize();
+            //    SensWriter.Commit();
+            //    //敏感词
+            //    //SensWriter.Close();
+            //    Senstokenizer.Dispose();
+            //    SensWriter.Dispose();
+            //}
         }
         /// <summary>
         /// 提交信息
@@ -1160,7 +1160,7 @@ namespace SearchService.Common.Indexs
             writer.Commit();
 
             //敏感词索引提交
-            SensWriter.Commit();
+            //SensWriter.Commit();
         }
 
         /// <summary>
@@ -1176,7 +1176,7 @@ namespace SearchService.Common.Indexs
         /// </summary>
         public static void CommitSensWriter()
         {
-            SensWriter.Commit();
+            //SensWriter.Commit();
         }
         /// <summary>
         /// 优化信息并提交
@@ -1188,8 +1188,8 @@ namespace SearchService.Common.Indexs
             writer.Commit();
 
             //敏感词
-            SensWriter.Optimize();
-            SensWriter.Commit();
+            //SensWriter.Optimize();
+            //SensWriter.Commit();
         }
 
         /// <summary>
@@ -1209,7 +1209,7 @@ namespace SearchService.Common.Indexs
         public static void CloseSearcher()
         {
             searcher.Dispose();
-            SensSearcher.Dispose();
+            //SensSearcher.Dispose();
         }
 
 
@@ -1312,60 +1312,60 @@ namespace SearchService.Common.Indexs
         /// </summary>
         /// <param name="keywords">关键词</param>
         /// <returns>关键词</returns>
-        public static string GetSensWordsSplitBySlash(string keywords)
-        {
-            StringBuilder result = new StringBuilder();
+        //public static string GetSensWordsSplitBySlash(string keywords)
+        //{
+        //    StringBuilder result = new StringBuilder();
 
-            try
-            {
-                //分离关键词并列出所有关键词的词频与词性
-                List<WordInfo> words = Senstokenizer.SegmentToWordInfos(keywords).ToList<WordInfo>();
+        //    try
+        //    {
+        //        //分离关键词并列出所有关键词的词频与词性
+        //        List<WordInfo> words = Senstokenizer.SegmentToWordInfos(keywords).ToList<WordInfo>();
 
-                foreach (WordInfo word in words)
-                {
-                    if (word == null)
-                    {
-                        continue;
-                    }
+        //        foreach (WordInfo word in words)
+        //        {
+        //            if (word == null)
+        //            {
+        //                continue;
+        //            }
 
-                    result.AppendFormat("{0}/", word.Word);
-                }
-            }
-            catch (Exception ex)
-            {
-                string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
-                Logger.WriteError(funName, ex);
-            }
-            return result.ToString().Trim();
-        }
+        //            result.AppendFormat("{0}/", word.Word);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+        //        Logger.WriteError(funName, ex);
+        //    }
+        //    return result.ToString().Trim();
+        //}
 
         /// <summary>
         /// 分离敏感词关键词
         /// </summary>
         /// <param name="keywords">关键词</param>        
         /// <returns>关键词列表</returns>
-        private static List<string> GetSensWordsListSplitBySpace(string keywords)
-        {
-            List<string> result = new List<string>();
-            try
-            {
-                List<WordInfo> words = Senstokenizer.SegmentToWordInfos(keywords).ToList<WordInfo>();
+        //private static List<string> GetSensWordsListSplitBySpace(string keywords)
+        //{
+        //    List<string> result = new List<string>();
+        //    try
+        //    {
+        //        List<WordInfo> words = Senstokenizer.SegmentToWordInfos(keywords).ToList<WordInfo>();
 
-                foreach (WordInfo word in words)
-                {
-                    if (word != null)
-                    {
-                        result.Add(word.Word);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
-                Logger.WriteError(funName, ex);
-            }
-            return result;
-        }
+        //        foreach (WordInfo word in words)
+        //        {
+        //            if (word != null)
+        //            {
+        //                result.Add(word.Word);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+        //        Logger.WriteError(funName, ex);
+        //    }
+        //    return result;
+        //}
 
         /// <summary>
         /// 从输入的字符串中，获取所有敏感词
@@ -1378,59 +1378,59 @@ namespace SearchService.Common.Indexs
             List<string> contextSeg = GetKeyWordsListSplitBySpace(input);
             List<string> ResultList = new List<string>();
             StringBuilder Result = new StringBuilder();
-            if (SensDicList == null)
-            {
-                //获取敏感词
-                SensDicList = new List<string>();
+            //if (SensDicList == null)
+            //{
+            //    //获取敏感词
+            //    SensDicList = new List<string>();
 
-                foreach (char key in SensDic._FirstCharDict.Keys)
-                {
-                    WordAttribute wab = SensDic._FirstCharDict[key];
-                    SensDicList.Add(wab.Word);
-                }
-                foreach (uint key in SensDic._DoubleCharDict.Keys)
-                {
-                    WordAttribute wab = SensDic._DoubleCharDict[key];
-                    SensDicList.Add(wab.Word);
-                }
-                foreach (string key in SensDic._WordDict.Keys)
-                {
-                    WordAttribute wab = SensDic._WordDict[key];
-                    SensDicList.Add(wab.Word);
-                }
+            //    foreach (char key in SensDic._FirstCharDict.Keys)
+            //    {
+            //        WordAttribute wab = SensDic._FirstCharDict[key];
+            //        SensDicList.Add(wab.Word);
+            //    }
+            //    foreach (uint key in SensDic._DoubleCharDict.Keys)
+            //    {
+            //        WordAttribute wab = SensDic._DoubleCharDict[key];
+            //        SensDicList.Add(wab.Word);
+            //    }
+            //    foreach (string key in SensDic._WordDict.Keys)
+            //    {
+            //        WordAttribute wab = SensDic._WordDict[key];
+            //        SensDicList.Add(wab.Word);
+            //    }
 
-            }
+            //}
 
-            if (contextSeg.Count > 0)
-            {
+            //if (contextSeg.Count > 0)
+            //{
 
-                for (int i = 0; i < contextSeg.Count; i++)
-                {
-                    string ds = contextSeg[i];
-                    if (SensDicList.Contains(ds) && !ResultList.Contains(ds))//Result.ToString().IndexOf(ds) < 0)
-                    {
-                        ResultList.Add(ds);
+            //    for (int i = 0; i < contextSeg.Count; i++)
+            //    {
+            //        string ds = contextSeg[i];
+            //        if (SensDicList.Contains(ds) && !ResultList.Contains(ds))//Result.ToString().IndexOf(ds) < 0)
+            //        {
+            //            ResultList.Add(ds);
 
-                        //Result.Append(ds + ",");
-                    }
-                }
-            }
+            //            //Result.Append(ds + ",");
+            //        }
+            //    }
+            //}
 
             //
             string strresult = "";
-            if (ResultList.Count > 0)
-            {
-                ResultList.Sort(new ListSensCompare());
-                for (int i = 0; i < ResultList.Count; i++)
-                {
-                    if (Result.ToString().IndexOf(ResultList[i]) < 0)
-                    {
-                        Result.Append(ResultList[i] + ",");
-                    }
-                }
-                strresult = Result.ToString();
-                strresult = strresult.Remove(strresult.Length - 1, 1);
-            }
+            //if (ResultList.Count > 0)
+            //{
+            //    ResultList.Sort(new ListSensCompare());
+            //    for (int i = 0; i < ResultList.Count; i++)
+            //    {
+            //        if (Result.ToString().IndexOf(ResultList[i]) < 0)
+            //        {
+            //            Result.Append(ResultList[i] + ",");
+            //        }
+            //    }
+            //    strresult = Result.ToString();
+            //    strresult = strresult.Remove(strresult.Length - 1, 1);
+            //}
             return strresult;
         }
         /// <summary>
@@ -1737,61 +1737,61 @@ namespace SearchService.Common.Indexs
                 
                 #region 单位
                 //收文单位
-                List<string> RSUnitID = new List<string>();
-                //发文单位
-                List<string> SSUnitID = new List<string>();
+                //List<string> RSUnitID = new List<string>();
+                ////发文单位
+                //List<string> SSUnitID = new List<string>();
 
-                //添加涉及单位 涉及单位：发送单位，接收单位
-                if (allSearchParam.SUnitID != null)
-                {
-                    SSUnitID.AddRange(allSearchParam.SUnitID);
-                }
-                if (allSearchParam.RUnitID != null)
-                {
+                ////添加涉及单位 涉及单位：发送单位，接收单位
+                //if (allSearchParam.SUnitID != null)
+                //{
+                //    SSUnitID.AddRange(allSearchParam.SUnitID);
+                //}
+                //if (allSearchParam.RUnitID != null)
+                //{
 
-                    RSUnitID.AddRange(allSearchParam.RUnitID);
-                }
-                if (RSUnitID != null)
-                {
-                    if (RSUnitID.Count > 0)
-                    {
-                        //单位ID Query
-                        BooleanQuery blqrRUnitID = new BooleanQuery();
+                //    RSUnitID.AddRange(allSearchParam.RUnitID);
+                //}
+                //if (RSUnitID != null)
+                //{
+                //    if (RSUnitID.Count > 0)
+                //    {
+                //        //单位ID Query
+                //        BooleanQuery blqrRUnitID = new BooleanQuery();
 
-                        QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "runitid", analyzer);
-                        //queryParsersRange.DefaultOperator = QueryParser.Operator.OR;
-                        foreach (string runitid in RSUnitID)
-                        {
-                            Query contentQuery = queryParsersRange.Parse(runitid);
-                            blqrRUnitID.Add(contentQuery, Occur.SHOULD);//或运算
-                        }
-                        //设置满足或运算的最少个数
-                        blqrRUnitID.MinimumNumberShouldMatch = 1;
-                        //
-                        blq.Add(blqrRUnitID, Occur.MUST);
-                    }
-                }
+                //        QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "runitid", analyzer);
+                //        //queryParsersRange.DefaultOperator = QueryParser.Operator.OR;
+                //        foreach (string runitid in RSUnitID)
+                //        {
+                //            Query contentQuery = queryParsersRange.Parse(runitid);
+                //            blqrRUnitID.Add(contentQuery, Occur.SHOULD);//或运算
+                //        }
+                //        //设置满足或运算的最少个数
+                //        blqrRUnitID.MinimumNumberShouldMatch = 1;
+                //        //
+                //        blq.Add(blqrRUnitID, Occur.MUST);
+                //    }
+                //}
 
-                if (SSUnitID != null)
-                {
-                    if (SSUnitID.Count > 0)
-                    {
-                        //单位ID Query
-                        BooleanQuery blqSUnitID = new BooleanQuery();
+                //if (SSUnitID != null)
+                //{
+                //    if (SSUnitID.Count > 0)
+                //    {
+                //        //单位ID Query
+                //        BooleanQuery blqSUnitID = new BooleanQuery();
 
-                        QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "sunitid", analyzer);
-                        //queryParsersRange.DefaultOperator = QueryParser.Operator.OR;
-                        foreach (string runitid in RSUnitID)
-                        {
-                            Query contentQuery = queryParsersRange.Parse(runitid);
-                            blqSUnitID.Add(contentQuery, Occur.SHOULD);//或运算
-                        }
-                        //设置满足或运算的最少个数
-                        blqSUnitID.MinimumNumberShouldMatch = 1;
-                        //
-                        blq.Add(blqSUnitID, Occur.MUST);
-                    }
-                }
+                //        QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "sunitid", analyzer);
+                //        //queryParsersRange.DefaultOperator = QueryParser.Operator.OR;
+                //        foreach (string runitid in RSUnitID)
+                //        {
+                //            Query contentQuery = queryParsersRange.Parse(runitid);
+                //            blqSUnitID.Add(contentQuery, Occur.SHOULD);//或运算
+                //        }
+                //        //设置满足或运算的最少个数
+                //        blqSUnitID.MinimumNumberShouldMatch = 1;
+                //        //
+                //        blq.Add(blqSUnitID, Occur.MUST);
+                //    }
+                //}
                 
                 #endregion
 
@@ -1840,38 +1840,38 @@ namespace SearchService.Common.Indexs
 
                
                 //关键词中，需排除的词
-                if (!string.IsNullOrEmpty(nonewords))
-                {
-                    Query qnflag = queryParsers.Parse(nonewords);
-                    blq.Add(qnflag, Occur.MUST_NOT);//非运算
-                }
+                //if (!string.IsNullOrEmpty(nonewords))
+                //{
+                //    Query qnflag = queryParsers.Parse(nonewords);
+                //    blq.Add(qnflag, Occur.MUST_NOT);//非运算
+                //}
                 #endregion
 
-                //时间范围
-                if (timeFlag)
-                {
-                    Query numericrq = NumericRangeQuery.NewLongRange("time", star, end, true, true);
-                    blq.Add(numericrq, Occur.MUST);
-                }
-                //类型
-                if (!string.IsNullOrEmpty(allSearchParam.TypeID))
-                {
-                    Query query = new TermQuery(new Term("typeid", allSearchParam.TypeID));
-                    blq.Add(query, Occur.MUST);
-                }
-                //文件标识
-                if (!string.IsNullOrEmpty(allSearchParam.InformationID))
-                {
-                    Query query = new TermQuery(new Term("inforid", allSearchParam.InformationID));
-                    blq.Add(query, Occur.MUST);
-                }
+                ////时间范围
+                //if (timeFlag)
+                //{
+                //    Query numericrq = NumericRangeQuery.NewLongRange("time", star, end, true, true);
+                //    blq.Add(numericrq, Occur.MUST);
+                //}
+                ////类型
+                //if (!string.IsNullOrEmpty(allSearchParam.TypeID))
+                //{
+                //    Query query = new TermQuery(new Term("typeid", allSearchParam.TypeID));
+                //    blq.Add(query, Occur.MUST);
+                //}
+                ////文件标识
+                //if (!string.IsNullOrEmpty(allSearchParam.InformationID))
+                //{
+                //    Query query = new TermQuery(new Term("inforid", allSearchParam.InformationID));
+                //    blq.Add(query, Occur.MUST);
+                //}
                 
-                //文档变化
-                if(!string.IsNullOrWhiteSpace(allSearchParam.DocNum))
-                {
-                    Query query = new TermQuery(new Term("docnum", allSearchParam.DocNum));
-                    blq.Add(query, Occur.MUST);
-                }
+                ////文档变化
+                //if(!string.IsNullOrWhiteSpace(allSearchParam.DocNum))
+                //{
+                //    Query query = new TermQuery(new Term("docnum", allSearchParam.DocNum));
+                //    blq.Add(query, Occur.MUST);
+                //}
 
                 //查询总数
                 int hm = allSearchParam.PageNo * allSearchParam.PageSize;
@@ -1910,7 +1910,7 @@ namespace SearchService.Common.Indexs
                         news.Content = doc.Get("contents");
                         news.Urls = doc.Get("urls");
                         string strTime = doc.Get("time");
-                        news.Time = DateTime.ParseExact(strTime, "yyyyMMddHHmmss", null);
+                        news.Time = DateTime.ParseExact(strTime, "yyyyMMdd", null);
 
                         news.UserID = doc.Get("userid");
                         //news.SUnitID = doc.Get("sunitid");
@@ -1986,308 +1986,308 @@ namespace SearchService.Common.Indexs
         /// <param name="allSearchParam">参数</param>
         /// <param name="recCount">总记录数</param>
         /// <returns>信息列表</returns>
-        public static List<Infors> SensSearchByInput(AllSearchParam allSearchParam, out int recCount)
-        {
+        //public static List<Infors> SensSearchByInput(AllSearchParam allSearchParam, out int recCount)
+        //{
 
-            recCount = 0;
-            List<Infors> result = new List<Infors>();
+        //    recCount = 0;
+        //    List<Infors> result = new List<Infors>();
 
-            string keywords = allSearchParam.InPutWord;
-            string nonewords = allSearchParam.NoneWord;
+        //    string keywords = allSearchParam.InPutWord;
+        //    string nonewords = allSearchParam.NoneWord;
 
-            #region 时间
-            bool timeFlag = false;
-            long star = 0;
-            long end = 0;
+        //    #region 时间
+        //    bool timeFlag = false;
+        //    long star = 0;
+        //    long end = 0;
 
-            string starYear = "";
-            string endYear = "";
+        //    string starYear = "";
+        //    string endYear = "";
 
-            if ((allSearchParam.StartTime == DateTime.MaxValue && allSearchParam.EndTime == DateTime.MaxValue)
-                || (allSearchParam.StartTime == DateTime.MinValue && allSearchParam.EndTime == DateTime.MinValue))
-            {
-                timeFlag = false;
-            }
-            else
-            {
-                star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
-                starYear = allSearchParam.StartTime.ToString("yyyy");
-                end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
-                endYear = allSearchParam.EndTime.ToString("yyyy");
+        //    if ((allSearchParam.StartTime == DateTime.MaxValue && allSearchParam.EndTime == DateTime.MaxValue)
+        //        || (allSearchParam.StartTime == DateTime.MinValue && allSearchParam.EndTime == DateTime.MinValue))
+        //    {
+        //        timeFlag = false;
+        //    }
+        //    else
+        //    {
+        //        star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
+        //        starYear = allSearchParam.StartTime.ToString("yyyy");
+        //        end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
+        //        endYear = allSearchParam.EndTime.ToString("yyyy");
 
-                if (end > star)
-                {
-                    timeFlag = true;
-                }
-            }
+        //        if (end > star)
+        //        {
+        //            timeFlag = true;
+        //        }
+        //    }
 
-            //if (allSearchParam.StartTime != DateTime.MinValue && allSearchParam.EndTime != DateTime.MinValue)
-            //{
-            //    if (allSearchParam.EndTime < allSearchParam.StartTime)
-            //    {
-            //        //
-            //        recCount = 0;
-            //        return null;
-            //    }
-            //    else
-            //    {
-            //        star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
-            //        starYear = allSearchParam.StartTime.ToString("yyyy");
-            //        end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
-            //        endYear = allSearchParam.EndTime.ToString("yyyy");
-            //    }
-            //}
-            //else if (allSearchParam.StartTime == DateTime.MinValue && allSearchParam.EndTime != DateTime.MinValue)
-            //{
-            //    star = long.Parse(allSearchParam.EndTime.AddDays(-7).ToString("yyyyMMddHHmmss"));
-            //    end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
-            //    starYear = allSearchParam.EndTime.AddDays(-7).ToString("yyyy");
-            //    endYear = allSearchParam.EndTime.ToString("yyyy");
-            //}
-            //else if (allSearchParam.StartTime != DateTime.MinValue && allSearchParam.EndTime == DateTime.MinValue)
-            //{
-            //    star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
-            //    end = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
-            //    starYear = allSearchParam.StartTime.ToString("yyyy");
-            //    endYear = DateTime.Now.ToString("yyyy");
-            //}
-            //else
-            //{
-            //    star = long.Parse(DateTime.Now.AddDays(-7).ToString("yyyyMMddHHmmss"));
-            //    end = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+        //    //if (allSearchParam.StartTime != DateTime.MinValue && allSearchParam.EndTime != DateTime.MinValue)
+        //    //{
+        //    //    if (allSearchParam.EndTime < allSearchParam.StartTime)
+        //    //    {
+        //    //        //
+        //    //        recCount = 0;
+        //    //        return null;
+        //    //    }
+        //    //    else
+        //    //    {
+        //    //        star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
+        //    //        starYear = allSearchParam.StartTime.ToString("yyyy");
+        //    //        end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
+        //    //        endYear = allSearchParam.EndTime.ToString("yyyy");
+        //    //    }
+        //    //}
+        //    //else if (allSearchParam.StartTime == DateTime.MinValue && allSearchParam.EndTime != DateTime.MinValue)
+        //    //{
+        //    //    star = long.Parse(allSearchParam.EndTime.AddDays(-7).ToString("yyyyMMddHHmmss"));
+        //    //    end = long.Parse(allSearchParam.EndTime.ToString("yyyyMMddHHmmss"));
+        //    //    starYear = allSearchParam.EndTime.AddDays(-7).ToString("yyyy");
+        //    //    endYear = allSearchParam.EndTime.ToString("yyyy");
+        //    //}
+        //    //else if (allSearchParam.StartTime != DateTime.MinValue && allSearchParam.EndTime == DateTime.MinValue)
+        //    //{
+        //    //    star = long.Parse(allSearchParam.StartTime.ToString("yyyyMMddHHmmss"));
+        //    //    end = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
+        //    //    starYear = allSearchParam.StartTime.ToString("yyyy");
+        //    //    endYear = DateTime.Now.ToString("yyyy");
+        //    //}
+        //    //else
+        //    //{
+        //    //    star = long.Parse(DateTime.Now.AddDays(-7).ToString("yyyyMMddHHmmss"));
+        //    //    end = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmss"));
 
-            //    starYear = DateTime.Now.AddDays(-7).ToString("yyyy");
-            //    endYear = DateTime.Now.ToString("yyyy");
-            //}
-            #endregion
+        //    //    starYear = DateTime.Now.AddDays(-7).ToString("yyyy");
+        //    //    endYear = DateTime.Now.ToString("yyyy");
+        //    //}
+        //    #endregion
 
-            //加载多索引文件
-            //IndexSearcher[] searchers = ConvertToPath(starYear, endYear);
-            //MultiSearcher multisearcher = new MultiSearcher(searchers);
+        //    //加载多索引文件
+        //    //IndexSearcher[] searchers = ConvertToPath(starYear, endYear);
+        //    //MultiSearcher multisearcher = new MultiSearcher(searchers);
 
-            try
-            {
-                #region 多字段查询
-                //PerFieldAnalyzerWrapper wrapper = new PerFieldAnalyzerWrapper(analyzer);
-                //wrapper.AddAnalyzer("title", analyzer);
-                ////wrapper.AddAnalyzer("Author", analyzer);
-                //wrapper.AddAnalyzer("content", analyzer);
-                //string[] fields = { "title", "content" };
+        //    try
+        //    {
+        //        #region 多字段查询
+        //        //PerFieldAnalyzerWrapper wrapper = new PerFieldAnalyzerWrapper(analyzer);
+        //        //wrapper.AddAnalyzer("title", analyzer);
+        //        ////wrapper.AddAnalyzer("Author", analyzer);
+        //        //wrapper.AddAnalyzer("content", analyzer);
+        //        //string[] fields = { "title", "content" };
 
-                //QueryParser parser = new MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_30, fields, wrapper);
-                //Query query = parser.Parse(keywords);
-                //
+        //        //QueryParser parser = new MultiFieldQueryParser(Lucene.Net.Util.Version.LUCENE_30, fields, wrapper);
+        //        //Query query = parser.Parse(keywords);
+        //        //
 
-                #endregion
-                #region 多条件控制
+        //        #endregion
+        //        #region 多条件控制
 
-                BooleanQuery blq = new BooleanQuery();
+        //        BooleanQuery blq = new BooleanQuery();
 
-                #region 单位
-                List<string> RSUnitID = new List<string>();
-                //添加涉及单位 涉及单位：发送单位，接收单位
-                if (allSearchParam.SUnitID != null)
-                {
-                    RSUnitID.AddRange(allSearchParam.SUnitID);
-                }
-                if (allSearchParam.RUnitID != null)
-                {
+        //        #region 单位
+        //        List<string> RSUnitID = new List<string>();
+        //        //添加涉及单位 涉及单位：发送单位，接收单位
+        //        if (allSearchParam.SUnitID != null)
+        //        {
+        //            RSUnitID.AddRange(allSearchParam.SUnitID);
+        //        }
+        //        if (allSearchParam.RUnitID != null)
+        //        {
 
-                    RSUnitID.AddRange(allSearchParam.RUnitID);
-                }
-                if (RSUnitID != null)
-                {
-                    if (RSUnitID.Count > 0)
-                    {
-                        QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "runitid", analyzer);
-                        foreach (string runitid in RSUnitID)
-                        {
-                            Query contentQuery = queryParsersRange.Parse(runitid);
-                            blq.Add(contentQuery, Occur.SHOULD);//或运算
-                        }
-                        //设置满足或运算的最少个数
-                        blq.MinimumNumberShouldMatch = 1;
-                    }
-                }
-                #endregion
+        //            RSUnitID.AddRange(allSearchParam.RUnitID);
+        //        }
+        //        if (RSUnitID != null)
+        //        {
+        //            if (RSUnitID.Count > 0)
+        //            {
+        //                QueryParser queryParsersRange = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "runitid", analyzer);
+        //                foreach (string runitid in RSUnitID)
+        //                {
+        //                    Query contentQuery = queryParsersRange.Parse(runitid);
+        //                    blq.Add(contentQuery, Occur.SHOULD);//或运算
+        //                }
+        //                //设置满足或运算的最少个数
+        //                blq.MinimumNumberShouldMatch = 1;
+        //            }
+        //        }
+        //        #endregion
 
-                #region 关键词
-                List<string> strlist = GetKeyWordsListSplitBySpace(keywords);
-                // List<string> files = new List<string> { "contents", "title" };
-                if (allSearchParam.Range == 0)
-                {
-                    allSearchParam.Range = SearchRange.TitleAndContext;
-                }
+        //        #region 关键词
+        //        List<string> strlist = GetKeyWordsListSplitBySpace(keywords);
+        //        // List<string> files = new List<string> { "contents", "title" };
+        //        if (allSearchParam.Range == 0)
+        //        {
+        //            allSearchParam.Range = SearchRange.TitleAndContext;
+        //        }
 
-                QueryParser queryParsers;
-                if (allSearchParam.Range == SearchRange.Title)
-                {
-                    queryParsers = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "title", analyzer);
-                    if (strlist.Count > 0)
-                    {
-                        for (int i = 0; i < strlist.Count; i++)
-                        {
-                            Query queryflag = queryParsers.Parse(strlist[i]);
-                            blq.Add(queryflag, Occur.MUST);
-                        }
-                    }
-                }
-                else
-                {
-                    queryParsers = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "contents", analyzer);
+        //        QueryParser queryParsers;
+        //        if (allSearchParam.Range == SearchRange.Title)
+        //        {
+        //            queryParsers = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "title", analyzer);
+        //            if (strlist.Count > 0)
+        //            {
+        //                for (int i = 0; i < strlist.Count; i++)
+        //                {
+        //                    Query queryflag = queryParsers.Parse(strlist[i]);
+        //                    blq.Add(queryflag, Occur.MUST);
+        //                }
+        //            }
+        //        }
+        //        else
+        //        {
+        //            queryParsers = new QueryParser(Lucene.Net.Util.Version.LUCENE_30, "contents", analyzer);
 
-                    if (strlist.Count > 0)
-                    {
-                        for (int i = 0; i < strlist.Count; i++)
-                        {
-                            Query queryflag = queryParsers.Parse(strlist[i]);
-                            blq.Add(queryflag, Occur.MUST);
-                        }
-                    }
-                }
-
-
-                //关键词中，需排除的词
-                if (!string.IsNullOrEmpty(nonewords))
-                {
-                    Query qnflag = queryParsers.Parse(nonewords);
-                    blq.Add(qnflag, Occur.MUST_NOT);//非运算
-                }
-                #endregion
-
-                //时间范围
-                if (timeFlag)
-                {
-                    Query numericrq = NumericRangeQuery.NewLongRange("time", star, end, true, true);
-                    blq.Add(numericrq, Occur.MUST);
-                }
-                //类型
-                if (!string.IsNullOrEmpty(allSearchParam.TypeID))
-                {
-                    Query query = new TermQuery(new Term("typeid", allSearchParam.TypeID));
-                    blq.Add(query, Occur.MUST);
-                }
-                //文件标识
-                if (!string.IsNullOrEmpty(allSearchParam.InformationID))
-                {
-                    Query query = new TermQuery(new Term("inforid", allSearchParam.InformationID));
-                    blq.Add(query, Occur.MUST);
-                }
-
-                //文档变化
-                if (!string.IsNullOrWhiteSpace(allSearchParam.DocNum))
-                {
-                    Query query = new TermQuery(new Term("docnum", allSearchParam.DocNum));
-                    blq.Add(query, Occur.MUST);
-                }
-
-                //查询总数
-                int hm = allSearchParam.PageNo * allSearchParam.PageSize;
-                TopScoreDocCollector res = TopScoreDocCollector.Create(hm, false);
-
-               SensSearcher.Search(blq, res);
-                //multisearcher.Search(blq, res);
-                #endregion
-
-                //前（每页放置容量）项数据
-                TopDocs tds = res.TopDocs(allSearchParam.PageSize * (allSearchParam.PageNo - 1), allSearchParam.PageSize);
-
-                //搜索结果总量
-                recCount = res.TotalHits;
-                //int i = (pageNo - 1) * pageLen;
-
-                //while (i < recCount && result.Count < pageLen)
-                //{
-                ScoreDoc[] sd = tds.ScoreDocs;
-                for (int i = 0; i < sd.Length; i++)
-                {
-                    Infors news = null;
-
-                    try
-                    {
-
-                        //"inforid","typeid","title","contents","time","userid","sunitid","runitid","participle","advise","summary"
-
-                        news = new Infors();
-                        //查询文件
-                        Document doc = searcher.Doc(sd[i].Doc);
-
-                        news.InformationID = doc.Get("inforid");
-                        news.TypeID = doc.Get("typeid");
-                        news.Title = doc.Get("title");
-                        news.Content = doc.Get("contents");
-                        news.Urls = doc.Get("urls");
-
-                        string strTime = doc.Get("time");
-                        news.Time = DateTime.ParseExact(strTime, "yyyyMMddHHmmss", null);
-
-                        news.UserID = doc.Get("userid");
-                        //news.SUnitID = doc.Get("sunitid");
-
-                        //string sunitid = doc.Get("sunitid");
-                        //if (sunitid.IndexOf(';') > 0 && sunitid.IndexOf('|') > 0)
-                        //{
-                        //    if (sunitid.EndsWith("|"))
-                        //    {
-                        //        sunitid = sunitid.Substring(0, sunitid.Length - 1);
-                        //    }
-                        //    char[] splitFlag = { ';', '|' }; ;
-                        //    List<string> SUnitid = sunitid.Split(splitFlag).ToList<string>();
-
-                        //    //RUnitid.Remove(news.SUnitID);
-                        //    news.RUnitID = SUnitid;
-                        //}
+        //            if (strlist.Count > 0)
+        //            {
+        //                for (int i = 0; i < strlist.Count; i++)
+        //                {
+        //                    Query queryflag = queryParsers.Parse(strlist[i]);
+        //                    blq.Add(queryflag, Occur.MUST);
+        //                }
+        //            }
+        //        }
 
 
-                        //string runitid = doc.Get("runitid");
+        //        //关键词中，需排除的词
+        //        if (!string.IsNullOrEmpty(nonewords))
+        //        {
+        //            Query qnflag = queryParsers.Parse(nonewords);
+        //            blq.Add(qnflag, Occur.MUST_NOT);//非运算
+        //        }
+        //        #endregion
 
-                        //if (runitid.IndexOf(';') > 0 && runitid.IndexOf('|') > 0)
-                        //{
-                        //    if (runitid.EndsWith("|"))
-                        //    {
-                        //        runitid = runitid.Substring(0, runitid.Length - 1);
-                        //    }
-                        //    char[] splitFlag = { ';', '|' }; ;
-                        //    List<string> RSUnitid = runitid.Split(splitFlag).ToList<string>();
+        //        //时间范围
+        //        if (timeFlag)
+        //        {
+        //            Query numericrq = NumericRangeQuery.NewLongRange("time", star, end, true, true);
+        //            blq.Add(numericrq, Occur.MUST);
+        //        }
+        //        //类型
+        //        if (!string.IsNullOrEmpty(allSearchParam.TypeID))
+        //        {
+        //            Query query = new TermQuery(new Term("typeid", allSearchParam.TypeID));
+        //            blq.Add(query, Occur.MUST);
+        //        }
+        //        //文件标识
+        //        if (!string.IsNullOrEmpty(allSearchParam.InformationID))
+        //        {
+        //            Query query = new TermQuery(new Term("inforid", allSearchParam.InformationID));
+        //            blq.Add(query, Occur.MUST);
+        //        }
 
-                        //    //RSUnitid.Remove(news.SUnitID);
-                        //    news.RUnitID = RSUnitid;
-                        //}
+        //        //文档变化
+        //        if (!string.IsNullOrWhiteSpace(allSearchParam.DocNum))
+        //        {
+        //            Query query = new TermQuery(new Term("docnum", allSearchParam.DocNum));
+        //            blq.Add(query, Occur.MUST);
+        //        }
+
+        //        //查询总数
+        //        int hm = allSearchParam.PageNo * allSearchParam.PageSize;
+        //        TopScoreDocCollector res = TopScoreDocCollector.Create(hm, false);
+
+        //       SensSearcher.Search(blq, res);
+        //        //multisearcher.Search(blq, res);
+        //        #endregion
+
+        //        //前（每页放置容量）项数据
+        //        TopDocs tds = res.TopDocs(allSearchParam.PageSize * (allSearchParam.PageNo - 1), allSearchParam.PageSize);
+
+        //        //搜索结果总量
+        //        recCount = res.TotalHits;
+        //        //int i = (pageNo - 1) * pageLen;
+
+        //        //while (i < recCount && result.Count < pageLen)
+        //        //{
+        //        ScoreDoc[] sd = tds.ScoreDocs;
+        //        for (int i = 0; i < sd.Length; i++)
+        //        {
+        //            Infors news = null;
+
+        //            try
+        //            {
+
+        //                //"inforid","typeid","title","contents","time","userid","sunitid","runitid","participle","advise","summary"
+
+        //                news = new Infors();
+        //                //查询文件
+        //                Document doc = searcher.Doc(sd[i].Doc);
+
+        //                news.InformationID = doc.Get("inforid");
+        //                news.TypeID = doc.Get("typeid");
+        //                news.Title = doc.Get("title");
+        //                news.Content = doc.Get("contents");
+        //                news.Urls = doc.Get("urls");
+
+        //                string strTime = doc.Get("time");
+        //                news.Time = DateTime.ParseExact(strTime, "yyyyMMddHHmmss", null);
+
+        //                news.UserID = doc.Get("userid");
+        //                //news.SUnitID = doc.Get("sunitid");
+
+        //                //string sunitid = doc.Get("sunitid");
+        //                //if (sunitid.IndexOf(';') > 0 && sunitid.IndexOf('|') > 0)
+        //                //{
+        //                //    if (sunitid.EndsWith("|"))
+        //                //    {
+        //                //        sunitid = sunitid.Substring(0, sunitid.Length - 1);
+        //                //    }
+        //                //    char[] splitFlag = { ';', '|' }; ;
+        //                //    List<string> SUnitid = sunitid.Split(splitFlag).ToList<string>();
+
+        //                //    //RUnitid.Remove(news.SUnitID);
+        //                //    news.RUnitID = SUnitid;
+        //                //}
 
 
-                        news.Participle = doc.Get("participle");
+        //                //string runitid = doc.Get("runitid");
 
-                        //string advise = doc.Get("advise");
-                        //if (advise != null)
-                        //{
-                        //    news.Advise = doc.Get("advise").Split('|').ToList<string>();
-                        //}
+        //                //if (runitid.IndexOf(';') > 0 && runitid.IndexOf('|') > 0)
+        //                //{
+        //                //    if (runitid.EndsWith("|"))
+        //                //    {
+        //                //        runitid = runitid.Substring(0, runitid.Length - 1);
+        //                //    }
+        //                //    char[] splitFlag = { ';', '|' }; ;
+        //                //    List<string> RSUnitid = runitid.Split(splitFlag).ToList<string>();
 
-                        //文件摘要长度限制（来自配置文件）
-                        int summerySize = SearchSensResultLength;
-                        if (news.Content.Length < summerySize)
-                        {
-                            summerySize = news.Content.Length;
-                        }
+        //                //    //RSUnitid.Remove(news.SUnitID);
+        //                //    news.RUnitID = RSUnitid;
+        //                //}
 
-                        highlighter.FragmentSize = summerySize;
-                        //全文中将关键词标红显示
-                        news.Summary = highlighter.GetBestFragment(keywords, news.Content);
-                        result.Add(news);
-                    }
-                    catch (Exception e)
-                    {
-                        Logger.WriteError("关键词转换失败！ SearchService.Common.Index.AllSearch.KeySearch1", e);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Logger.WriteError("关键词搜索失败！ SearchService.Common.Index.AllSearch.KeySearch", ex);
-            }
-            //search.Dispose();
-            return result;
-        }
+
+        //                news.Participle = doc.Get("participle");
+
+        //                //string advise = doc.Get("advise");
+        //                //if (advise != null)
+        //                //{
+        //                //    news.Advise = doc.Get("advise").Split('|').ToList<string>();
+        //                //}
+
+        //                //文件摘要长度限制（来自配置文件）
+        //                int summerySize = SearchSensResultLength;
+        //                if (news.Content.Length < summerySize)
+        //                {
+        //                    summerySize = news.Content.Length;
+        //                }
+
+        //                highlighter.FragmentSize = summerySize;
+        //                //全文中将关键词标红显示
+        //                news.Summary = highlighter.GetBestFragment(keywords, news.Content);
+        //                result.Add(news);
+        //            }
+        //            catch (Exception e)
+        //            {
+        //                Logger.WriteError("关键词转换失败！ SearchService.Common.Index.AllSearch.KeySearch1", e);
+        //            }
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Logger.WriteError("关键词搜索失败！ SearchService.Common.Index.AllSearch.KeySearch", ex);
+        //    }
+        //    //search.Dispose();
+        //    return result;
+        //}
         /// <summary>
         /// 输入两个数返回多个地址
         /// </summary>

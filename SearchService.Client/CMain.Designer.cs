@@ -39,6 +39,8 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button13 = new System.Windows.Forms.Button();
+            this.button9 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
@@ -60,9 +62,8 @@
             this.cbbIP1 = new System.Windows.Forms.ComboBox();
             this.cbbPort1 = new System.Windows.Forms.ComboBox();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.ofdFiles = new System.Windows.Forms.OpenFileDialog();
+            this.button14 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -173,6 +174,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button14);
             this.groupBox1.Controls.Add(this.button13);
             this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.button12);
@@ -202,6 +204,26 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(148, 51);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 23);
+            this.button13.TabIndex = 27;
+            this.button13.Text = "发送单个文件信息";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // button9
+            // 
+            this.button9.Location = new System.Drawing.Point(822, 49);
+            this.button9.Name = "button9";
+            this.button9.Size = new System.Drawing.Size(75, 23);
+            this.button9.TabIndex = 24;
+            this.button9.Text = "查询";
+            this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button12
             // 
@@ -412,30 +434,20 @@
             this.cbbPort1.Size = new System.Drawing.Size(54, 20);
             this.cbbPort1.TabIndex = 20;
             // 
-            // button9
-            // 
-            this.button9.Location = new System.Drawing.Point(822, 49);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 24;
-            this.button9.Text = "查询";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(148, 51);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(128, 23);
-            this.button13.TabIndex = 27;
-            this.button13.Text = "发送单个文件信息";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // ofdFiles
             // 
             this.ofdFiles.Filter = "(.json,.pdf)|*.json;*.pdf";
             this.ofdFiles.Title = "请选择单个文件（json，pdf）";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(7, 79);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(128, 23);
+            this.button14.TabIndex = 28;
+            this.button14.Text = "测试单一json文件";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // CMain
             // 
@@ -492,5 +504,6 @@
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.OpenFileDialog ofdFiles;
+        private System.Windows.Forms.Button button14;
     }
 }

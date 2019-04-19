@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
-    <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
-    <script type='text/javascript' src='/Scripts/jquery-ui.js'></script>
-    <script type='text/javascript' src='/Scripts/socket.io.min.js'></script>
-    <link rel="stylesheet" type="text/css" href="/Style/jquery-ui.css" />
+    <script type="text/javascript" src="Scripts/jquery-1.8.2.min.js"></script>
+    <script type='text/javascript' src='Scripts/jquery-ui.js'></script>
+    <script type='text/javascript' src='Scripts/socket.io.min.js'></script>
+    <link rel="stylesheet" type="text/css" href="Style/jquery-ui.css" />
     <!--<link rel="stylesheet" type="text/css" href="jquery.autocomplete.css" />-->
     <style>
         BODY {
@@ -74,7 +74,7 @@
     </style>
 </head>
 <body>
-    <table style="height:100%;width:95%;align-content:center;vertical-align:middle"> <!--height="100%" width="95%" align="center" valign="middle"-->>
+    <table style="height:100%;width:95%;align-content:center;vertical-align:middle"> <!--height="100%" width="95%" align="center" valign="middle"-->
         <tbody>
             <tr>
                 <td height="100%" valign="middle" width="95%" align="center">
@@ -84,14 +84,14 @@
                         <tbody>
                             <tr>
                                 <td style="height: 40px;">
-                                    <img border="0" src="imgs/none.gif" width="1"
-                                         height="1"><input runat="server" id="iptUnitID" type="hidden" />
+                                    <!--<img border="0" src="imgs/none.gif" width="1"
+                                         height="1">--><input runat="server" id="iptUnitID" type="hidden" text=“2020” />
                                 </td>
                             </tr>
                             <tr style="height: 26px;">
                                 <td class="TD1" valign="top" colspan="3" align="center">
-                                    <img border="0"
-                                         src="imgs/ft_logo.png">
+                                    <!--<img border="0"
+                                         src="imgs/ft_logo.png">-->
                                 </td>
                             </tr>
                             <tr>
@@ -99,11 +99,11 @@
                                     <input style="border: 1px solid #454771; text-align: left; padding-left: 4px; position: absolute; left: 0px; top: 0px; height: 26px; width: 477px; background-color: transparent; right: 42px;" id="iptInputWord" />
                                     <input type="hidden" id="iptWord" />
                                     <div style="float: left; position: absolute; left: 483px; top: 0px; width: 50px; height: 28px; text-align: center; background-color: #454771;">
-                                        <img src="../../App_Themes/IIPS_Themes/Images/main/earth.png" style="width: 31px; height: 25px;" onclick="TransPage()" />
+                                        <img src="Images/earth.png" style="width: 31px; height: 25px;" onclick="TransPage()" />
                                     </div>
-                                    <div style="float: right; position: absolute; left: 549px; top: 0px; width: 68px; height: 29px;" id="divlbltime">
+                                    <!--<div style="float: right; position: absolute; left: 549px; top: 0px; width: 68px; height: 29px;" id="divlbltime">
                                         <input type="button" value="高级▽" id="advsearch" onclick="showorhide('iframeid', 'advsearch');" />
-                                    </div>
+                                    </div>-->
                                     <!--<%--<div style="float:right;position:absolute;left:549px;top:25px;width:69px; height:20px;" id="divblank"></div>--%>
                                     <%-- <img />  onclick="  window.location.href = encodeURI('result.html?key=' + $('#iptInputWord').val()+ '#' + iframeid.document.getElementById('txtNoneWord').value + '#' + iframeid.document.getElementById('txtWorkStartTime').value + '#' + iframeid.document.getElementById('txtWorkStartEnd').value ); return false;"--%>-->
 
@@ -129,7 +129,7 @@
                             <tr>
                                 <td>
                                     <div style="margin-top: 2px;">
-                                        <iframe id="iframeid" src="SearchDetail.aspx"></iframe>
+                                        <!--<iframe id="iframeid" src="SearchDetail.aspx"></iframe>-->
                                     </div>
                                 </td>
                             </tr>
@@ -198,18 +198,18 @@
             var endTime = currentdate;
             //var InfoID = "";//文件编号
             var TypeID = "";
-            var RUserID = "";//$('#ContentHolder_iptUnitID').val();
-            var SUnitID = $('#ContentHolder_iptUnitID').val();
+            var RUserID = "";//$('#iptUnitID').val();
+            var SUnitID = $('#iptUnitID').val();
             var DocNum = "";
 
-            var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
-            if (ifrmaDoc != null) {
-                NoneWord = ifrmaDoc.getElementById('txtNoneWord').value == "" ? NoneWord : ifrmaDoc.getElementById('txtNoneWord').value;
-                startTime = ifrmaDoc.getElementById('txtWorkStartTime').value == "" ? startTime : ifrmaDoc.getElementById('txtWorkStartTime').value;
-                endTime = ifrmaDoc.getElementById('txtWorkStartEnd').value == "" ? endTime : ifrmaDoc.getElementById('txtWorkStartEnd').value;
-                DocNum = ifrmaDoc.getElementById('txtdocnum').value == "" ? DocNum : ifrmaDoc.getElementById('txtdocnum').value;//文件编号
-                TypeID = ifrmaDoc.getElementById('txtfileTypeID').value == "" ? TypeID : ifrmaDoc.getElementById('txtfileTypeID').value;
-            }
+            //var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
+            //if (ifrmaDoc != null) {
+            //    NoneWord = ifrmaDoc.getElementById('txtNoneWord').value == "" ? NoneWord : ifrmaDoc.getElementById('txtNoneWord').value;
+            //    startTime = ifrmaDoc.getElementById('txtWorkStartTime').value == "" ? startTime : ifrmaDoc.getElementById('txtWorkStartTime').value;
+            //    endTime = ifrmaDoc.getElementById('txtWorkStartEnd').value == "" ? endTime : ifrmaDoc.getElementById('txtWorkStartEnd').value;
+            //    DocNum = ifrmaDoc.getElementById('txtdocnum').value == "" ? DocNum : ifrmaDoc.getElementById('txtdocnum').value;//文件编号
+            //    TypeID = ifrmaDoc.getElementById('txtfileTypeID').value == "" ? TypeID : ifrmaDoc.getElementById('txtfileTypeID').value;
+            //}
 
             window.location.href = encodeURI('result.html?key=' + keyWord + ';' + NoneWord + ';' + startTime + ';' + endTime + ';' + DocNum + ';' + TypeID + ';' + SUnitID + ';' + RUserID); return false;
 
@@ -218,7 +218,7 @@
         var oldtext = "";
         $(function () {
             //document.getElementById('divblank').style.display = 'none';
-            socket = new WebSocket('ws://192.168.0.50:2012');
+            socket = new WebSocket('ws://127.0.0.1:2012');
             //收到server的连接确认
             socket.onopen = function () {
                 //连接成功

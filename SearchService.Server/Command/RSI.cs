@@ -103,7 +103,7 @@ namespace SearchService.Server.Command
 
                     if (commandInfo.PageSize != 0 && commandInfo.PageNo != 0)//!string.IsNullOrWhiteSpace(commandInfo.InPutWord) && 
                     {
-                        resultList = AllDocIndex.SensSearchByInput(commandInfo, out recCount);
+                        //resultList = AllDocIndex.SensSearchByInput(commandInfo, out recCount);
                     }
 
                     string html = "";

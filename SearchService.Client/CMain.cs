@@ -39,8 +39,11 @@ namespace SearchService.Client
         public CMain()
         {
             //readJson();
+            //
             //MerginData();
             //JsonTest();
+            //SaveSingleDoc();
+            //ReadPdfSend(@"D:\WorkBackUp\搜索引擎\doc\PDF\20180722.pdf");
             InitializeComponent();
         }
 
@@ -53,14 +56,14 @@ namespace SearchService.Client
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {
                     JObject o = (JObject)JToken.ReadFrom(reader);
-                    
+
 
                     //string jsonString = JsonConvert.SerializeObject(o, Formatting.Indented, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeNonAscii });
 
                     var value = o.ToString();
 
                     Infors list = JsonHelper.DeserializeJsonToObject<Infors>(value);
-                    MessageBox.Show( list.ToString());
+                    MessageBox.Show(list.ToString());
                 }
             }
         }
@@ -387,7 +390,7 @@ namespace SearchService.Client
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {
                     JArray o = (JArray)JToken.ReadFrom(reader);
-                    var value = o.ToString();
+                    var value = o.ToString();//o["RECORDS"].ToString();
                     List<Video> list = JsonHelper.DeserializeJsonToList<Video>(value);
                     return list;
                 }
@@ -421,7 +424,32 @@ namespace SearchService.Client
             File.WriteAllText(path, output, Encoding.UTF8);
 
         }
+        private void WriteJson(Video video, string path)
+        {
 
+            //if (!File.Exists(path))
+            //{
+            //    File.Create(path).Dispose();
+            //}
+            //using (StreamWriter sw = new StreamWriter(path))
+            //{
+            //    JsonSerializer serializer = new JsonSerializer();                
+            //    serializer.NullValueHandling = NullValueHandling.Ignore;
+
+            //    //构建Json.net的写入流 
+            //    JsonWriter writer = new JsonTextWriter(sw);
+            //    //把模型数据序列化并写入Json.net的JsonWriter流中 
+            //    serializer.Serialize(writer, list);
+            //    //ser.Serialize(writer, ht); 
+            //    writer.Close();
+            //    sw.Close();
+            //}
+
+
+            string output = JsonHelper.SerializeObject(video);
+            File.WriteAllText(path, output, Encoding.UTF8);
+
+        }
         private List<Video> FormatText(List<Video> list)
         {
             foreach (Video v in list)
@@ -488,8 +516,12 @@ namespace SearchService.Client
                     string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
                         .Replace(" ", "").Replace("\'", "").Replace("\"", "")
                         .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); ;
-                    bool isnext = false;
-                    List<Video> pdf = SplitConnect(strPDF, out isnext);
+                    bool ismulti = false;
+                    List<Video> pdf = SplitConnect(strPDF, out ismulti);
+                    if(ismulti)
+                    {
+                        Logger.WriteInfo(fileName);
+                    }
                     foreach (Video v in pdf)
                     {
                         v.date = date;
@@ -511,11 +543,11 @@ namespace SearchService.Client
                 catch (Exception ex)
                 {
                     string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
-                    Logger.WriteError(funName, ex);
+                    Logger.WriteError(fileName, ex);
                 }
             }
 
-            WriteJson(listVideo, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\1.json");
+            WriteJson(listVideo, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
         }
 
         private void btnSendDoc_Click(object sender, EventArgs e)
@@ -537,11 +569,11 @@ namespace SearchService.Client
 
                 }
 
-                // webSocketClient.Send("WIO Commit");
+                webSocket.Send("WIO", "Commit");
             }
         }
 
-        public List<Video> SplitConnect(string text, out bool isNext)
+        public List<Video> SplitConnect(string text, out bool isMul)
         {
             List<Video> Result = new List<Video>();
 
@@ -579,7 +611,7 @@ namespace SearchService.Client
 
                         if (strIs.ToLower().Contains("http"))
                         {
-                            int inthttpIndex = strIs.IndexOf("http");
+                            int inthttpIndex = strIs.ToLower().IndexOf("http");
                             i = i + inthttpIndex;
                             //http个数加一
                             intHttpNum++;
@@ -797,7 +829,7 @@ namespace SearchService.Client
                 }
             }
 
-            isNext = isMutiPdf;
+            isMul = isMutiPdf;
             return Result;
         }
 
@@ -815,7 +847,7 @@ namespace SearchService.Client
             //int contextLength = Encoding.UTF8.GetMaxByteCount(context.Length);
             //可发送的最大字符数 （x）*3
             double leftSpace = ServerMaxReceiveByteCount - intShell;//3072接受的最大byte值
-            double temp = leftSpace / 3;
+            double temp = leftSpace / 4;
             int sendMaxLength = System.Convert.ToInt32(Math.Floor(temp));
 
             //判断内容长度是否大于可发送的最大字符数
@@ -1044,8 +1076,8 @@ namespace SearchService.Client
 
             //int contextLength = Encoding.UTF8.GetMaxByteCount(context.Length);
             //可发送的最大字符数 （x）*3
-            double leftSpace = ServerMaxReceiveByteCount - intShell;//3072接受的最大byte值
-            double temp = leftSpace / 3;
+            double leftSpace = ServerMaxReceiveByteCount - intShell;//5120接受的最大byte值
+            double temp = leftSpace / 4;
             int sendMaxLength = System.Convert.ToInt32(Math.Floor(temp));
 
             //判断内容长度是否大于可发送的最大字符数
@@ -1360,9 +1392,15 @@ namespace SearchService.Client
                 int pageCount = 0;
                 string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
                     .Replace(" ", "").Replace("\'", "").Replace("\"", "")
-                    .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); 
+                    .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", "");
                 bool isnext = false;
                 List<Video> pdf = SplitConnect(strPDF, out isnext);
+                if (isnext)
+                {
+                    MessageBox.Show("多个视频或内容中含有http，请拆分或处理");
+                    return;
+                }
+
                 foreach (Video v in pdf)
                 {
                     Infors inf = new Infors();
@@ -1392,9 +1430,9 @@ namespace SearchService.Client
         private void ReadJsonSend(string path)
         {
             try
-            {
-                DateTime dtDoc = new DateTime();                
+            {                
                 List<Video> list = readJson(path);
+                string fileName= path.Substring(path.LastIndexOf("/") + 1);
                 int intBug = 0;
                 foreach (Video v in list)
                 {
@@ -1409,10 +1447,12 @@ namespace SearchService.Client
                         inf.TypeID = "json";
                         inf.PageCount = 1;
                         inf.PageNo = 0;
-                        
+                        inf.DocNum = fileName;
+
                         SplitContextSend(inf, "WI", path);
                         intBug++;
-                    }catch(Exception ex)
+                    }
+                    catch (Exception ex)
                     {
                         Logger.WriteInfo(intBug.ToString());
                     }
@@ -1427,6 +1467,48 @@ namespace SearchService.Client
 
         }
 
+        private void SaveSingleDoc()
+        {
+            List<Video> list = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\vidio.json");
+            for (int i = 0; i < list.Count; i++)
+            {
+                WriteJson(list[i], @"D:\WorkBackUp\搜索引擎\doc\PDFTest\" + i + ".json");
+            }
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            for (int i = 161; i < 260; i++)
+            {
+                string jsonfile = @"D:\WorkBackUp\搜索引擎\doc\PDFTest\" + i + ".json";// @"D:\WorkBackUp\搜索引擎\数据\video.json";//JSON文件路径
+
+                using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+                {
+                    using (JsonTextReader reader = new JsonTextReader(file))
+                    {
+                        JObject o = (JObject)JToken.ReadFrom(reader);
+                        var value = o.ToString();
+                        Video v = JsonHelper.DeserializeJsonToObject<Video>(value);
+
+                        Infors inf = new Infors();
+                        inf.InformationID = Guid.NewGuid().ToString();
+                        inf.Content = v.content;
+                        inf.Time = DateTime.ParseExact(v.date, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture);
+                        inf.Title = v.title;
+                        inf.Urls = v.link;
+                        inf.TypeID = "json";
+                        inf.PageCount = 1;
+                        inf.PageNo = 0;
+
+                        inf.DocNum = jsonfile;
+
+                        SplitContextSend(inf, "WI", jsonfile);
+
+                        Logger.WriteInfo(i.ToString());
+                    }
+                }
+            }
+        }
     }
 
 

@@ -70,14 +70,32 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\book.png" />
+    <Content Include="Images\earth.png" />
     <Content Include="index.html" />
+    <Content Include="result.html" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\EnumClass.js" />
+    <Content Include="Scripts\ext-all.js" />
+    <Content Include="Scripts\ext-base.js" />
+    <Content Include="Scripts\InformationFileRender.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <Content Include="Scripts\jquery-ui.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.paging.js" />
+    <Content Include="Scripts\jquery.paging.min.js" />
+    <Content Include="Scripts\paging.js" />
     <Content Include="Scripts\socket.io.js" />
     <Content Include="Scripts\socket.io.min.js" />
+    <Content Include="Scripts\tipped.js" />
+    <Content Include="Style\animate.css" />
     <Content Include="Style\jquery-ui.css" />
     <Content Include="Style\jquery.ui.autocomplete.min.css" />
+    <Content Include="Style\PageApply.css" />
+    <Content Include="Style\Paging.css" />
+    <Content Include="Style\style.css" />
+    <Content Include="Style\tipped.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

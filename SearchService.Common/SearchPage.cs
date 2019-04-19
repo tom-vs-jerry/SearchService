@@ -84,11 +84,25 @@ namespace SearchService.Common
             //                           "<i style='font-size:8px'>&nbsp;日期：{2}&nbsp总计：{3}字节</i><br/>"+
             //                           "<a style='font-size:8px'  onclick ='FunTransDetails({5}) target='_blank'>{4}</a> &nbsp;" +
             //                            "<div id='div_{0}' /></td></tr>");
-            string strFormatHtml = ("<tr style='height:26px' ><td style='vertical-align:top;margin-bottom:5px;'>"+
-                                        "<img src='/Images/book.png'/>&nbsp;<a style='font-size:16px;margin-bottom:5px' href='javascript:void(0)' onclick ='Ext.IIPS.SearchFile(\"{5}\");'>{1}</a>" +
-                                        "<i style='font-size:10px;margin-bottom:5px;'>&nbsp;日期：{2}&nbsp总计：{3}字节</i>&nbsp;&nbsp;<a style='font-size:14px;color:blue;' id='tba_{0}'>【详情】</a><br/>{4}<br/>" +
-                                        "<div id='div_{0}' style='display:none' /><br/></td></tr>");
-            strFormatHtml = String.Format(strFormatHtml, news.InformationID, news.Title, news.Time.ToString("yyyy-MM-dd"), news.Content.Length, news.Summary,  news.TypeID + "," + news.InformationID);
+            string[] urls = news.Urls.Split(' ');
+            string strFormatHtml = "";
+            if (urls.Length >= 2)
+            {
+                strFormatHtml = ("<tr style='height:26px' ><td style='vertical-align:top;margin-bottom:5px;'>" +
+                                            "<a a style='font-size:16px;margin-bottom:5px' href='{6}'><img src='Images/book.png' /></a>&nbsp;<a a style='font-size:16px;margin-bottom:5px' href='{7}'><img src='Images/book.png' /></a>&nbsp;&nbsp;<a style='font-size:16px;margin-bottom:5px' href='javascript:void(0)' onclick ='Ext.IIPS.SearchFile(\"{5}\");'>{1}</a>" +
+                                            "<i style='font-size:10px;margin-bottom:5px;'>&nbsp;日期：{2}&nbsp总计：{3}字节</i>&nbsp;&nbsp;<a style='font-size:14px;color:blue;' id='tba_{0}'>【详情】</a><br/>{4}<br/>" +
+                                            "<div id='div_{0}' style='display:none' /><br/></td></tr>");
+                strFormatHtml = String.Format(strFormatHtml, news.InformationID, news.Title, news.Time.ToString("yyyy-MM-dd"), news.Content.Length, news.Summary, news.TypeID + "," + news.InformationID, urls[0], urls[1]);
+            }
+            else
+            {
+                strFormatHtml = ("<tr style='height:26px' ><td style='vertical-align:top;margin-bottom:5px;'>" +
+                                            "<a a style='font-size:16px;margin-bottom:5px' href='{6}'><img src='Images/book.png' /></a>&nbsp;&nbsp;<a style='font-size:16px;margin-bottom:5px' href='javascript:void(0)' onclick ='Ext.IIPS.SearchFile(\"{5}\");'>{1}</a>" +
+                                            "<i style='font-size:10px;margin-bottom:5px;'>&nbsp;日期：{2}&nbsp总计：{3}字节</i>&nbsp;&nbsp;<a style='font-size:14px;color:blue;' id='tba_{0}'>【详情】</a><br/>{4}<br/>" +
+                                            "<div id='div_{0}' style='display:none' /><br/></td></tr>");
+                strFormatHtml = String.Format(strFormatHtml, news.InformationID, news.Title, news.Time.ToString("yyyy-MM-dd"), news.Content.Length, news.Summary, news.TypeID + "," + news.InformationID,urls[0]);
+            }
+            
             html.Append(strFormatHtml);
         }
 
