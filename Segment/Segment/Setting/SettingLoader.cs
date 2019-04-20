@@ -18,7 +18,7 @@ namespace Segment.Setting
 
         public SettingLoader()
         {
-            string fileName = Framework.Path.GetAssemblyPath() + "HBcomm.xml";
+            string fileName = Framework.Path.GetAssemblyPath() + "comm.xml";
             Load(fileName);
         }
     }

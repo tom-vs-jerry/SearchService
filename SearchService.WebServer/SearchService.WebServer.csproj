@@ -70,7 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Images\book3.png" />
     <Content Include="Images\book.png" />
+    <Content Include="Images\book2.png" />
     <Content Include="Images\earth.png" />
     <Content Include="index.html" />
     <Content Include="result.html" />

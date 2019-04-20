@@ -1910,7 +1910,9 @@ namespace SearchService.Common.Indexs
                         news.Content = doc.Get("contents");
                         news.Urls = doc.Get("urls");
                         string strTime = doc.Get("time");
-                        news.Time = DateTime.ParseExact(strTime, "yyyyMMdd", null);
+                        DateTime time = new DateTime(2000, 1, 1);
+                        DateTime.TryParseExact(strTime, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture,
+                                   System.Globalization.DateTimeStyles.None, out time);                        
 
                         news.UserID = doc.Get("userid");
                         //news.SUnitID = doc.Get("sunitid");

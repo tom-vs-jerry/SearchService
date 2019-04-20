@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SegmentSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.codeplex.com/">
-  <DictionaryPath>Dict\AllWords</DictionaryPath>
+  <DictionaryPath>Dict\KWOW</DictionaryPath>
   <MatchOptions>
     <ChineseNameIdentify>true</ChineseNameIdentify>
     <FrequencyFirst>false</FrequencyFirst>
@@ -9,8 +9,8 @@
     <FilterStopWords>true</FilterStopWords>
     <IgnoreSpace>true</IgnoreSpace>
     <ForceSingleWord>false</ForceSingleWord>
-    <TraditionalChineseEnabled>false</TraditionalChineseEnabled>
-    <OutputSimplifiedTraditional>false</OutputSimplifiedTraditional>
+    <TraditionalChineseEnabled>true</TraditionalChineseEnabled>
+    <OutputSimplifiedTraditional>true</OutputSimplifiedTraditional>
     <UnknownWordIdentify>true</UnknownWordIdentify>
     <FilterEnglish>true</FilterEnglish>
     <FilterNumeric>false</FilterNumeric>

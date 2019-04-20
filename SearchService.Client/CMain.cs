@@ -37,13 +37,7 @@ namespace SearchService.Client
 
         private int ServerMaxReceiveByteCount = int.Parse(ConfigurationManager.AppSettings["ServerMaxReceiveByteCount"]);
         public CMain()
-        {
-            //readJson();
-            //
-            //MerginData();
-            //JsonTest();
-            //SaveSingleDoc();
-            //ReadPdfSend(@"D:\WorkBackUp\搜索引擎\doc\PDF\20180722.pdf");
+        {            
             InitializeComponent();
         }
 
@@ -500,11 +494,10 @@ namespace SearchService.Client
 
         private void MerginData()
         {
-            List<Video> listVideo = readJson(@"D:\WorkBackUp\搜索引擎\数据\video.json");
-            listVideo = FormatText(listVideo);
+            List<Video> listVideo = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
+            //listVideo = FormatText(listVideo);
 
-
-            string[] arrPath = Directory.GetFiles(@"D:\WorkBackUp\搜索引擎\doc\PDF");
+            string[] arrPath = Directory.GetFiles(@"D:\WorkBackUp\搜索引擎\doc\NEW");
             foreach (string fileName in arrPath)
             {
                 try
@@ -515,12 +508,14 @@ namespace SearchService.Client
                     int pageCount = 0;
                     string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
                         .Replace(" ", "").Replace("\'", "").Replace("\"", "")
-                        .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); ;
+                        .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); 
                     bool ismulti = false;
                     List<Video> pdf = SplitConnect(strPDF, out ismulti);
                     if(ismulti)
                     {
-                        Logger.WriteInfo(fileName);
+                        //Logger.WriteInfo(fileName);
+                        MessageBox.Show("需要拆分文件：" + fileName);
+                        return;
                     }
                     foreach (Video v in pdf)
                     {
@@ -530,14 +525,7 @@ namespace SearchService.Client
                         {
                             listVideo.Add(v);
                         }
-                        else
-                        {
-                        }
-
                     }
-
-
-
 
                 }
                 catch (Exception ex)
@@ -546,8 +534,10 @@ namespace SearchService.Client
                     Logger.WriteError(fileName, ex);
                 }
             }
-
-            WriteJson(listVideo, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
+            if (MessageBox.Show(listVideo.Count.ToString() + "个文件，需要保存吗？") == DialogResult.OK)
+            {
+                WriteJson(listVideo, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
+            }
         }
 
         private void btnSendDoc_Click(object sender, EventArgs e)
@@ -1469,7 +1459,7 @@ namespace SearchService.Client
 
         private void SaveSingleDoc()
         {
-            List<Video> list = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\vidio.json");
+            List<Video> list = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
             for (int i = 0; i < list.Count; i++)
             {
                 WriteJson(list[i], @"D:\WorkBackUp\搜索引擎\doc\PDFTest\" + i + ".json");
@@ -1508,6 +1498,19 @@ namespace SearchService.Client
                     }
                 }
             }
+        }
+
+        private void button15_Click(object sender, EventArgs e)
+        {
+            //readJson();
+            //
+
+            //JsonTest();
+            
+            //ReadPdfSend(@"D:\WorkBackUp\搜索引擎\doc\PDF\20180722.pdf");
+            //MerginData();
+
+            SaveSingleDoc();
         }
     }
 

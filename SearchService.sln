@@ -98,6 +98,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Segment", "Segment\Segment\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Segment.SegmentDemo", "Segment\Segment.SegmentDemo\Segment.SegmentDemo.csproj", "{39F5EC60-5290-4B7D-8910-7830C0347DAA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Segment.DictManage", "Segment\Segment.DictManage\Segment.DictManage.csproj", "{DD067257-C888-4693-B761-7FFDD1BA77FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Segment.PosDisplayCtrl", "Segment\Segment.PosDisplayCtrl\Segment.PosDisplayCtrl.csproj", "{3AE265EC-8B89-4828-9171-A136D9503534}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -188,6 +192,14 @@ Global
 		{39F5EC60-5290-4B7D-8910-7830C0347DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39F5EC60-5290-4B7D-8910-7830C0347DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39F5EC60-5290-4B7D-8910-7830C0347DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD067257-C888-4693-B761-7FFDD1BA77FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD067257-C888-4693-B761-7FFDD1BA77FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD067257-C888-4693-B761-7FFDD1BA77FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD067257-C888-4693-B761-7FFDD1BA77FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3AE265EC-8B89-4828-9171-A136D9503534}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3AE265EC-8B89-4828-9171-A136D9503534}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3AE265EC-8B89-4828-9171-A136D9503534}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3AE265EC-8B89-4828-9171-A136D9503534}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -219,6 +231,8 @@ Global
 		{A69A64E6-1FA5-4EAE-A81D-A28A5EAB8B6F} = {B98EB2E8-B703-4722-8B8F-A7DF754B81E6}
 		{BD067652-4747-4EE2-B8B5-A89690CE769B} = {61686CFC-B876-4031-A2BB-3DC9A2CFDF38}
 		{39F5EC60-5290-4B7D-8910-7830C0347DAA} = {61686CFC-B876-4031-A2BB-3DC9A2CFDF38}
+		{DD067257-C888-4693-B761-7FFDD1BA77FF} = {61686CFC-B876-4031-A2BB-3DC9A2CFDF38}
+		{3AE265EC-8B89-4828-9171-A136D9503534} = {61686CFC-B876-4031-A2BB-3DC9A2CFDF38}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F61FC89D-1F46-4D1E-8EA2-177FFA3C84D1}

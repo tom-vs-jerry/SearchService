@@ -39,6 +39,7 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
@@ -63,7 +64,7 @@
             this.cbbPort1 = new System.Windows.Forms.ComboBox();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.ofdFiles = new System.Windows.Forms.OpenFileDialog();
-            this.button14 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -174,6 +175,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.button15);
             this.groupBox1.Controls.Add(this.button14);
             this.groupBox1.Controls.Add(this.button13);
             this.groupBox1.Controls.Add(this.button9);
@@ -204,6 +206,16 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(7, 79);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(128, 23);
+            this.button14.TabIndex = 28;
+            this.button14.Text = "测试单一json文件";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
             // 
             // button13
             // 
@@ -439,15 +451,15 @@
             this.ofdFiles.Filter = "(.json,.pdf)|*.json;*.pdf";
             this.ofdFiles.Title = "请选择单个文件（json，pdf）";
             // 
-            // button14
+            // button15
             // 
-            this.button14.Location = new System.Drawing.Point(7, 79);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(128, 23);
-            this.button14.TabIndex = 28;
-            this.button14.Text = "测试单一json文件";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
+            this.button15.Location = new System.Drawing.Point(148, 79);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(128, 23);
+            this.button15.TabIndex = 29;
+            this.button15.Text = "读取PDF合并到json";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // CMain
             // 
@@ -505,5 +517,6 @@
         private System.Windows.Forms.Button button13;
         private System.Windows.Forms.OpenFileDialog ofdFiles;
         private System.Windows.Forms.Button button14;
+        private System.Windows.Forms.Button button15;
     }
 }

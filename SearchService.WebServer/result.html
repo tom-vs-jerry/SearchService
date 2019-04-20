@@ -198,7 +198,7 @@
 
 
         var oldPageNo = 1;
-        var pageSize = 8;
+        var pageSize = 6;
         var Paging;
 
 
@@ -307,7 +307,7 @@
             //}
             $("#spnTotal").html("  总记录数：" + parseInt(a.R[4]));
 
-            Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
+            //Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
         };
 
         //联想功能
@@ -433,14 +433,14 @@
                     oldPageNo = parseInt(a.R[3]);
                 }
 
-                Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
+                //Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
             }
         });
-        //str = typeid+","+informationID;
-        function FunTransDetails(typeid, inforid) {
-            var param = typeid + "," + inforid;
-            Ext.IIPS.SearchFile(param);
-        }
+        ////str = typeid+","+informationID;
+        //function FunTransDetails(typeid, inforid) {
+        //    var param = typeid + "," + inforid;
+        //    Ext.IIPS.SearchFile(param);
+        //}
 
 
                 //$(function () {

@@ -83,7 +83,7 @@ namespace SearchService.Common.Analyzers
         /// <summary>
         /// Init PanGu Segment
         /// </summary>
-        /// <param name="fileName">HBcomm.xml file path</param>
+        /// <param name="fileName">comm.xml file path</param>
         public void InitSegment(string fileName)
         {
             lock (_LockObj)

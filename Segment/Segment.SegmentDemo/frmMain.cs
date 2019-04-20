@@ -245,7 +245,7 @@ namespace Segment.SegmentDemo
 
             UpdateSettings();
 
-            Setting.SegmentSettings.Save("HBcomm.xml");
+            Setting.SegmentSettings.Save("comm.xml");
         }
         private void GetMainDocument()
         {

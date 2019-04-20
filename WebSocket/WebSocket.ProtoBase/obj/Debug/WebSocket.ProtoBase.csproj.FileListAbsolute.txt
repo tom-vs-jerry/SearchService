@@ -1,6 +1,5 @@
 D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\bin\Debug\WebSocket.ProtoBase.dll
 D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\bin\Debug\WebSocket.ProtoBase.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\obj\Debug\WebSocket.ProtoBase.csprojAssemblyReference.cache
 D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\obj\Debug\WebSocket.ProtoBase.csproj.CoreCompileInputs.cache
 D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\obj\Debug\WebSocket.ProtoBase.dll
 D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.ProtoBase\obj\Debug\WebSocket.ProtoBase.pdb
