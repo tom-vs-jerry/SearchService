@@ -501,6 +501,266 @@ namespace Segment.SegmentDemo
             return urls;
         }
 
+        public List<Video> SplitConnect(string text, out bool isMul)
+        {
+            List<Video> Result = new List<Video>(); 
+
+            int intHttpNum = 0; //url http 个数
+            bool bolHttpIsNext = false;//多个url http是否靠近
+            bool isMutiPdf = false; //是否多个文件            
+
+            //处理所有换行符
+            if (!string.IsNullOrEmpty(text))
+            {
+                //是否已经有http标记
+                bool isExistHttp = false;
+                //前一个http的位置
+                int intBeforeHttp = 0;
+
+                List<char> listChar = new List<char>();
+                //将文件内容转换成char
+                char[] carr = text.ToCharArray();
+                int len = carr.Length;
+                #region 处理所有换行符
+                //////////////
+                ///将所有文字转char处理。找到所有换行符，
+                ///1、判断前面是否是句结束符（！？。））
+                ///2、判断后面10个字符中是否航油http
+                //////////////
+                //处理文件内容中的所有char
+                for (int i = 0; i < len; i++)
+                {
+                    //判断char是否是换行符
+                    if ((int)carr[i] == 10)
+                    {
+                        #region 判断换行符后面是不是http
+                        //取换行符后的4个char，并判断是否是http
+                        string strIs = new string(carr.Skip(i + 1).Take(10).ToArray());
+
+                        if (strIs.ToLower().Contains("http"))
+                        {
+                            int inthttpIndex = strIs.ToLower().IndexOf("http");
+                            i = i + inthttpIndex;
+                            //http个数加一
+                            intHttpNum++;
+                            isExistHttp = true;
+                            //中间转换符
+                            char[] temp = "~".ToCharArray();
+                            listChar.AddRange(temp);
+                            if (isExistHttp)
+                            {
+                                if (intBeforeHttp > 0 && i - intBeforeHttp > 350)
+                                {
+                                    //如果已经是第二个http,并且两个http的距离大于350，则此文件是多个文件的合并 
+                                    bolHttpIsNext = false;
+                                    //多个pdf合并
+                                    isMutiPdf = true;
+                                }
+                                else
+                                {
+                                    //如果已经是第二个http,并且两个http的距离大于350，则此文件是多个文件的合并   
+                                    bolHttpIsNext = false;
+                                    //多个pdf合并
+                                    isMutiPdf = false;
+                                }
+                            }
+                            else
+                            {
+                                isExistHttp = true;
+                            }
+                            //前http位置标记为当前位置
+                            intBeforeHttp = i;
+
+                        }
+                        else
+                        {
+                            if (isExistHttp)
+                            {
+                                char[] temp = "~".ToCharArray();
+                                listChar.AddRange(temp);
+                                isExistHttp = false;
+                            }
+                            //else
+                            //{
+                            //    listChar.Add(carr[i]);
+                            //}
+                        }
+                        #endregion
+                        #region 判断换行符前面
+
+                        //string strBeforIs = new string(carr.Skip(i).Take(-2).ToArray());
+                        //if (strBeforIs == "." || strBeforIs == "。" 
+                        //    || strBeforIs == "？" || strBeforIs == "?" 
+                        //    || strBeforIs == "!" || strBeforIs == "！" 
+                        //    || strBeforIs == "；" || strBeforIs == ";" 
+                        //    || strBeforIs == "）" || strBeforIs == ")")
+                        //{
+                        //    char[] temp = "|".ToCharArray();
+                        //    listChar.AddRange(temp);                            
+                        //}
+
+                        #endregion
+                    }
+                    else
+                    {
+                        listChar.Add(carr[i]);
+                    }
+
+                }
+                text = new string(listChar.ToArray());
+                #endregion
+            }
+
+            //
+            //List<string> result = new List<string>();
+            string[] arr = text.Split('~');
+            if (isMutiPdf)
+            {
+                #region 处理多个文档合并的pdf
+                StringBuilder sbCon = new StringBuilder();
+                int intFirst = 0;
+                int intLast = 0;
+
+                int[] arrUrlIndex = new int[intHttpNum];
+                int intNum = 0;
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    if (arr[i].StartsWith("http"))
+                    {
+                        arrUrlIndex[intNum] = i;
+                        intNum++;
+                    }
+
+                }
+
+                int intIndex = 0;
+                for (int i = 0; i < intHttpNum; i++)
+                {
+                    Video v = new Video();
+
+                    string[] arryTitle = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i] - 1, arryTitle, 0, 1);
+                    v.title = string.Join("", arryTitle);
+
+                    string[] arryUrl = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i], arryUrl, 0, 1);
+                    v.link = string.Join(" ", arryUrl);
+
+                    string[] arryCon = new string[1];
+                    Array.Copy(arr, arrUrlIndex[i] + 1, arryCon, 0, 1);
+                    v.content = string.Join("~", arryCon);
+                    Result.Add(v);
+                }
+                ///1
+                //string[] arryTitle = new string[1];
+                //Array.Copy(arr, intFirst - 1, arryTitle, 0, 1);
+                //result.Add(string.Join("", arryTitle));
+
+                //string[] arryUrl = new string[1];
+                //Array.Copy(arr, intFirst, arryUrl, 0, 1);
+                //result.Add(string.Join(" ", arryUrl));
+
+                //string[] arryCon = new string[1];
+                //Array.Copy(arr, intFirst + 1, arryCon, 0, intLast - intFirst - 1);
+                //result.Add(string.Join("~", arryCon));
+
+                ///2
+                //string[] arryTitle1 = new string[1];
+                //Array.Copy(arr, intLast - 1, arryTitle1, 0, 1);
+                //result.Add(string.Join("", arryTitle));
+
+                //string[] arryUrl1 = new string[1];
+                //Array.Copy(arr, intLast, arryUrl1, 0, 1);
+                //result.Add(string.Join(" ", arryUrl));
+
+                //string[] arryCon1 = new string[1];
+                //Array.Copy(arr, intLast + 1, arryCon1, 0, arr.Length - intLast - 1);
+                //result.Add(string.Join("~", arryCon));
+                #endregion
+
+
+            }
+            else
+            {
+                Video v = new Video();
+                if (intHttpNum == 1)
+                {
+                    if (arr.Length >= 3)
+                    {
+                        #region 处理只有一个http ，url分割之后大于3的
+                        if (arr[1].StartsWith("http"))
+                        {
+                            v.title = arr[0];
+                            v.link = arr[1];
+                        }
+                        else
+                        {
+                        }
+
+                        string[] arryCon = new string[arr.Length - 2];
+                        Array.Copy(arr, 2, arryCon, 0, arr.Length - 2);
+
+                        v.content = string.Join("~", arryCon);
+                        Result.Add(v);
+                        #endregion
+                    }
+                    else
+                    {
+                        //result.AddRange(arr);
+                    }
+
+                }
+                else
+                {
+                    if (arr.Length >= 3)
+                    {
+
+                        StringBuilder sbCon = new StringBuilder();
+                        int intFirst = 0;
+                        int intLast = 0;
+
+                        for (int i = 0; i < arr.Length; i++)
+                        {
+                            if (arr[i].StartsWith("http"))
+                            {
+                                if (intFirst == 0)
+                                {
+                                    intFirst = i;
+                                }
+                                else
+                                {
+                                    intLast = i;
+                                }
+                            }
+
+                        }
+
+
+                        string[] arryTitle = new string[intFirst];
+                        Array.Copy(arr, 0, arryTitle, 0, intFirst);
+                        v.title = string.Join("", arryTitle);
+
+                        string[] arryUrl = new string[intLast + 1 - intFirst];
+                        Array.Copy(arr, intFirst, arryUrl, 0, intLast + 1 - intFirst);
+                        v.link = string.Join(" ", arryUrl);
+
+                        string[] arryCon = new string[arr.Length - intLast];
+                        Array.Copy(arr, intLast + 1, arryCon, 0, arr.Length - intLast - 1);
+                        v.content = string.Join("~", arryCon);
+
+
+                    }
+                    else
+                    {
+
+                    }
+                }
+            }
+
+            isMul = isMutiPdf;
+            return Result;
+        }
+
         public string GetWordBody(string SPath)
         {
             string str = "";
@@ -575,7 +835,20 @@ namespace Segment.SegmentDemo
             }
             DocID = DocIndex;
             string content = pdf2itxt(AllwordsID[DocID]).Replace(" ", "");
-            this.textBoxSource.Text = content;
+            bool isnext = false;
+            List<Video> pdf = SplitConnect(content, out isnext);
+            if (isnext)
+            {
+                MessageBox.Show("多个视频或内容中含有http，请拆分或处理");
+                return;
+            }
+            if (pdf.Count < 1)
+            {
+                MessageBox.Show("请文件：" + AllwordsID[DocID] + @" ,是否含有title\url\connect！");
+                return;
+            }
+
+            this.textBoxSource.Text = pdf[0].title + "\n" + pdf[0].link + "\n" + pdf[0].content;
             this.label12.Text = AllwordsID[DocID];
             label9.Text = DocID.ToString();
             label9.ForeColor = Color.Red;
@@ -755,7 +1028,15 @@ namespace Segment.SegmentDemo
             DocID = DocIndex;
             DocIndex = DocIndex + 1;
             string context = pdf2itxt(AllwordsID[DocID]).Replace(" ", "");//GetWordBody
-            this.textBoxSource.Text = context;
+            bool isnext = false;
+            List<Video> pdf = SplitConnect(context, out isnext);
+            if (isnext)
+            {
+                MessageBox.Show("多个视频或内容中含有http，请拆分或处理");
+                return;
+            }
+
+            this.textBoxSource.Text = pdf[0].title + "\n" + pdf[0].link + "\n" + pdf[0].content;
             this.label12.Text = "?";// Allwords[DocID][1];
             label9.Text = DocID.ToString();
             label9.ForeColor = Color.Red;
@@ -1302,6 +1583,14 @@ namespace Segment.SegmentDemo
             set { times = value; }
         }
 
+    }
+
+    public class Video
+    {
+        public string title { set; get; }
+        public string date { set; get; }
+        public string link { set; get; }
+        public string content { set; get; }
     }
 }
 

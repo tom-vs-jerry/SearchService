@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SegmentSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.codeplex.com/">
   <DictionaryPath>Dict\KWOW</DictionaryPath>
-  <MatchOptions>
+  <MatchOptions>    
     <ChineseNameIdentify>true</ChineseNameIdentify>
     <FrequencyFirst>false</FrequencyFirst>
     <MultiDimensionality>true</MultiDimensionality>
@@ -9,8 +9,8 @@
     <FilterStopWords>true</FilterStopWords>
     <IgnoreSpace>true</IgnoreSpace>
     <ForceSingleWord>false</ForceSingleWord>
-    <TraditionalChineseEnabled>true</TraditionalChineseEnabled>
-    <OutputSimplifiedTraditional>true</OutputSimplifiedTraditional>
+    <TraditionalChineseEnabled>false</TraditionalChineseEnabled>
+    <OutputSimplifiedTraditional>false</OutputSimplifiedTraditional>
     <UnknownWordIdentify>true</UnknownWordIdentify>
     <FilterEnglish>true</FilterEnglish>
     <FilterNumeric>false</FilterNumeric>
@@ -40,5 +40,5 @@
     <CustomRuleAssemblyFileName />
     <CustomRuleFullClassName />
     <Redundancy>0</Redundancy>
-  </Parameters>
+  </Parameters> 
 </SegmentSettings>

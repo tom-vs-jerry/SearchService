@@ -154,6 +154,6 @@ Ext.IIPS.DutyRoleType = {
 
 Ext.IIPS.FileOnline = "http://192.168.0.44:10088/";
 Ext.IIPS.Officeline = "http://192.168.0.44/";
-Ext.IIPS.WebSocket = 'ws://192.168.0.50:2012';
+Ext.IIPS.WebSocket = 'ws://192.168.0.50:2020';
 Ext.IIPS.DelaySecond = 1000;      //延时重复执行操作
 Ext.IIPS.DelayMinute = 20;      //用户未操作时间   webconfig: <sessionState mode="InProc" customProvider="DefaultSessionProvider" timeout="20> session超时时间

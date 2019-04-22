@@ -84,14 +84,12 @@
                         <tbody>
                             <tr>
                                 <td style="height: 40px;">
-                                    <!--<img border="0" src="imgs/none.gif" width="1"
-                                         height="1">--><input runat="server" id="iptUnitID" type="hidden" text=“2020” />
+                                    <input runat="server" id="iptUnitID" type="hidden" text=“2020” />
                                 </td>
                             </tr>
                             <tr style="height: 26px;">
                                 <td class="TD1" valign="top" colspan="3" align="center">
-                                    <!--<img border="0"
-         src="imgs/ft_logo.png">-->
+                                    
                                     <input class="login-form-input form-control is-empty polyglot ng-pristine ng-valid-email ng-invalid ng-invalid-required ng-touched" 
                                            data-lang-ja="Eメールアドレス" placeholder="Enter Your Email" ng-required="true" ng-model="loginId" name="loginId" type="email" 
                                            id="loginId" required="required" ng-change="hideError()">
@@ -103,32 +101,9 @@
                                     <input type="hidden" id="iptWord" />
                                     <div style="float: left; position: absolute; left: 483px; top: 0px; width: 50px; height: 28px; text-align: center; background-color: #454771;">
                                         <img src="Images/earth.png" style="width: 31px; height: 25px;" onclick="TransPage()" />
-                                    </div>
-                                    <!--<div style="float: right; position: absolute; left: 549px; top: 0px; width: 68px; height: 29px;" id="divlbltime">
-                                        <input type="button" value="高级▽" id="advsearch" onclick="showorhide('iframeid', 'advsearch');" />
-                                    </div>-->
-                                    <!--<%--<div style="float:right;position:absolute;left:549px;top:25px;width:69px; height:20px;" id="divblank"></div>--%>
-                                    <%-- <img />  onclick="  window.location.href = encodeURI('result.html?key=' + $('#iptInputWord').val()+ '#' + iframeid.document.getElementById('txtNoneWord').value + '#' + iframeid.document.getElementById('txtWorkStartTime').value + '#' + iframeid.document.getElementById('txtWorkStartEnd').value ); return false;"--%>-->
-
+                                    </div>  
                                 </td>
-
                             </tr>
-
-                            <!--<%--
-                            <tr>
-                                <td height="20">
-                                    <img border="0" src="imgs/none.gif" width="1"
-                                         height="1">
-                                </td>
-                            </tr>--%>-->
-                            <!--<%--
-                            <tr>
-                                <td style="position:absolute; height:35%;">
-                                    <div style="position:absolute;left:480px; float:right; top:0px;text-align:center;">
-
-                                    </div>
-                                </td>
-                            </tr>--%>-->
                             <tr>
                                 <td>
                                     <div style="margin-top: 2px;">
@@ -136,10 +111,8 @@
                                     </div>
                                 </td>
                             </tr>
-
                         </tbody>
                     </table>
-
                 </td>
             </tr>
         </tbody>
@@ -182,7 +155,7 @@
                 + seperator2 + date.getSeconds();
 
             //默认开始时间为当前时间一年以前
-            var date1 = new Date(date.getTime() - 365 * 24 * 3600 * 1000);
+            var date1 = new Date(date.getTime() - 365 * 24 * 3600 * 10);
             var month = date1.getMonth() + 1;
             var strDate = date1.getDate();
             if (month >= 1 && month <= 9) {
@@ -199,11 +172,11 @@
             var NoneWord = "";
             var startTime = sevenday;
             var endTime = currentdate;
-            //var InfoID = "";//文件编号
-            var TypeID = "";
-            var RUserID = "";//$('#iptUnitID').val();
-            var SUnitID = $('#iptUnitID').val();
-            var DocNum = "";
+            ////var InfoID = "";//文件编号
+            //var TypeID = "";
+            //var RUserID = "";//$('#iptUnitID').val();
+            //var SUnitID = $('#iptUnitID').val();
+            //var DocNum = "";
 
             //var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
             //if (ifrmaDoc != null) {
@@ -214,14 +187,15 @@
             //    TypeID = ifrmaDoc.getElementById('txtfileTypeID').value == "" ? TypeID : ifrmaDoc.getElementById('txtfileTypeID').value;
             //}
 
-            window.location.href = encodeURI('result.html?key=' + keyWord + ';' + NoneWord + ';' + startTime + ';' + endTime + ';' + DocNum + ';' + TypeID + ';' + SUnitID + ';' + RUserID); return false;
+            window.location.href = encodeURI('result.html?key=' + keyWord + ';' + NoneWord + ';' + startTime + ';' + endTime);
+            return false;// + ';' + DocNum + ';' + TypeID + ';' + SUnitID + ';' + RUserID
 
         }
         //上一次输入的值
         var oldtext = "";
         $(function () {
             //document.getElementById('divblank').style.display = 'none';
-            socket = new WebSocket('ws://127.0.0.1:2012');
+            socket = new WebSocket('ws://127.0.0.1:2020');
             //收到server的连接确认
             socket.onopen = function () {
                 //连接成功

@@ -37,7 +37,7 @@ namespace SearchService.Client
 
         private int ServerMaxReceiveByteCount = int.Parse(ConfigurationManager.AppSettings["ServerMaxReceiveByteCount"]);
         public CMain()
-        {            
+        {
             InitializeComponent();
         }
 
@@ -322,7 +322,7 @@ namespace SearchService.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
-            webSocket = new JsonWebSocket("ws://127.0.0.1:2012/");
+            webSocket = new JsonWebSocket("ws://127.0.0.1:2020/");
 
             //webSocket.On<string>("ECHO", HandleEchoResponse);
             webSocket.Closed += new EventHandler(websocket_Closed);
@@ -384,13 +384,13 @@ namespace SearchService.Client
                 using (JsonTextReader reader = new JsonTextReader(file))
                 {
                     JArray o = (JArray)JToken.ReadFrom(reader);
-                    var value = o.ToString();//o["RECORDS"].ToString();
+                    var value = o.ToString();//o["RECORDS"].ToString(); //o.ToString();//
                     List<Video> list = JsonHelper.DeserializeJsonToList<Video>(value);
                     return list;
                 }
             }
         }
-
+       
         private void WriteJson(List<Video> list, string path)
         {
 
@@ -494,10 +494,10 @@ namespace SearchService.Client
 
         private void MerginData()
         {
-            List<Video> listVideo = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
+            List<Video> listVideo = readJson(@"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json"); //(@"D:\WorkBackUp\搜索引擎\数据\video.json");// (@"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json");
             //listVideo = FormatText(listVideo);
 
-            string[] arrPath = Directory.GetFiles(@"D:\WorkBackUp\搜索引擎\doc\NEW");
+            string[] arrPath = Directory.GetFiles(@"D:\WorkBackUp\搜索引擎\doc\NEW"); //(@"D:\WorkBackUp\搜索引擎\doc\PDF");//(@"D:\WorkBackUp\搜索引擎\doc\NEW");
             foreach (string fileName in arrPath)
             {
                 try
@@ -508,10 +508,10 @@ namespace SearchService.Client
                     int pageCount = 0;
                     string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
                         .Replace(" ", "").Replace("\'", "").Replace("\"", "")
-                        .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", ""); 
+                        .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", "");
                     bool ismulti = false;
                     List<Video> pdf = SplitConnect(strPDF, out ismulti);
-                    if(ismulti)
+                    if (ismulti)
                     {
                         //Logger.WriteInfo(fileName);
                         MessageBox.Show("需要拆分文件：" + fileName);
@@ -559,7 +559,7 @@ namespace SearchService.Client
 
                 }
 
-                webSocket.Send("WIO", "Commit");
+                //webSocket.Send("WIO", "Commit");
             }
         }
 
@@ -797,20 +797,19 @@ namespace SearchService.Client
 
                         }
 
-
                         string[] arryTitle = new string[intFirst];
                         Array.Copy(arr, 0, arryTitle, 0, intFirst);
                         v.title = string.Join("", arryTitle);
 
                         string[] arryUrl = new string[intLast + 1 - intFirst];
                         Array.Copy(arr, intFirst, arryUrl, 0, intLast + 1 - intFirst);
-                        v.link = string.Join(" ", arryUrl);
+                        v.link = string.Join(";", arryUrl);
 
                         string[] arryCon = new string[arr.Length - intLast];
                         Array.Copy(arr, intLast + 1, arryCon, 0, arr.Length - intLast - 1);
                         v.content = string.Join("~", arryCon);
 
-
+                        Result.Add(v);
                     }
                     else
                     {
@@ -1048,7 +1047,7 @@ namespace SearchService.Client
 
 
                 }
-                webSocket.Send("WIO", "Commit");
+                //webSocket.Send("WIO", "Commit");
                 //webSocketClient.Send("WIO Commit");
             }
         }
@@ -1359,6 +1358,7 @@ namespace SearchService.Client
                         break;
                 }
             }
+            //webSocket.Send("WIO", "Commit");
         }
 
         private void ReadPdfSend(string path)
@@ -1383,14 +1383,15 @@ namespace SearchService.Client
                 string strPDF = pdf2itxt(fi.FullName, out pageCount).Replace(" ", "")
                     .Replace(" ", "").Replace("\'", "").Replace("\"", "")
                     .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", "");
-                bool isnext = false;
-                List<Video> pdf = SplitConnect(strPDF, out isnext);
-                if (isnext)
+                bool ismulti = false;
+                List<Video> pdf = SplitConnect(strPDF, out ismulti);
+                if (ismulti)
                 {
-                    MessageBox.Show("多个视频或内容中含有http，请拆分或处理");
+                    //Logger.WriteInfo(fileName);
+                    MessageBox.Show("需要拆分文件：" + fi.FullName);
                     return;
                 }
-
+                
                 foreach (Video v in pdf)
                 {
                     Infors inf = new Infors();
@@ -1417,12 +1418,83 @@ namespace SearchService.Client
                 Logger.WriteError(funName, ex);
             }
         }
+
+        private List<Video> ReadAllPdfInFold(string path)
+        {
+
+            List<Video> listVideo = new List<Video>();
+
+
+            FindFoldersAndFiles(path);
+
+            foreach (FileInfo node in listDoc)
+            {
+                if (File.Exists(node.FullName))
+                {
+                    if (node.FullName.ToLower().EndsWith(".pdf"))// || node.FullName.ToLower().EndsWith(".docx"))
+                    {
+                        try
+                        {
+
+                            string date = node.Name.Substring(0, 8);
+                            DateTime dtDoc = new DateTime();
+                            if (!DateTime.TryParseExact(date,
+                                "yyyyMMdd",
+                                System.Globalization.CultureInfo.InvariantCulture,
+                                System.Globalization.DateTimeStyles.None,
+                                out dtDoc))
+                            {
+                                if (MessageBox.Show("文件名错误！请将文件名设置为yyyyMMdd+格式。") == DialogResult.OK)
+                                {
+                                    return null;
+                                }
+                            }
+                            int pageCount = 0;
+                            string strPDF = pdf2itxt(node.FullName, out pageCount).Replace(" ", "")
+                                .Replace(" ", "").Replace("\'", "").Replace("\"", "")
+                                .Replace("\\", "").Replace("FORMTEXT", "").Replace("formtext", "");
+                            bool ismulti = false;
+                            List<Video> pdf = SplitConnect(strPDF, out ismulti);
+                            if (ismulti)
+                            {
+                                //Logger.WriteInfo(fileName);
+                                MessageBox.Show("需要拆分文件：" + node.FullName);
+                                return null;
+                            }
+                            if (pdf.Count < 1)
+                            {
+                                MessageBox.Show("请文件：" + node.FullName + @" ,是否含有title\url\connect！");
+                                return null;
+                            }
+
+                            foreach (Video v in pdf)
+                            {
+                                v.date = date;
+                                int temp = listVideo.FindIndex(p => p.date == date && p.title == v.title);
+                                if (temp <= 0)
+                                {
+                                    listVideo.Add(v);
+                                }
+                            }                      
+                            //listVideo.AddRange(pdf);
+                        }
+                        catch (Exception ex)
+                        {
+                            string funName = System.Reflection.MethodBase.GetCurrentMethod().ReflectedType.FullName;
+                            Logger.WriteError(funName, ex);
+                        }
+                    }
+                }
+            }
+            return listVideo;
+        }
+
         private void ReadJsonSend(string path)
         {
             try
-            {                
+            {
                 List<Video> list = readJson(path);
-                string fileName= path.Substring(path.LastIndexOf("/") + 1);
+                string fileName = path.Substring(path.LastIndexOf(@"\") + 1);
                 int intBug = 0;
                 foreach (Video v in list)
                 {
@@ -1466,6 +1538,13 @@ namespace SearchService.Client
             }
         }
 
+        private void SaveFdpInPathToJson()
+        {
+            List<Video> list = ReadAllPdfInFold(@"D:\WorkBackUp\搜索引擎\doc\PDF\");
+
+            WriteJson(list, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\pdf.json");
+        }
+
         private void button14_Click(object sender, EventArgs e)
         {
             for (int i = 161; i < 260; i++)
@@ -1506,11 +1585,11 @@ namespace SearchService.Client
             //
 
             //JsonTest();
-            
+            //SaveFdpInPathToJson();
             //ReadPdfSend(@"D:\WorkBackUp\搜索引擎\doc\PDF\20180722.pdf");
-            //MerginData();
-
-            SaveSingleDoc();
+            MerginData();
+            //ReadAllPdfInFold(@"D:\WorkBackUp\搜索引擎\doc\PDF\");
+            //SaveSingleDoc();
         }
     }
 

@@ -68,6 +68,7 @@ namespace SearchService.Common.WebSocket
 
         }
 
+        bool IsPrintClientConnectInfor = bool.Parse(ConfigurationManager.AppSettings["IsPrintClientConnectInfor"]);
 
         #endregion
 
@@ -121,8 +122,11 @@ namespace SearchService.Common.WebSocket
         {
             string seID = session.SessionID;
             HasWebSocketClient.Add(seID, session);
-            object message = string.Format("IP地址：{0} 的用户,建立新连接！", session.RemoteEndPoint.ToString());
-            OnMessages(message, null);
+            if (IsPrintClientConnectInfor)
+            {
+                object message = string.Format("IP地址：{0} 的用户,建立新连接！", session.RemoteEndPoint.ToString());
+                OnMessages(message, null);
+            }
         }
 
         /// <summary>

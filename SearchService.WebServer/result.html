@@ -55,22 +55,21 @@
     <script type='text/javascript' src='Scripts/socket.io.min.js'></script>
     <script type="text/javascript" src="Scripts/jquery.paging.js"></script>
     <!--/* 新加入一个链接功能通过点击搜索结果转到文件详情页面 */-->
-    <script type="text/javascript" src="Scripts/ext-base.js"></script>
-    <script type="text/javascript" src="Scripts/ext-all.js"></script>
+    <!--<script type="text/javascript" src="Scripts/ext-base.js"></script>
+    <script type="text/javascript" src="Scripts/ext-all.js"></script>-->
     <!--<script type="text/javascript" src="/Scripts/ext3.4/ext-all.css"></script>-->
     <!--<script type="text/javascript" src="/Scripts/ext3.4/ext-lang-zh_CN.js"></script>-->
     <!--<script type="text/javascript" src="/Scripts/Function/SearchTransDetail.js"></script>-->
 
-    <script src="Scripts/Common.js"></script>
+    <!--<script src="Scripts/Common.js"></script>
     <script src="Scripts/InformationFileRender.js"></script>
     <script src="Scripts/EnumClass.js"></script>
-    <script src="Scripts/tipped.js"></script>
+    <script src="Scripts/tipped.js"></script>-->
 </head>
 
 <body>
 
     <div style="padding-left:250px;">
-
         <table>
             <tr>
                 <td style="width:90px;">
@@ -83,7 +82,7 @@
                         <input style="border: 1px solid #454771; text-align: left; padding-left: 4px; position: absolute; left:40px; top: 0px; height: 26px; width:477px; background-color: transparent; right: 42px;" id="iptInputWord" />
                         <input type="hidden" id="iptWord" />
                         <div style="float: left; position: absolute; left: 523px; top: 0px; width: 50px; height: 30px; text-align: center; background-color: #454771;">
-                            <img src="Images/earth.png" id="submit" style="width: 31 height: 25px;" />
+                            <img src="Images/earth.png" id="submit" style="width:31px; height:25px;" />
                         </div>
                         <div style="float:right;position:absolute;left:577px; top: 0px; width: 68px;height:33px;" id="divlbltime"><!--<input type="button" value="高级▽" id="advsearch" onclick="showorhide('iframeid', 'advsearch');" />--></div>
                     </div>
@@ -94,7 +93,7 @@
             </tr>
         </table>
         <div id="divsearch" style="left:136px;width:602px; border: none; position: relative; margin-top:0px;">
-            <iframe id="iframeid" src="SearchDetail.aspx"></iframe>
+            <!--<iframe id="iframeid" src="SearchDetail.aspx"></iframe>-->
         </div>
     </div>
 
@@ -107,10 +106,9 @@
             <tbody>
 
                 <tr>
-                    <td valign=top>
-                        <!--height=357 cellspacing=0
-                        cellpadding=8 rules=cols width="99%"
-                        valign="top"-->
+                    <td valign=top height=357 cellspacing=0
+                        cellpadding=8 rules=cols width="69%"
+                        valign="top">
                         <table id="result" style="height:375px;width:65%;margin:auto;" cellspacing=0
                                cellpadding=8 rules=cols valign="top"></table>
                     </td>
@@ -147,10 +145,10 @@
         var NoneWord = allWord.split(';')[1];//不出现的字
         var startTime = allWord.split(';')[2];//开始时间
         var endTime = allWord.split(';')[3];//结束时间
-        var DocNum = allWord.split(';')[4];
-        var TypeID = allWord.split(';')[5];
-        var SUnitID = allWord.split(';')[6];
-        var RUnitID = allWord.split(';')[7];
+        var DocNum = "2020";//allWord.split(';')[4];
+        var TypeID = "";//allWord.split(';')[5];
+        var SUnitID = "";// allWord.split(';')[6];
+        var RUnitID = "";// allWord.split(';')[7];
         var Range = 0;//0为title和context；1为context；2为title
         debugger
         var strUnit = SUnitID + "," + RUnitID;
@@ -198,12 +196,12 @@
 
 
         var oldPageNo = 1;
-        var pageSize = 6;
+        var pageSize = 8;
         var Paging;
 
 
 
-        var socket = new WebSocket('ws://127.0.0.1:2012');
+        var socket = new WebSocket('ws://127.0.0.1:2020');
 
         //收到server的连接确认
         socket.onopen = function () {
@@ -436,17 +434,17 @@
                 //Ext.IIPS.LoadFileResHandle(a.R[1], "topright", document.documentElement.clientWidth / 2 + 100, document.documentElement.clientHeight / 2 + 100);
             }
         });
-        ////str = typeid+","+informationID;
-        //function FunTransDetails(typeid, inforid) {
-        //    var param = typeid + "," + inforid;
-        //    Ext.IIPS.SearchFile(param);
-        //}
+            ////str = typeid+","+informationID;
+            //function FunTransDetails(typeid, inforid) {
+            //    var param = typeid + "," + inforid;
+            //    Ext.IIPS.SearchFile(param);
+            //}
 
 
-                //$(function () {
-                //    var date = new Date();
-                //    $("#tdTime").append("  当前时间：" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
-                //})
+                    //$(function () {
+                    //    var date = new Date();
+                    //    $("#tdTime").append("  当前时间：" + date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay() + " " + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds());
+                    //})
     </script>
 </body>
 

@@ -39,6 +39,7 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
@@ -64,7 +65,6 @@
             this.cbbPort1 = new System.Windows.Forms.ComboBox();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
             this.ofdFiles = new System.Windows.Forms.OpenFileDialog();
-            this.button15 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -98,7 +98,7 @@
             this.cbbPort.Items.AddRange(new object[] {
             "81",
             "82",
-            "2012",
+            "2020",
             "2020"});
             this.cbbPort.Location = new System.Drawing.Point(107, 19);
             this.cbbPort.Name = "cbbPort";
@@ -206,6 +206,16 @@
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(148, 79);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(128, 23);
+            this.button15.TabIndex = 29;
+            this.button15.Text = "读取PDF合并到json";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // button14
             // 
@@ -427,7 +437,8 @@
             "localhost",
             "127.0.0.1",
             "192.168.0.50",
-            "192.168.0.51"});
+            "192.168.0.51",
+            "35.236.18.83"});
             this.cbbIP1.Location = new System.Drawing.Point(6, 20);
             this.cbbIP1.Name = "cbbIP1";
             this.cbbIP1.Size = new System.Drawing.Size(121, 20);
@@ -439,8 +450,9 @@
             this.cbbPort1.Items.AddRange(new object[] {
             "81",
             "82",
-            "2012",
-            "2020"});
+            "2020",
+            "2020",
+            "88"});
             this.cbbPort1.Location = new System.Drawing.Point(131, 20);
             this.cbbPort1.Name = "cbbPort1";
             this.cbbPort1.Size = new System.Drawing.Size(54, 20);
@@ -450,16 +462,6 @@
             // 
             this.ofdFiles.Filter = "(.json,.pdf)|*.json;*.pdf";
             this.ofdFiles.Title = "请选择单个文件（json，pdf）";
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(148, 79);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(128, 23);
-            this.button15.TabIndex = 29;
-            this.button15.Text = "读取PDF合并到json";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
             // 
             // CMain
             // 

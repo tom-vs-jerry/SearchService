@@ -22,6 +22,7 @@ D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\bin\Debug\Seg
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\bin\Debug\WebSocket.Common.pdb
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.csprojAssemblyReference.cache
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.BatchInsert.resources
+D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.LockedUI.resources
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.SMain.resources
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.Properties.Resources.resources
 D:\WorkBackUp\搜索引擎\Code\SearchService\SearchService.Server\obj\Debug\SearchService.Server.csproj.GenerateResource.cache

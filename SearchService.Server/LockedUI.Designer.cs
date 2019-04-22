@@ -135,7 +135,7 @@
             this.MenuItemShowLockedUI.Text = "显示解锁窗口";
             this.MenuItemShowLockedUI.Click += new System.EventHandler(this.MenuItemShowLockedUI_Click);
             // 
-            // SLockedUI
+            // LockedUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -149,7 +149,7 @@
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.btnUnlocked);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "SLockedUI";
+            this.Name = "LockedUI";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "行情通讯系统";
             this.contextMenuStrip1.ResumeLayout(false);
