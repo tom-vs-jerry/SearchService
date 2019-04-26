@@ -1912,8 +1912,8 @@ namespace SearchService.Common.Indexs
                         string strTime = doc.Get("time");
                         DateTime time = new DateTime(2000, 1, 1);
                         DateTime.TryParseExact(strTime, "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture,
-                                   System.Globalization.DateTimeStyles.None, out time);                        
-
+                                   System.Globalization.DateTimeStyles.None, out time);
+                        news.Time = time;
                         news.UserID = doc.Get("userid");
                         //news.SUnitID = doc.Get("sunitid");
                        //string sunitid= doc.Get("sunitid");

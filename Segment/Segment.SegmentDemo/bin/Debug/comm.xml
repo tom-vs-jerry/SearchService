@@ -4,7 +4,7 @@
   <MatchOptions>
     <ChineseNameIdentify>true</ChineseNameIdentify>
     <FrequencyFirst>false</FrequencyFirst>
-    <MultiDimensionality>true</MultiDimensionality>
+    <MultiDimensionality>false</MultiDimensionality>
     <EnglishMultiDimensionality>true</EnglishMultiDimensionality>
     <FilterStopWords>true</FilterStopWords>
     <IgnoreSpace>true</IgnoreSpace>
@@ -14,7 +14,7 @@
     <UnknownWordIdentify>false</UnknownWordIdentify>
     <FilterEnglish>false</FilterEnglish>
     <FilterNumeric>false</FilterNumeric>
-    <IgnoreCapital>true</IgnoreCapital>
+    <IgnoreCapital>false</IgnoreCapital>
     <EnglishSegment>true</EnglishSegment>
     <SynonymOutput>false</SynonymOutput>
     <WildcardOutput>false</WildcardOutput>
@@ -39,6 +39,6 @@
     <FilterNumericLength>0</FilterNumericLength>
     <CustomRuleAssemblyFileName />
     <CustomRuleFullClassName />
-    <Redundancy>2</Redundancy>
+    <Redundancy>0</Redundancy>
   </Parameters>
 </SegmentSettings>

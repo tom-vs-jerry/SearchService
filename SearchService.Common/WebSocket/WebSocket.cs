@@ -103,7 +103,7 @@ namespace SearchService.Common.WebSocket
             {
                 WebSocServer.NewSessionConnected += new SessionHandler<WebSocketSession>(webSocServer_NewSessionConnected);
                 WebSocServer.SessionClosed += new SessionHandler<WebSocketSession, CloseReason>(webSocServer_SessionClosed);
-                
+
                 message = string.Format("——本地WebSocket服务端口{0}侦听服务已启动！——", IntPort.ToString());
                 OnMessages(message, null);
             }
@@ -112,8 +112,8 @@ namespace SearchService.Common.WebSocket
                 message = string.Format("……本地WebSocket服务端口{0}侦听服务启动失败！……", IntPort.ToString());
                 OnMessages(message, null);
             }
-        }            
-                
+        }
+
         /// <summary>
         /// HTML5 websocket服务器接收到新的回话连接事件
         /// </summary>
@@ -141,8 +141,11 @@ namespace SearchService.Common.WebSocket
             if (HasWebSocketClient.Contains(sesID))
             {
                 HasWebSocketClient.Remove(sesID);
-                object message = string.Format("IP地址：{0} 的用户断开连接！", session.RemoteEndPoint.Address);
-                OnMessages(message, null);
+                if (IsPrintClientConnectInfor)
+                {
+                    object message = string.Format("IP地址：{0} 的用户断开连接！", session.RemoteEndPoint.Address);
+                    OnMessages(message, null);
+                }
             }
 
         }

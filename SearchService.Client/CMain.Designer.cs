@@ -39,6 +39,8 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
             this.button15 = new System.Windows.Forms.Button();
             this.button14 = new System.Windows.Forms.Button();
             this.button13 = new System.Windows.Forms.Button();
@@ -107,7 +109,7 @@
             // 
             // rtbMessage
             // 
-            this.rtbMessage.Location = new System.Drawing.Point(6, 198);
+            this.rtbMessage.Location = new System.Drawing.Point(8, 212);
             this.rtbMessage.Name = "rtbMessage";
             this.rtbMessage.Size = new System.Drawing.Size(915, 180);
             this.rtbMessage.TabIndex = 8;
@@ -175,19 +177,19 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button15);
-            this.groupBox1.Controls.Add(this.button14);
-            this.groupBox1.Controls.Add(this.button13);
             this.groupBox1.Controls.Add(this.button9);
             this.groupBox1.Controls.Add(this.button12);
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button11);
+            this.groupBox1.Controls.Add(this.button4);
             this.groupBox1.Controls.Add(this.button10);
             this.groupBox1.Controls.Add(this.button8);
             this.groupBox1.Controls.Add(this.button7);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.btnSearch);
             this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.btnSendDoc);
+            this.groupBox1.Controls.Add(this.button2);
+            this.groupBox1.Controls.Add(this.button3);
             this.groupBox1.Controls.Add(this.btnMULTX);
             this.groupBox1.Controls.Add(this.btnLOGIN);
             this.groupBox1.Controls.Add(this.btnADDX);
@@ -202,14 +204,34 @@
             this.groupBox1.Controls.Add(this.btnMULT);
             this.groupBox1.Location = new System.Drawing.Point(13, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(908, 113);
+            this.groupBox1.Size = new System.Drawing.Size(908, 83);
             this.groupBox1.TabIndex = 15;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
             // 
+            // button17
+            // 
+            this.button17.Location = new System.Drawing.Point(773, 47);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(125, 23);
+            this.button17.TabIndex = 31;
+            this.button17.Text = "检查json数据赘余";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
+            // 
+            // button16
+            // 
+            this.button16.Location = new System.Drawing.Point(660, 47);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(107, 23);
+            this.button16.TabIndex = 30;
+            this.button16.Text = "Json转成单独文件";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
             // button15
             // 
-            this.button15.Location = new System.Drawing.Point(148, 79);
+            this.button15.Location = new System.Drawing.Point(519, 18);
             this.button15.Name = "button15";
             this.button15.Size = new System.Drawing.Size(128, 23);
             this.button15.TabIndex = 29;
@@ -219,7 +241,7 @@
             // 
             // button14
             // 
-            this.button14.Location = new System.Drawing.Point(7, 79);
+            this.button14.Location = new System.Drawing.Point(653, 18);
             this.button14.Name = "button14";
             this.button14.Size = new System.Drawing.Size(128, 23);
             this.button14.TabIndex = 28;
@@ -229,7 +251,7 @@
             // 
             // button13
             // 
-            this.button13.Location = new System.Drawing.Point(148, 51);
+            this.button13.Location = new System.Drawing.Point(384, 18);
             this.button13.Name = "button13";
             this.button13.Size = new System.Drawing.Size(128, 23);
             this.button13.TabIndex = 27;
@@ -239,7 +261,7 @@
             // 
             // button9
             // 
-            this.button9.Location = new System.Drawing.Point(822, 49);
+            this.button9.Location = new System.Drawing.Point(823, 49);
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(75, 23);
             this.button9.TabIndex = 24;
@@ -259,7 +281,7 @@
             // 
             // button11
             // 
-            this.button11.Location = new System.Drawing.Point(446, 51);
+            this.button11.Location = new System.Drawing.Point(170, 49);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(75, 23);
             this.button11.TabIndex = 25;
@@ -279,7 +301,7 @@
             // 
             // button8
             // 
-            this.button8.Location = new System.Drawing.Point(741, 49);
+            this.button8.Location = new System.Drawing.Point(742, 49);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(75, 23);
             this.button8.TabIndex = 23;
@@ -289,7 +311,7 @@
             // 
             // button7
             // 
-            this.button7.Location = new System.Drawing.Point(660, 49);
+            this.button7.Location = new System.Drawing.Point(661, 49);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(75, 23);
             this.button7.TabIndex = 22;
@@ -299,14 +321,14 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(282, 53);
+            this.textBox1.Location = new System.Drawing.Point(6, 51);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(77, 21);
             this.textBox1.TabIndex = 21;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(579, 49);
+            this.btnSearch.Location = new System.Drawing.Point(580, 49);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 20;
@@ -316,7 +338,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(365, 51);
+            this.button6.Location = new System.Drawing.Point(89, 49);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(75, 23);
             this.button6.TabIndex = 19;
@@ -326,7 +348,7 @@
             // 
             // btnSendDoc
             // 
-            this.btnSendDoc.Location = new System.Drawing.Point(7, 49);
+            this.btnSendDoc.Location = new System.Drawing.Point(250, 17);
             this.btnSendDoc.Name = "btnSendDoc";
             this.btnSendDoc.Size = new System.Drawing.Size(128, 23);
             this.btnSendDoc.TabIndex = 18;
@@ -366,7 +388,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(338, 17);
+            this.button3.Location = new System.Drawing.Point(341, 49);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(84, 23);
             this.button3.TabIndex = 19;
@@ -376,7 +398,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(248, 17);
+            this.button2.Location = new System.Drawing.Point(251, 49);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(84, 23);
             this.button2.TabIndex = 18;
@@ -396,23 +418,25 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button5);
-            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button16);
+            this.groupBox2.Controls.Add(this.button17);
+            this.groupBox2.Controls.Add(this.button15);
             this.groupBox2.Controls.Add(this.cbbIP1);
+            this.groupBox2.Controls.Add(this.button13);
+            this.groupBox2.Controls.Add(this.button14);
             this.groupBox2.Controls.Add(this.cbbPort1);
-            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.button3);
-            this.groupBox2.Location = new System.Drawing.Point(14, 131);
+            this.groupBox2.Controls.Add(this.btnSendDoc);
+            this.groupBox2.Location = new System.Drawing.Point(13, 108);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(907, 58);
+            this.groupBox2.Size = new System.Drawing.Size(907, 90);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JsonWebSocket";
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(509, 17);
+            this.button5.Location = new System.Drawing.Point(499, 49);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(75, 23);
             this.button5.TabIndex = 19;
@@ -422,9 +446,9 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(428, 17);
+            this.button4.Location = new System.Drawing.Point(433, 49);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.Size = new System.Drawing.Size(60, 23);
             this.button4.TabIndex = 21;
             this.button4.Text = "MULTX";
             this.button4.UseVisualStyleBackColor = true;
@@ -467,7 +491,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(939, 407);
+            this.ClientSize = new System.Drawing.Size(935, 402);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rtbMessage);
@@ -520,5 +544,7 @@
         private System.Windows.Forms.OpenFileDialog ofdFiles;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button button16;
+        private System.Windows.Forms.Button button17;
     }
 }

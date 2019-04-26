@@ -104,11 +104,11 @@ p { padding-bottom: 10px; font-size: 20px; text-align: center; }
   float: left;
   margin-right: 12px;
 }
-#resultBox dt a {/*
+/*#resultBox dt a {
   display: block;
   width: 100%;
-  height: 100%;*/
-}
+  height: 100%;
+}*/
 #resultBox dt a img {
   max-width: 100px;
   max-height: 150px;

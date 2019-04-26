@@ -390,7 +390,7 @@ namespace SearchService.Client
                 }
             }
         }
-       
+
         private void WriteJson(List<Video> list, string path)
         {
 
@@ -1391,7 +1391,7 @@ namespace SearchService.Client
                     MessageBox.Show("需要拆分文件：" + fi.FullName);
                     return;
                 }
-                
+
                 foreach (Video v in pdf)
                 {
                     Infors inf = new Infors();
@@ -1475,7 +1475,7 @@ namespace SearchService.Client
                                 {
                                     listVideo.Add(v);
                                 }
-                            }                      
+                            }
                             //listVideo.AddRange(pdf);
                         }
                         catch (Exception ex)
@@ -1545,6 +1545,56 @@ namespace SearchService.Client
             WriteJson(list, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\pdf.json");
         }
 
+        public void ReadSingleJsonSave()
+        {
+            List<Video> list = new List<Video>();
+
+            for (int i = 0; i < 259; i++)
+            {
+                string jsonfile = @"D:\WorkBackUp\搜索引擎\doc\PDFTest\" + i + ".json";// @"D:\WorkBackUp\搜索引擎\数据\video.json";//JSON文件路径
+                if (File.Exists(jsonfile))
+                {
+                    using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+                    {
+                        using (JsonTextReader reader = new JsonTextReader(file))
+                        {
+                            JObject o = (JObject)JToken.ReadFrom(reader);
+                            var value = o.ToString();
+                            Video v = JsonHelper.DeserializeJsonToObject<Video>(value);
+
+
+                            //int temp = list.FindIndex(p => p.date == date && p.title == v.title);
+                            bool isExit = false;
+                            int temp = 0;
+                            string[] links = v.link.Split(';');
+                            foreach (string str in links)
+                            {
+                                temp = list.FindIndex(p => p.link.IndexOf(str) >= 0);
+                                if (temp > 0)
+                                {
+                                    isExit = true;
+                                }
+
+                            }
+
+
+                            if (!isExit)
+                            {
+                                list.Add(v);
+                            }
+                            else
+                            {
+                                Logger.WriteInfo(temp.ToString() + ";" + i.ToString());
+                            }
+
+
+
+                        }
+                    }
+                }
+            }
+            WriteJson(list, @"D:\WorkBackUp\搜索引擎\doc\PDFTest\new0.json");
+        }
         private void button14_Click(object sender, EventArgs e)
         {
             for (int i = 161; i < 260; i++)
@@ -1590,6 +1640,38 @@ namespace SearchService.Client
             MerginData();
             //ReadAllPdfInFold(@"D:\WorkBackUp\搜索引擎\doc\PDF\");
             //SaveSingleDoc();
+        }
+
+        private void button16_Click(object sender, EventArgs e)
+        {
+            SaveSingleDoc();
+        }
+
+        private void button17_Click(object sender, EventArgs e)
+        {
+            //SaveSingleDoc();
+            ReadSingleJsonSave();
+            SaveFdpInPathToJson();
+
+            string jsonfile = @"D:\WorkBackUp\搜索引擎\doc\PDFTest\new.json";//JSON文件路径
+
+            using (System.IO.StreamReader file = System.IO.File.OpenText(jsonfile))
+            {
+                using (JsonTextReader reader = new JsonTextReader(file))
+                {
+                    JArray o = (JArray)JToken.ReadFrom(reader);
+                    var value = o.ToString();//o["RECORDS"].ToString(); //o.ToString();//
+                    List<Video> list = JsonHelper.DeserializeJsonToList<Video>(value);
+                    foreach (Video v in list)
+                    {
+                        if (!string.IsNullOrEmpty(v.date))
+                        {
+                            beginInvokPrint(v.date, DateTime.Now);
+                        }
+                    }
+                    //return list;
+                }
+            }
         }
     }
 

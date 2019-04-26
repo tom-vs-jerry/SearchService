@@ -9,13 +9,13 @@
     <FilterStopWords>true</FilterStopWords>
     <IgnoreSpace>true</IgnoreSpace>
     <ForceSingleWord>false</ForceSingleWord>
-    <TraditionalChineseEnabled>false</TraditionalChineseEnabled>
+    <TraditionalChineseEnabled>true</TraditionalChineseEnabled>
     <OutputSimplifiedTraditional>false</OutputSimplifiedTraditional>
     <UnknownWordIdentify>true</UnknownWordIdentify>
-    <FilterEnglish>true</FilterEnglish>
+    <FilterEnglish>false</FilterEnglish>
     <FilterNumeric>false</FilterNumeric>
     <IgnoreCapital>false</IgnoreCapital>
-    <EnglishSegment>false</EnglishSegment>
+    <EnglishSegment>true</EnglishSegment>
     <SynonymOutput>false</SynonymOutput>
     <WildcardOutput>false</WildcardOutput>
     <WildcardSegment>false</WildcardSegment>
