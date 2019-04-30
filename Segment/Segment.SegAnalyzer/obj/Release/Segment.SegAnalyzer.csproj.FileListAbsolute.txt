@@ -1,0 +1,12 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.SegAnalyzer.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.SegAnalyzer.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Lucene.Net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.Algorithm.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.SegmentDict.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.Algorithm.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\bin\Release\Segment.SegmentDict.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\obj\Release\Segment.SegAnalyzer.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\obj\Release\Segment.SegAnalyzer.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\obj\Release\Segment.SegAnalyzer.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\obj\Release\Segment.SegAnalyzer.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.SegAnalyzer\obj\Release\Segment.SegAnalyzer.pdb

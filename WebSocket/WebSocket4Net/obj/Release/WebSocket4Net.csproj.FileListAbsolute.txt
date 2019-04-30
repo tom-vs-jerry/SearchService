@@ -1,0 +1,16 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket4Net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket4Net.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\Microsoft.Scripting.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\Newtonsoft.Json.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket.ClientEngine.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket.ProtoBase.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket.ClientEngine.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\Microsoft.Scripting.xml
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\Newtonsoft.Json.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\Newtonsoft.Json.xml
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\bin\Release\WebSocket.ProtoBase.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\obj\Release\WebSocket4Net.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\obj\Release\WebSocket4Net.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\obj\Release\WebSocket4Net.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\obj\Release\WebSocket4Net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket4Net\obj\Release\WebSocket4Net.pdb

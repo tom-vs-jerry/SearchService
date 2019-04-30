@@ -39,30 +39,30 @@
             this.btnPING = new System.Windows.Forms.Button();
             this.btnQUIT = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.button13 = new System.Windows.Forms.Button();
             this.button9 = new System.Windows.Forms.Button();
             this.button12 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.button11 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.btnSendDoc = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.btnMULTX = new System.Windows.Forms.Button();
             this.btnLOGIN = new System.Windows.Forms.Button();
             this.btnADDX = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button17 = new System.Windows.Forms.Button();
+            this.button16 = new System.Windows.Forms.Button();
+            this.button15 = new System.Windows.Forms.Button();
+            this.button14 = new System.Windows.Forms.Button();
+            this.button13 = new System.Windows.Forms.Button();
+            this.btnSendDoc = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.cbbIP1 = new System.Windows.Forms.ComboBox();
             this.cbbPort1 = new System.Windows.Forms.ComboBox();
             this.fbdFolder = new System.Windows.Forms.FolderBrowserDialog();
@@ -209,56 +209,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command";
             // 
-            // button17
-            // 
-            this.button17.Location = new System.Drawing.Point(773, 47);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(125, 23);
-            this.button17.TabIndex = 31;
-            this.button17.Text = "检查json数据赘余";
-            this.button17.UseVisualStyleBackColor = true;
-            this.button17.Click += new System.EventHandler(this.button17_Click);
-            // 
-            // button16
-            // 
-            this.button16.Location = new System.Drawing.Point(660, 47);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(107, 23);
-            this.button16.TabIndex = 30;
-            this.button16.Text = "Json转成单独文件";
-            this.button16.UseVisualStyleBackColor = true;
-            this.button16.Click += new System.EventHandler(this.button16_Click);
-            // 
-            // button15
-            // 
-            this.button15.Location = new System.Drawing.Point(519, 18);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(128, 23);
-            this.button15.TabIndex = 29;
-            this.button15.Text = "读取PDF合并到json";
-            this.button15.UseVisualStyleBackColor = true;
-            this.button15.Click += new System.EventHandler(this.button15_Click);
-            // 
-            // button14
-            // 
-            this.button14.Location = new System.Drawing.Point(653, 18);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(128, 23);
-            this.button14.TabIndex = 28;
-            this.button14.Text = "测试单一json文件";
-            this.button14.UseVisualStyleBackColor = true;
-            this.button14.Click += new System.EventHandler(this.button14_Click);
-            // 
-            // button13
-            // 
-            this.button13.Location = new System.Drawing.Point(384, 18);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(128, 23);
-            this.button13.TabIndex = 27;
-            this.button13.Text = "发送单个文件信息";
-            this.button13.UseVisualStyleBackColor = true;
-            this.button13.Click += new System.EventHandler(this.button13_Click);
-            // 
             // button9
             // 
             this.button9.Location = new System.Drawing.Point(823, 49);
@@ -279,6 +229,16 @@
             this.button12.UseVisualStyleBackColor = true;
             this.button12.Click += new System.EventHandler(this.button12_Click);
             // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(499, 49);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 19;
+            this.button5.Text = "发送所选";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
             // button11
             // 
             this.button11.Location = new System.Drawing.Point(170, 49);
@@ -288,6 +248,16 @@
             this.button11.Text = "传真";
             this.button11.UseVisualStyleBackColor = true;
             this.button11.Click += new System.EventHandler(this.button11_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(433, 49);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(60, 23);
+            this.button4.TabIndex = 21;
+            this.button4.Text = "MULTX";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button10
             // 
@@ -346,15 +316,25 @@
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
-            // btnSendDoc
+            // button2
             // 
-            this.btnSendDoc.Location = new System.Drawing.Point(250, 17);
-            this.btnSendDoc.Name = "btnSendDoc";
-            this.btnSendDoc.Size = new System.Drawing.Size(128, 23);
-            this.btnSendDoc.TabIndex = 18;
-            this.btnSendDoc.Text = "发送所选文件夹PDF";
-            this.btnSendDoc.UseVisualStyleBackColor = true;
-            this.btnSendDoc.Click += new System.EventHandler(this.btnSendDoc_Click);
+            this.button2.Location = new System.Drawing.Point(251, 49);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(84, 23);
+            this.button2.TabIndex = 18;
+            this.button2.Text = "ECHO-string";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(341, 49);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(84, 23);
+            this.button3.TabIndex = 19;
+            this.button3.Text = "ECHO-Class";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnMULTX
             // 
@@ -386,25 +366,65 @@
             this.btnADDX.UseVisualStyleBackColor = true;
             this.btnADDX.Click += new System.EventHandler(this.btnADDX_Click);
             // 
-            // button3
+            // button17
             // 
-            this.button3.Location = new System.Drawing.Point(341, 49);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(84, 23);
-            this.button3.TabIndex = 19;
-            this.button3.Text = "ECHO-Class";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button17.Location = new System.Drawing.Point(773, 47);
+            this.button17.Name = "button17";
+            this.button17.Size = new System.Drawing.Size(125, 23);
+            this.button17.TabIndex = 31;
+            this.button17.Text = "检查json数据赘余";
+            this.button17.UseVisualStyleBackColor = true;
+            this.button17.Click += new System.EventHandler(this.button17_Click);
             // 
-            // button2
+            // button16
             // 
-            this.button2.Location = new System.Drawing.Point(251, 49);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(84, 23);
-            this.button2.TabIndex = 18;
-            this.button2.Text = "ECHO-string";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button16.Location = new System.Drawing.Point(660, 47);
+            this.button16.Name = "button16";
+            this.button16.Size = new System.Drawing.Size(107, 23);
+            this.button16.TabIndex = 30;
+            this.button16.Text = "Json转成单独文件";
+            this.button16.UseVisualStyleBackColor = true;
+            this.button16.Click += new System.EventHandler(this.button16_Click);
+            // 
+            // button15
+            // 
+            this.button15.Location = new System.Drawing.Point(519, 18);
+            this.button15.Name = "button15";
+            this.button15.Size = new System.Drawing.Size(128, 23);
+            this.button15.TabIndex = 29;
+            this.button15.Text = "读取PDF合并到json";
+            this.button15.UseVisualStyleBackColor = true;
+            this.button15.Click += new System.EventHandler(this.button15_Click);
+            // 
+            // button14
+            // 
+            this.button14.Location = new System.Drawing.Point(653, 18);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(128, 23);
+            this.button14.TabIndex = 28;
+            this.button14.Text = "测试单一json文件";
+            this.button14.UseVisualStyleBackColor = true;
+            this.button14.Click += new System.EventHandler(this.button14_Click);
+            // 
+            // button13
+            // 
+            this.button13.Location = new System.Drawing.Point(384, 18);
+            this.button13.Name = "button13";
+            this.button13.Size = new System.Drawing.Size(128, 23);
+            this.button13.TabIndex = 27;
+            this.button13.Text = "发送单个文件信息";
+            this.button13.UseVisualStyleBackColor = true;
+            this.button13.Click += new System.EventHandler(this.button13_Click);
+            // 
+            // btnSendDoc
+            // 
+            this.btnSendDoc.Location = new System.Drawing.Point(250, 17);
+            this.btnSendDoc.Name = "btnSendDoc";
+            this.btnSendDoc.Size = new System.Drawing.Size(128, 23);
+            this.btnSendDoc.TabIndex = 18;
+            this.btnSendDoc.Text = "发送所选文件夹PDF";
+            this.btnSendDoc.UseVisualStyleBackColor = true;
+            this.btnSendDoc.Click += new System.EventHandler(this.btnSendDoc_Click);
             // 
             // button1
             // 
@@ -433,26 +453,6 @@
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "JsonWebSocket";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(499, 49);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 19;
-            this.button5.Text = "发送所选";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(433, 49);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(60, 23);
-            this.button4.TabIndex = 21;
-            this.button4.Text = "MULTX";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // cbbIP1
             // 
@@ -491,7 +491,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(935, 402);
+            this.ClientSize = new System.Drawing.Size(939, 438);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rtbMessage);

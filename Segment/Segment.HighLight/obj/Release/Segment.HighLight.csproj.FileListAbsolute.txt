@@ -1,0 +1,14 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.HighLight.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.HighLight.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Lucene.Net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.Algorithm.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.SegAnalyzer.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.SegmentDict.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.Algorithm.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.SegAnalyzer.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\bin\Release\Segment.SegmentDict.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\obj\Release\Segment.HighLight.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\obj\Release\Segment.HighLight.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\obj\Release\Segment.HighLight.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\obj\Release\Segment.HighLight.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.HighLight\obj\Release\Segment.HighLight.pdb

@@ -44,8 +44,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="PolicyServer\FlashPolicyServer.cs" />
+    <Compile Include="PolicyServer\PolicyReceiveFilter.cs" />
+    <Compile Include="PolicyServer\PolicyReceiveFilterFactory.cs" />
+    <Compile Include="PolicyServer\PolicyServer.cs" />
+    <Compile Include="PolicyServer\PolicySession.cs" />
+    <Compile Include="PolicyServer\SilverlightPolicyServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Protocol\BeginEndMarkReceiveFilter.cs" />
+    <Compile Include="Protocol\CountSpliterReceiveFilter.cs" />
+    <Compile Include="Protocol\CountSpliterReceiveFilterFactory.cs" />
+    <Compile Include="Protocol\FixedHeaderReceiveFilter.cs" />
+    <Compile Include="Protocol\FixedSizeReceiveFilter.cs" />
+    <Compile Include="Protocol\HttpReceiveFilterBase.cs" />
+    <Compile Include="Protocol\HttpRequestInfoBase.cs" />
+    <Compile Include="Protocol\MimeHeaderHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebSocket.Common\WebSocket.Common.csproj">
+      <Project>{befe741f-fac2-4cbb-bff2-83e7a63bd7c9}</Project>
+      <Name>WebSocket.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSocket.SocketBase\WebSocket.SocketBase.csproj">
+      <Project>{85e363cc-428b-49dd-8a57-b8e986b2fd2a}</Project>
+      <Name>WebSocket.SocketBase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebSocket.SocketEngine\WebSocket.SocketEngine.csproj">
+      <Project>{79bbed1d-3441-4b9c-9a6e-4f36eb1259ee}</Project>
+      <Name>WebSocket.SocketEngine</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

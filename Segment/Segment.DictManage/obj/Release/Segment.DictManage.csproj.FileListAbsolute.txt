@@ -1,0 +1,15 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.DictManage.exe.config
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.DictManage.exe
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.DictManage.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.PosDisplayCtrl.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.PosDisplayCtrl.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\bin\Release\Segment.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.frmMain.resources
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.Properties.Resources.resources
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.csproj.GenerateResource.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.exe
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.DictManage\obj\Release\Segment.DictManage.pdb

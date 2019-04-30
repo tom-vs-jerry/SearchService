@@ -1,0 +1,14 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.Facility.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.Facility.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.Common.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.SocketBase.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.SocketEngine.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\log4net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.Common.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.SocketBase.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\bin\Release\WebSocket.SocketEngine.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Release\WebSocket.Facility.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Release\WebSocket.Facility.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Release\WebSocket.Facility.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Release\WebSocket.Facility.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.Facility\obj\Release\WebSocket.Facility.pdb

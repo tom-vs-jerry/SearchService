@@ -117,11 +117,11 @@
     <div>
         <table style="width: 100%; height: 43px; border-collapse: collapse; border: 0px;">
             <tr>
-                <td class="auto-style1"></td>
-                <td style="text-align: center; color: black; font-weight: 700;" class="auto-style2">
+                <td ></td>
+                <td style="text-align: center; color: black; font-weight: 700;" >
                     <!--<img src="imgs/logo.png" style="height:23px; width:23px;" />-->
                 </td>
-                <td class="auto-style3"></td>
+                <td ></td>
             </tr>
         </table>
     </div>

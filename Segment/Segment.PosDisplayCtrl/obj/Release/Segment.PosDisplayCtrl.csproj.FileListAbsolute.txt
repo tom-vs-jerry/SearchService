@@ -1,0 +1,11 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\bin\Release\Segment.PosDisplayCtrl.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\bin\Release\Segment.PosDisplayCtrl.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\bin\Release\Segment.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\bin\Release\Segment.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.Properties.Resources.resources
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.csproj.GenerateResource.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment.PosDisplayCtrl\obj\Release\Segment.PosDisplayCtrl.pdb

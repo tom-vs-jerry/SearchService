@@ -7,6 +7,7 @@ using System.IO;
 using WebSocket;
 using WebSocket.SocketBase;
 using SearchService.Model;
+using WebSocket.SocketBase.Config;
 
 namespace SearchService.Common.WebSocket
 {
@@ -58,7 +59,7 @@ namespace SearchService.Common.WebSocket
         /// <summary>
         /// WebSocket服务端口
         /// </summary>
-        public int IntPort
+        public static int IntPort
         {
             get
             {
@@ -69,6 +70,22 @@ namespace SearchService.Common.WebSocket
         }
 
         bool IsPrintClientConnectInfor = bool.Parse(ConfigurationManager.AppSettings["IsPrintClientConnectInfor"]);
+
+        static string certificatePath = ConfigurationManager.AppSettings["CertificatePath"];
+        static string certificatePWD = ConfigurationManager.AppSettings["CertificatePWD"];
+
+        public ServerConfig sconfig = new ServerConfig
+        {
+            Port = IntPort,
+            Security = "tls",
+            Certificate = new CertificateConfig()
+            {
+                FilePath = certificatePath,
+                Password = certificatePWD,
+            }
+
+        };
+
 
         #endregion
 
@@ -94,8 +111,9 @@ namespace SearchService.Common.WebSocket
         public void Start()
         {
             object message = "";
-            if (WebSocServer.Setup(IntPort)) //Setup with listening port
+            if (WebSocServer.Setup(IntPort)) //(sconfig))// (IntPort)) //Setup with listening port
             {
+
                 message = string.Format("……本地WebSocket服务端口{0}侦听服务启动中……", IntPort.ToString());
                 OnMessages(message, null);
             }

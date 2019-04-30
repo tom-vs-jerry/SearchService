@@ -1,0 +1,15 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\Newtonsoft.Json.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.Common.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.SocketBase.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\log4net.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.Common.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\WebSocket.SocketBase.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\Newtonsoft.Json.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\bin\Release\Newtonsoft.Json.xml
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\obj\Release\WebSocket.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\obj\Release\WebSocket.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\obj\Release\WebSocket.csproj.CopyComplete
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\obj\Release\WebSocket.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket\obj\Release\WebSocket.pdb

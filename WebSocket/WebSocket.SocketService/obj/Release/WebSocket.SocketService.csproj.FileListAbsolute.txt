@@ -1,0 +1,6 @@
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\bin\Release\WebSocket.SocketService.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\bin\Release\WebSocket.SocketService.pdb
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\obj\Release\WebSocket.SocketService.csprojAssemblyReference.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\obj\Release\WebSocket.SocketService.csproj.CoreCompileInputs.cache
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\obj\Release\WebSocket.SocketService.dll
+D:\WorkBackUp\搜索引擎\Code\SearchService\WebSocket\WebSocket.SocketService\obj\Release\WebSocket.SocketService.pdb

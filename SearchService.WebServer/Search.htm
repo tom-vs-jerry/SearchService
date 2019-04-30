@@ -127,7 +127,7 @@
         var flagOpen = false;
 
         //var getval = thisURL.split('?')[1];//key=南山,noneword,starttime,endtime
-        var allWord = "";//传值key  南山,山南海北,2016-01-17 14:23:06,2016-05-17 14:23:11
+        var allWord = "";//
         var showval = "";//keyWord
         var NoneWord = "";//不出现的字
 
@@ -147,26 +147,12 @@
             + " " + date.getHours() + seperator2 + date.getMinutes()
             + seperator2 + date.getSeconds();
 
-        //默认开始时间为当前时间一年以前
-        //var date1 = new Date(date.getTime() - 365 * 24 * 3600 * 1000 * 10);
-        //var month = date1.getMonth() + 1;
-        //var strDate = date1.getDate();
-        //if (month >= 1 && month <= 9) {
-        //    month = "0" + month;
-        //}
-        //if (strDate >= 0 && strDate <= 9) {
-        //    strDate = "0" + strDate;
-        //}
-        //var sevenday = date1.getFullYear() + seperator1 + month + seperator1 + strDate
-        //    + " " + date1.getHours() + seperator2 + date1.getMinutes()
-        //    + seperator2 + date1.getSeconds();
-
-
+        
         var startTime = "2000-01-01";//开始时间
         var endTime = currentdate;//结束时间
-        var DocNum = "2020";//allWord.split(';')[4];
-        var TypeID = 0;//allWord.split(';')[5];
-        var SUnitID = ";";// allWord.split(';')[6];
+        var DocNum = "2020";//
+        var TypeID = 0;//
+        var SUnitID = ";";// 
         var RUnitID = ";";// allWord.split(';')[7];
         var Range = 0;//0为title和context；1为context；2为title
 
@@ -216,7 +202,7 @@
                         oldTypeID = TypeID;
                         oldDocNum = DocNum;
                     } else if (oldPageNo != page) {
-                        debugger
+                        //debugger
                         oldPageNo = page;
                         var pageNo = page;
                         var input = 'RI {"InPutWord":"' + inputKey + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
@@ -226,8 +212,7 @@
                         } else {
                             alert("搜索框不能为空2！")
                         }
-                    }
-                    //return true;
+                    }                    
                 },
                 onFormat: function (type) {
                     switch (type) {
@@ -303,13 +288,13 @@
                         //格式化请求{"Q":"K","P":["request","term"]}
                         //var input = '{"Q":"K","P":["' + request.term + '"]}';
                         var input = 'SA {"Input":"' + request.term + '","Count":20}';
-                        debugger
+                        //debugger
                         socket.send(input);
                     }
                     oldinputKey = input;
                 }
                 socket.onmessage = function (json) {
-                    debugger
+                    //debugger
                     var a = JSON.parse(json.data);
                     if (a.Q == "SA") {
                         response(a.R);
@@ -354,7 +339,7 @@
                 //拼接发送字符串"{"Q":"C","P":["1","2","3"]}",参数依次为：输入字符，当前页码，每页数量
                 //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
                 var input = 'RI {"InPutWord":"' + inputKey + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';//'RI {"DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
-                debugger
+                //debugger
                 if (inputKey.trim() != "") {
                     socket.send(input);
                 } else {

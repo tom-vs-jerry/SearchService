@@ -322,6 +322,7 @@ namespace SearchService.Client
 
         private void button1_Click(object sender, EventArgs e)
         {
+            
             webSocket = new JsonWebSocket("ws://127.0.0.1:2020/");
 
             //webSocket.On<string>("ECHO", HandleEchoResponse);
