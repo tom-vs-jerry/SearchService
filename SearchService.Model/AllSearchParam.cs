@@ -15,201 +15,108 @@ namespace SearchService.Model
     [Serializable]
     public class AllSearchParam
     {
-        private string docNum;
+
         /// <summary>
         /// 文档编号
         /// </summary>
-        public string DocNum
-        {
-            get { return docNum; }
-            set { docNum = value; }
-        }
+        public string DocNum { get; set; }
 
-        private string inPutWord;
+
         /// <summary>
         /// 输入的词
         /// </summary>
-        public string InPutWord
-        {
-            get { return inPutWord; }
-            set { inPutWord = value; }
-        }
+        public string InPutWord { get; set; }
 
 
-        private SearchRange range;
+
         /// <summary>
         /// 搜索范围
         /// </summary>
-        public SearchRange Range
-        {
-            get { return range; }
-            set { range = value; }
-        }
+        public SearchRange Range { get; set; }
 
 
-        private string noneWord;
+
         /// <summary>
         /// 输入的不含词
         /// </summary>
-        public string NoneWord
-        {
-            get { return noneWord; }
-            set { noneWord = value; }
-        }
+        public string NoneWord { get; set; }
 
 
-        //开始时间
-        private DateTime startTime;
+
         /// <summary>
         /// 开始时间
         /// </summary>
-        public DateTime StartTime
-        {
-            get { return startTime; }
-            set { startTime = value; }
-        }
-        //日期
-        private DateTime endTime;
+        public DateTime StartTime { get; set; }
+
         /// <summary>
         /// 结束时间
         /// </summary>
-        public DateTime EndTime
-        {
-            get { return endTime; }
-            set { endTime = value; }
-        }
+        public DateTime EndTime { get; set; }
 
 
-        //拟办意见
-        private string advise;
+
         /// <summary>
         /// 拟办列表
         /// </summary>
-        public string Advise
-        {
-            get
-            {
-                return advise;
-            }
-            set
-            {
-                advise = value;
-            }
-        }
+        public string Advise { get; set; }
 
 
-        //用户ID
-        private string userid;
         /// <summary>
         /// 文件的上传者ID
         /// </summary>
-        public string UserID
-        {
-            get
-            {
-                return userid;
-            }
-            set
-            {
-                userid = value;
-            }
-        }
+        public string UserID { get; set; }
 
 
-        //信息ID
-        private string infromationid;
+
         /// <summary>
         /// 信息文件ID
         /// </summary>
-        public string InformationID
-        {
-            get
-            {
-                return infromationid;
-            }
-            set
-            {
-                infromationid = value;
-            }
-        }
+        public string InformationID { get; set; }
 
-        //信息类型ID
-        private string typeid;
+
         /// <summary>
         /// 文件类型ID
         /// </summary>
-        public string TypeID
-        {
-            get
-            {
-                return typeid;
-            }
-            set
-            {
-                typeid = value;
-            }
-        }
+        public string TypeID { get; set; }
 
 
-        //当前页数
-        private int pageNo;
+
         /// <summary>
         /// 当前页码数
         /// </summary>
-        public int PageNo
-        {
-            get
-            {
-                return pageNo;
-            }
-            set
-            {
-                pageNo = value;
-            }
-        }
+        public int PageNo { get; set; }
 
-        ///每页显示数量
-        private int pageSize;
+
         /// <summary>
         /// 每页显示数量
         /// </summary>  
-        public int PageSize
-        {
-            get
-            {
-                return pageSize;
-            }
-            set
-            {
-                pageSize = value;
-            }
-        }
+        public int PageSize { get; set; }
 
-        //发送单位ID
-        private List<string> sUnitID;
+
         /// <summary>
         /// 文件发送单位ID
         /// </summary>
-        public List<string> SUnitID
-        {
-            get { return sUnitID; }
-            set { sUnitID = value; }
-        }
+        public List<string> SUnitID { get; set; }
 
 
-        //文件接受单位ID
-        private List<string> rUnitID;
+
         /// <summary>
         /// 文件接受单位ID
         /// </summary>
-        public List<string> RUnitID
-        {
-            get { return rUnitID; }
-            set { rUnitID = value; }
-        }
+        public List<string> RUnitID { get; set; }
 
+        /// <summary>
+        /// 日期排序类型：2降序，1升序，0无排序
+        /// </summary>
+        public DateSortType DateSort { set; get; }
     }
 
+    public enum DateSortType
+    {
+        No = 0,
+        Asc = 1, //升序
+        Dsc = 2, //降序
+    }
     public enum SearchRange
     {
         Title = 2,

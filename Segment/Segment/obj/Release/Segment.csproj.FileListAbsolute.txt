@@ -1,6 +1,5 @@
 D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\bin\Release\Segment.dll
 D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\bin\Release\Segment.pdb
-D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\obj\Release\Segment.csprojAssemblyReference.cache
 D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\obj\Release\Segment.AnalyzerResource.resources
 D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\obj\Release\Segment.csproj.GenerateResource.cache
 D:\WorkBackUp\搜索引擎\Code\SearchService\Segment\Segment\obj\Release\Segment.csproj.CoreCompileInputs.cache

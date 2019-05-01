@@ -10,7 +10,7 @@
     <IgnoreSpace>true</IgnoreSpace>
     <ForceSingleWord>false</ForceSingleWord>
     <TraditionalChineseEnabled>true</TraditionalChineseEnabled>
-    <OutputSimplifiedTraditional>false</OutputSimplifiedTraditional>
+    <OutputSimplifiedTraditional>true</OutputSimplifiedTraditional>
     <UnknownWordIdentify>true</UnknownWordIdentify>
     <FilterEnglish>false</FilterEnglish>
     <FilterNumeric>false</FilterNumeric>

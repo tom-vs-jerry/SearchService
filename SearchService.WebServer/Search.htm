@@ -42,6 +42,13 @@
             margin: 0px auto 0 auto;
         }
 
+        .container1 {
+            vertical-align:top;
+            height: 26px;
+            width: 100%;
+            margin: 0 0 0 -30px;
+        }
+
         .search {
             width: 500px;
             height: 40px;
@@ -63,6 +70,13 @@
             outline: none;
             cursor: pointer;
         }
+        .dateType {
+            width:107px;
+            border: 1px solid #ccc;
+            padding-left:5px;
+            border-radius: 5px;
+            height:23px
+        }
     </style>
     <script type="text/javascript" src="Scripts/jquery-1.8.2.min.js"></script>
     <script type='text/javascript' src='Scripts/jquery-ui.js'></script>
@@ -76,13 +90,30 @@
         <table style="width: 100%">
             <tr style="width: 100%">
                 <td style="text-align: center; width: 100%">
+                    <input type="hidden" id="iptWord" />
                     <div class="container">
-                        <input class="search" placeholder="搜索" id="iptInputWord" />
-                        <input type="hidden" id="iptWord" />
+                        <input class="search" placeholder="搜索" id="iptInputWord" autofocus="autofocus" />
                         <img src="Images/search.jpg" id="submit" class="img" />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <span id="spnTotal" style="color:Highlight;font-size:12px;vertical-align:bottom;" />
-                        <span id="spnMessage" style="color:red;font-size:12px" />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                        
+                        <span id="spnMessage" style="color:Highlight;font-size:12px" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="container1">
+                        <span>日期排序：</span>
+                        <select id="sltDateSort" style="border: 1px solid #ccc;padding-left:5px;border-radius: 5px;height:26px;width:62px" title="日期排序">
+                            <option value="0" label="排序" />
+                            <option value="1" label="降序" />
+                            <option value="2" label="升序" />
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span>开始日期：</span><input id="txtWorkStartTime" class="dateType"  type="date" step="Date" value="2000-01-01" min="2000-01-01" required
+                                                 pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                                                 title="请输入开始日期，格式：YYYY/MM/DD" />--
+                        <span>结束日期：</span><input id="txtWorkStartEnd" class="dateType" type="date" step="Date" max="" required
+                                                 pattern="(?:19|20)[0-9]{2}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-9])|(?:(?!02)(?:0[1-9]|1[0-2])-(?:30))|(?:(?:0[13578]|1[02])-31))"
+                                                 title="请输入结束日期，格式：YYYY/MM/DD" />
                     </div>
                 </td>
             </tr>
@@ -91,7 +122,7 @@
 
     <div style="text-align:center;">
         <hr style="height: 5px; border: none; border-top: 1px outset AliceBlue;">
-    </div>    
+    </div>
     <div style="margin: 0 auto; text-align: center; background-color: #fefefe; border-top: 0px solid #e8e8e8; border-bottom: 1px solid #e8e8e8; width: 55%">
         <table style="width: 100%; align-content: center; align-items: center; align-self: center;" class="tableView">
             <tbody style="text-align: center">
@@ -143,20 +174,21 @@
         if (strDate >= 0 && strDate <= 9) {
             strDate = "0" + strDate;
         }
-        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-            + " " + date.getHours() + seperator2 + date.getMinutes()
-            + seperator2 + date.getSeconds();
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate;
+        //+ " " + date.getHours() + seperator2 + date.getMinutes()
+        //+ seperator2 + date.getSeconds();
 
-        
+
         var startTime = "2000-01-01";//开始时间
         var endTime = currentdate;//结束时间
         var DocNum = "2020";//
         var TypeID = 0;//
-        var SUnitID = ";";// 
+        var SUnitID = ";";//
         var RUnitID = ";";// allWord.split(';')[7];
         var Range = 0;//0为title和context；1为context；2为title
+        var dateSort = 0;
 
-        //var inputKey = "";
+        var inputKey = "";
         var oldinputKey = "";
         var oldnonword = "";
         var oldStartTime = "";
@@ -164,6 +196,7 @@
         var oldTypeID = "";
         var oldDocNum = "";
         var oldRecNum = "";
+        var oldDateSort = 0;
 
 
         var oldPageNo = 1;
@@ -182,17 +215,22 @@
                 page: 1,    //当前页  ["76","88"]
 
                 onSelect: function (page) {
-                    var inputKey = $('#iptInputWord').val();
-                    if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum) {
+
+                    inputKey = $('#iptInputWord').val();
+                    dateSort = $('#sltDateSort').val();
+                    startTime = $('#txtWorkStartTime').val();
+                    endTime = $('#txtWorkStartEnd').val();
+
+                    if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum || oldDateSort != dateSort) {
 
                         oldinputKey = inputKey;
                         var pageNo = page;
-                        var input = 'RI {"InPutWord":"' + inputKey + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
+                        var input = 'RI {"InPutWord":"' + inputKey + '","DateSort":"' + dateSort + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
                         //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
                         //if (inputKey.trim() != "") {
                         //    socket.send(input);
                         //} else {
-                        //    alert("搜索框不能为空1！")
+                        //alert("搜索框不能为空1！")
                         //}
 
                         oldinputKey = inputKey;
@@ -201,18 +239,20 @@
                         oldEndTime = endTime;
                         oldTypeID = TypeID;
                         oldDocNum = DocNum;
+                        oldDateSort = dateSort;
                     } else if (oldPageNo != page) {
                         //debugger
                         oldPageNo = page;
                         var pageNo = page;
-                        var input = 'RI {"InPutWord":"' + inputKey + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
+                        var input = 'RI {"InPutWord":"' + inputKey + '","DateSort":"' + dateSort + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
                         //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
-                        if (inputKey.trim() != "") {
-                            socket.send(input);
-                        } else {
-                            alert("搜索框不能为空2！")
-                        }
-                    }                    
+                        //if (inputKey.trim() != "") {
+                        socket.send(input);
+                        //} else {
+                        $('#iptInputWord').focus();
+                        //    alert("搜索框不能为空！");
+                        //}
+                    }
                 },
                 onFormat: function (type) {
                     switch (type) {
@@ -268,13 +308,18 @@
             });
             Paging.setNumber(0);
             Paging.setPage();
+            $("#txtWorkStartEnd").attr("max", currentdate)
+            $("#txtWorkStartEnd").val(currentdate);
+
         };
 
         socket.onclose = function (json) {
+            $("#spnMessage").attr("style", "color:red;")
             $("#spnMessage").html("WebSocket连接关闭，请重新刷新网页！");
         }
 
         socket.onerror = function (json) {
+            $("#spnMessage").attr("style", "color:red;")
             $("#spnMessage").html("WebSocket连接错误，请重新刷新网页！");
         }
 
@@ -312,39 +357,32 @@
         //提交按钮单击事件
         $('#submit').click(function () {
 
+            inputKey = $('#iptInputWord').val();
+            dateSort = $('#sltDateSort').val();
+            startTime = $('#txtWorkStartTime').val();
+            endTime = $('#txtWorkStartEnd').val();
 
-            var keyWord = $('#iptInputWord').val();
-
-            if (flagOpen) {
-                var ifrmaDoc = $('#iframeid').prop('contentWindow').document;
-                if (ifrmaDoc != null) {
-                    NoneWord = ifrmaDoc.getElementById('txtNoneWord').value == null ? NoneWord : ifrmaDoc.getElementById('txtNoneWord').value;
-                    startTime = ifrmaDoc.getElementById('txtWorkStartTime').value == null ? startTime : ifrmaDoc.getElementById('txtWorkStartTime').value;
-                    endTime = ifrmaDoc.getElementById('txtWorkStartEnd').value == null ? endTime : ifrmaDoc.getElementById('txtWorkStartEnd').value;
-                    DocNum = ifrmaDoc.getElementById('txtdocnum').value == null ? DocNum : ifrmaDoc.getElementById('txtdocnum').value;//文件编号
-                    TypeID = ifrmaDoc.getElementById('txtfileTypeID').value == null ? TypeID : ifrmaDoc.getElementById('txtfileTypeID').value;
-                }
-            }
-
-            if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum) {
+            if (oldinputKey != inputKey || oldnonword != NoneWord || oldStartTime != startTime || oldEndTime != endTime || oldTypeID != TypeID || oldDocNum != DocNum || oldDateSort != dateSort) {
                 oldinputKey = inputKey;
                 oldnonword = NoneWord;
                 oldStartTime = startTime;
                 oldEndTime = endTime;
                 oldTypeID = TypeID;
                 oldDocNum = DocNum;
+                oldDateSort = dateSort;
 
                 var pageNo = "1";
                 var inputKey = $('#iptInputWord').val();
                 //拼接发送字符串"{"Q":"C","P":["1","2","3"]}",参数依次为：输入字符，当前页码，每页数量
                 //var input = '{"Q":"C","P":["' + inputKey + '","' + noneWord + '","' + startTime + '","' + endTime + '","' + InfoID + '","' + TypeID + '","' + RUnitID + '","' + SUnitID + '","' + pageNo + '","' + pageSize + '"]}';
-                var input = 'RI {"InPutWord":"' + inputKey + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';//'RI {"DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
+                var input = 'RI {"InPutWord":"' + inputKey + '","DateSort":"' + dateSort + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';//'RI {"DocNum":"' + DocNum + '","InPutWord":"' + inputKey + '","Range":' + Range + ',"NoneWord":"' + NoneWord + '","StartTime":"' + startTime + '","EndTime":"' + endTime + '","PageNo":' + pageNo + ',"PageSize":' + pageSize + '}';
                 //debugger
-                if (inputKey.trim() != "") {
-                    socket.send(input);
-                } else {
-                    alert("搜索框不能为空！")
-                }
+                //if (inputKey.trim() != "") {
+                socket.send(input);
+                //} else {
+                $('#iptInputWord').focus();
+                //    alert("搜索框不能为空！")
+                //}
             }
 
             //socket接收数据事件
@@ -358,8 +396,9 @@
                     Paging.setNumber(parseInt(a.R[4]));
                     Paging.setPage(parseInt(a.R[3]));
                     Paging.setPage(); // reload pagination}
-                    $("#spnTotal").html("总记录数：" + parseInt(a.R[4]));
-                    $("#spnMessage").html("");
+                    $("#spnMessage").attr("style", "color:Highlight;")
+                    $("#spnMessage").html("总记录数：" + parseInt(a.R[4]));
+                    //$("#spnMessage").html("");
                     oldPageNo = parseInt(a.R[3]);
                 }
 
