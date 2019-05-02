@@ -107,12 +107,20 @@ namespace SearchService.Server.Command
                     }
 
                     string html = "";
-                    if (resultList.Count > 0)
+                    //修改，只发送JSON，不转换为HTML
+                    //if (resultList.Count > 0)
+                    //{
+                    //    SearchPage sp = new SearchPage();
+                    //    html = sp.GetAllResultPage(resultList);
+                    //}
+                    //清除详细内容，降低传输量
+                    for (int i = 0; i < resultList.Count; i++)
                     {
-                        SearchPage sp = new SearchPage();
-                        html = sp.GetAllResultPage(resultList);
+                        resultList[i].Content = "";
                     }
-                    
+                    string json1 = Newtonsoft.Json.JsonConvert.SerializeObject(resultList);
+                    html = json1;
+
                     string inforID = string.Join(",",resultList.Select(p => p.InformationID));
 
                     //string html = sp.GetSensResultPage(news);
